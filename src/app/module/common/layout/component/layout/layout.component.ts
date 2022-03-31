@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../../auth/component/login/login.component';
+import { GameConfigComponent } from '../../../game/component/game-config/game-config.component';
 
 @Component({
   selector: 'app-layout',
@@ -15,6 +16,9 @@ export class LayoutComponent implements OnInit {
 }
     openLogin(){
         this._mat.open(LoginComponent);
+    }
+    openConfig(){
+        this._mat.open(GameConfigComponent);
     }
 
 }

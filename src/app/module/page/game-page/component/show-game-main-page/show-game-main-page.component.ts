@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordComponent } from 'src/app/module/common/auth/component/change-password/change-password.component';
 import { LoginComponent } from 'src/app/module/common/auth/component/login/login.component';
 import { RegistComponent } from 'src/app/module/common/auth/component/regist/regist.component';
+import { GameConfigComponent } from 'src/app/module/common/game/component/game-config/game-config.component';
 import { MyMainComponent } from 'src/app/module/common/my/component/my-main/my-main.component';
 
 @Component({
@@ -15,7 +16,7 @@ export class ShowGameMainPageComponent implements OnInit {
   constructor(public _matDiaog: MatDialog) { }
 
   ngOnInit(): void {
-      this._matDiaog.open(MyMainComponent)
+      this._matDiaog.open(GameConfigComponent)
   }
 
 }
