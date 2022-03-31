@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-regist',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _mat:MatDialogRef<RegistComponent>) { }
 
   ngOnInit(): void {
   }
-
+  closeRegist(){
+    this._mat.close();
+  }
 }

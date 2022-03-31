@@ -15,7 +15,7 @@ export class ShowGameMainPageComponent implements OnInit {
   constructor(public _matDiaog: MatDialog) { }
 
   ngOnInit(): void {
-      
+      this._matDiaog.open(MyMainComponent)
   }
 
 }

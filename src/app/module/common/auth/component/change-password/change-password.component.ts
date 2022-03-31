@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-change-password',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _mat:MatDialogRef<ChangePasswordComponent>) { }
 
   ngOnInit(): void {
   }
-
+  closePassword(){
+      this._mat.close();
+  }
 }
