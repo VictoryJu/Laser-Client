@@ -1,0 +1,13 @@
+main{
+    height: 100%;
+    background-color: #eee;
+    padding:0px 50px;
+    background-image: url("/assets/back_img.png");
+    background-size: 100% 100%;
+}
+
+.header-bar{
+    display: flex;
+    justify-content: space-between;
+    padding:20px 0px;
+}
