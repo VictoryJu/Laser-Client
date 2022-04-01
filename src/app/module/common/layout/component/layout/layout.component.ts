@@ -21,4 +21,5 @@ export class LayoutComponent implements OnInit {
         this._mat.open(GameConfigComponent);
     }
 
+    mouseHoverPerson=false;
 }

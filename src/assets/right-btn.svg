@@ -1,0 +1,13 @@
+<svg id="그룹_295" data-name="그룹 295" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.812" height="23.812" viewBox="0 0 23.812 23.812">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.273" y1="-0.036" x2="0.717" y2="1.013" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#b9b9b9"/>
+    </linearGradient>
+  </defs>
+  <g id="그룹_294" data-name="그룹 294" transform="translate(0 0)">
+    <circle id="타원_122" data-name="타원 122" cx="10.371" cy="10.371" r="10.371" transform="translate(0 20.471) rotate(-80.729)" fill="url(#linear-gradient)"/>
+    <circle id="타원_123" data-name="타원 123" cx="10.088" cy="10.088" r="10.088" transform="translate(1.818 1.818)" fill="url(#linear-gradient)"/>
+  </g>
+  <path id="패스_357" data-name="패스 357" d="M1834.25,1143.25v8.385l6.128-4.134Z" transform="translate(-1824.604 -1135.536)" fill="#3e3e3e"/>
+</svg>

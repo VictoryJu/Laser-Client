@@ -1,30 +1,240 @@
-<div>
-    <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; width: 1000px; padding:10px 30px">
+<div style="overflow: hidden;">
+
+    <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding:10px 30px">
         <div style="margin-left: 20px; font-size: 25px; font-weight: 500;">시스템 환경설정</div>
-        <div class="material-icons" style="font-size: 35px; font-weight: bold;">close</div>
+        <div class="material-icons" style="font-size: 35px; font-weight: bold;" (click)="closeGameConfig();">close</div>
     </div>
-    <div style="padding:30px 50px;">
-        <div style="display: flex;">
-            <div style="padding:7px 25px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">타이머 환경 설정</div>
-            <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:18px">
-                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-                    <div style="flex:2;">
-                        <span>제한시간 설정</span>
-                        
-                    </div>
-                    <div style="flex:1.5;">
-                        <span style="margin-right: 15px;">직접입력</span>
-                        <input  style="width: 60px;margin-right: 10px; padding:0px 10px;">
-                        <span>초</span>
-                    </div>
-                    <div style="flex:1; text-align: center;">
-                        <span>ON</span>
-                        <span class="material-icons" style="margin-right: 20px;">check_box</span>
-                        <span>OFF</span>
-                        <span class="material-icons">check_box</span>
+
+    <div style="padding:120px 90px; background:linear-gradient(to bottom,#1B1623,#433754); position: relative;">
+        <div style="position: absolute; left: 0px; top:50%; transform: translateY(-50%);"> 
+            <img src="/assets/left-setting.svg" >
+        </div>
+        <div style="position: absolute; right: 0px; bottom:30px;"> 
+            <img src="/assets/right-setting.svg" >
+        </div>
+        <div style="position: absolute; right: 20%; top:0px;"> 
+            <img src="/assets/top-setting.svg" >
+        </div>
+        <div style="position: absolute; left: 20%; bottom:0px;"> 
+            <img src="/assets/bottom-setting.svg" >
+        </div>
+        <div style="border:1px solid #fff">
+            <div style="display: flex; margin-bottom:15px;">
+                <div style="padding:7px 0px; width: 160px;"></div>
+                <div style="flex:1; padding:7px 30px; color:#fff; font-size:15px">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <div style="width: 150px;">
+                            <span style="letter-spacing: 2px; margin-right: 5px;">언어</span>
+                            <div style="display: inline-block; background-color: #fff; width: 70px;height: 18px; color:#1B1623; text-align: center; font-size:13px; font-weight: 500; letter-spacing: 1px; line-height: 18px;">한국어</div>
+                            <img style="width: 19px; height: 19px;" src="/assets/down-arrow.svg">
+                        </div>
                     </div>
                 </div>
             </div>
+    
+            <div style="display: flex;">
+                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">타이머 환경 설정</div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px;">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 150px;">
+                            <span>제한시간 설정</span>
+                        </div>
+                        <div style="width: 250px;">
+                            <div style="display: inline-block; background-color: #fff; width: 70px;height: 22px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 16px;">3 분</div>
+                            <img style="width: 22px; height: 22px;" src="/assets/down-arrow.svg">
+                        </div>
+                        <div style="width:190px">
+                            <div style="display: inline-block; width: 65px; font-size:15px">직접입력</div>
+                            <input  style="width: 60px;margin-right: 10px; padding:0px 10px; text-align: center; font-size: 15px;" type="text"  maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                            <span>초</span>
+                        </div>
+                        <div style="width: 150px;">
+                            <span style="margin-right:5px">ON</span>
+                            <span class="material-icons" style="margin-right: 20px;">check_box</span>
+                            <span style="margin-right:5px">OFF</span>
+                            <span class="material-icons">check_box_outline_blank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px;"></div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 150px;">
+                            <span>딜레이 설정</span>
+                        </div>
+                        <div style="width: 290px;">
+                            <div style="position:relative">
+                                <img src="/assets/control-bar.svg">
+                                <img [style.left.px]="slideWidth" style="position: absolute; top:5px;" src="/assets/control-circle.png">
+                            </div>
+                        </div>
+                        <div style="width:150px">
+                            <div style="display: inline-block; width: 25px;"></div>
+                            <input  style="width: 60px;margin-right: 10px; padding:0px 10px;">
+                            <span>초</span>
+                        </div>
+                        <div style="width: 150px;">
+                            <span style="margin-right:5px">ON</span>
+                            <span class="material-icons" style="margin-right: 20px;">check_box</span>
+                            <span style="margin-right:5px">OFF</span>
+                            <span class="material-icons">check_box_outline_blank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">표적지 변경</div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 150px;">
+                            <span>표적지 선택</span>
+                        </div>
+                        <div style="width: 315px;">
+                            <span>3분</span>
+                        </div>
+                        <div class="btn-wrap" style="width:250px">
+                            <button>적용</button>
+                            <button>미리보기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">영점 조절</div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 465px;">
+                            <span>표적지 영점 조절 </span>
+                            <span style="font-size: 13px; font-weight: 400;">( X값, Y값 )</span>
+                        </div>
+                        <div class="btn-wrap" style="width:250px">
+                            <button>조절</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">경기 환경 설정</div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 350px;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="margin-right: 10px;">카메라 밝기 조절 </div>
+                                <img src="/assets/left-btn.svg">
+                                <div style="position:relative;">
+                                    <img src="/assets/short-control-bar.svg">
+                                    <img src="/assets/control-circle.png" style="position:absolute; left:0px; top:5px;">
+                                </div>
+                                <img src="/assets/right-btn.svg">
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="margin-right: 10px;">조도 설정 </div>
+                                <img src="/assets/left-btn.svg">
+                                <div style="position:relative;">
+                                    <img src="/assets/short-control-bar.svg">
+                                    <img src="/assets/control-circle.png" style="position:absolute; left:0px; top:5px;">
+                                </div>
+                                <img src="/assets/right-btn.svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px;"></div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                    <div style="display: flex; width: 100%; align-items: center;">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 117px;">
+                            <span>사격 횟수 변경</span>
+                        </div>
+                        <div style="width: 325px;">
+                            <div style="position:relative">
+                                <img src="/assets/control-bar.svg">
+                                <img [style.left.px]="slideWidth" style="position: absolute; top:5px;" src="/assets/control-circle.png">
+                            </div>
+                        </div>
+                        <div style="width:150px">
+                            <div style="display: inline-block; width: 25px;"></div>
+                            <input  style="width: 60px;margin-right: 10px; padding:0px 10px;">
+                            <span>발</span>
+                        </div>
+                        <div style="width: 150px;">
+                            <span style="margin-right:5px">ON</span>
+                            <span class="material-icons" style="margin-right: 20px;">check_box</span>
+                            <span style="margin-right:5px">OFF</span>
+                            <span class="material-icons">check_box_outline_blank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px;"></div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                    <div style="display: flex; width: 100%; align-items: center; ">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 150px;">
+                            <span>다음 라운드 넘어가기</span>
+                        </div>
+                        <div style="flex:1;"></div>
+                        <div style="width: 150px;">
+                            <span style="margin-right:5px">ON</span>
+                            <span class="material-icons" style="margin-right: 20px;">check_box</span>
+                            <span style="margin-right:5px">OFF</span>
+                            <span class="material-icons">check_box_outline_blank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px;"></div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                    <div style="display: flex; width: 100%; align-items: center; ">
+                        <div style="width: 35px;"></div>
+                        <div style="width: 150px;">
+                            <span>사운드 설정</span>
+                        </div>
+                        <div style="flex:1;"></div>
+                        <div style="width: 150px;">
+                            <span style="margin-right:5px">ON</span>
+                            <span class="material-icons" style="margin-right: 20px;">check_box</span>
+                            <span style="margin-right:5px">OFF</span>
+                            <span class="material-icons">check_box_outline_blank</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div style="display: flex; margin-top:15px;">
+                <div style="padding:7px 0px; width: 190px;"></div>
+                <button style="flex:1;padding:6px 0px; font-size: 16px; font-weight: 500;box-shadow: 3px 0px 6px #00000029;">동기화</button>
+                <button style="flex:1; font-size: 16px; font-weight: 500;box-shadow: 3px 0px 6px #00000029;">기본값</button>
+            </div>
+    
+            <div style="display: flex; margin-top:15px; justify-content: right; gap:5px;">
+                <button style="width: 100px; height: 35px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">적용</button>
+                <button style="width: 100px; height: 35px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">확인</button>
+            </div>
         </div>
+        
+
+
     </div>
+
 </div>

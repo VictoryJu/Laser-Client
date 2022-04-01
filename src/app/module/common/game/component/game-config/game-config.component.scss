@@ -1,0 +1,13 @@
+.btn-wrap{
+    display: flex;
+    gap:10px;
+    button{
+        min-width: 50px;
+        padding:1px 12px;
+        font-size:15px;
+        font-weight: 400;
+        border: 2px solid #2E3036;
+        border-radius: 5px;
+        
+    }
+}

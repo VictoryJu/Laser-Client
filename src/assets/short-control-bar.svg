@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="112.919" height="22.52" viewBox="0 0 112.919 22.52">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="0.988" x2="0.5" y2="0.039" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#adbfc8"/>
+      <stop offset="1" stop-color="#6c6c6d"/>
+    </linearGradient>
+    <filter id="사각형_112" x="0" y="7.068" width="112.919" height="15.452" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-color="#fff"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_460" data-name="그룹 460" transform="translate(-899.876 -546.421)">
+    <g id="그룹_461" data-name="그룹 461">
+      <g transform="matrix(1, 0, 0, 1, 899.88, 546.42)" filter="url(#사각형_112)">
+        <rect id="사각형_112-2" data-name="사각형 112" width="106.919" height="9.452" rx="4.726" transform="translate(3 10.07)" fill="url(#linear-gradient)"/>
+      </g>
+      <path id="패스_358" data-name="패스 358" d="M1031.735,1313.376a.584.584,0,0,0-.584.583v5.975a.584.584,0,1,0,1.167,0v-5.975A.584.584,0,0,0,1031.735,1313.376Z" transform="translate(-121.078 -766.955)" fill="#e3e2e2"/>
+      <path id="패스_359" data-name="패스 359" d="M1118.611,1313.376a.584.584,0,0,0-.584.583v5.975a.584.584,0,1,0,1.167,0v-5.975A.584.584,0,0,0,1118.611,1313.376Z" transform="translate(-177.468 -766.955)" fill="#e3e2e2"/>
+      <path id="패스_360" data-name="패스 360" d="M1205.488,1313.376a.583.583,0,0,0-.583.583v5.975a.584.584,0,1,0,1.167,0v-5.975A.583.583,0,0,0,1205.488,1313.376Z" transform="translate(-233.859 -766.955)" fill="#e3e2e2"/>
+      <path id="패스_361" data-name="패스 361" d="M1292.364,1313.376a.584.584,0,0,0-.583.583v5.975a.584.584,0,1,0,1.167,0v-5.975A.584.584,0,0,0,1292.364,1313.376Z" transform="translate(-290.25 -766.955)" fill="#e3e2e2"/>
+    </g>
+  </g>
+</svg>
