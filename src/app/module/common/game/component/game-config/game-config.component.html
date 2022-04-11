@@ -5,7 +5,7 @@
         <div class="material-icons" style="font-size: 35px; font-weight: bold;" (click)="closeGameConfig();">close</div>
     </div>
 
-    <div style="padding:120px 90px; background:linear-gradient(to bottom,#1B1623,#433754); position: relative;">
+    <div style="padding:60px; background:linear-gradient(to bottom,#1B1623,#433754); position: relative;">
         <div style="position: absolute; left: 0px; top:50%; transform: translateY(-50%);"> 
             <img src="/assets/left-setting.svg" >
         </div>
@@ -18,14 +18,14 @@
         <div style="position: absolute; left: 20%; bottom:0px;"> 
             <img src="/assets/bottom-setting.svg" >
         </div>
-        <div style="border:1px solid #fff">
+        <div style="border: 1px solid #ccc; padding:30px; font-size:18px; font-weight:500;">
             <div style="display: flex; margin-bottom:15px;">
                 <div style="padding:7px 0px; width: 160px;"></div>
                 <div style="flex:1; padding:7px 30px; color:#fff; font-size:15px">
                     <div style="display: flex; width: 100%; align-items: center;">
                         <div style="width: 150px;">
                             <span style="letter-spacing: 2px; margin-right: 5px;">언어</span>
-                            <div style="display: inline-block; background-color: #fff; width: 70px;height: 18px; color:#1B1623; text-align: center; font-size:13px; font-weight: 500; letter-spacing: 1px; line-height: 18px;">한국어</div>
+                            <div style="display: inline-block; background-color: #fff; width: 70px;height: 19px; color:#1B1623; text-align: center; font-size:13px; font-weight: 500; letter-spacing: 1px; line-height: 18px;">한국어</div>
                             <img style="width: 19px; height: 19px;" src="/assets/down-arrow.svg">
                         </div>
                     </div>
@@ -33,27 +33,41 @@
             </div>
     
             <div style="display: flex;">
-                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">타이머 환경 설정</div>
-                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px;">
-                    <div style="display: flex; width: 100%; align-items: center;">
+                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px; display: flex; justify-content: center; align-items: center;">타이머 환경 설정</div>
+                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff;">
+                    <div style="display: flex; width: 100%; align-items: center; ">
                         <div style="width: 35px;"></div>
                         <div style="width: 150px;">
-                            <span>제한시간 설정</span>
+                            제한시간 설정
                         </div>
-                        <div style="width: 250px;">
-                            <div style="display: inline-block; background-color: #fff; width: 70px;height: 22px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 16px;">3 분</div>
-                            <img style="width: 22px; height: 22px;" src="/assets/down-arrow.svg">
+                        <div style="width: 250px; position:relative;">
+                            <div (click)="activeTimerConfig = activeTimerConfig ? false : true" style="width: 104px; ">
+                                <div style="cursor: pointer; display: inline-block; background-color: #fff; width: 80px;height: 24px; color:#1B1623; text-align: center; line-height: 22px; font-size: 17px; font-weight: 400;">{{setTimerMin}} 분</div>
+                                <img style="width: 24px; cursor: pointer;" src="/assets/down-arrow.svg">
+                            </div>
+                            <ng-container *ngIf="activeTimerConfig">
+                                <div style="display: inline-block; background-color: #fff; width: 104px;height: 24px; color:#1B1623; text-align: center; line-height: 22px; font-size: 17px; font-weight: 400; position:absolute; bottom: -24px; left: 0px; z-index: 999;">
+                                    <ng-container *ngFor="let item of timerMinObj">
+                                        <div style="border:1px solid #ccc; background-color: #fff; margin-bottom: -1px; padding:3px; cursor: pointer;" (click)="setTimerMin = item; activeTimerConfig=false;">{{item}} 분</div>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
                         </div>
                         <div style="width:190px">
-                            <div style="display: inline-block; width: 65px; font-size:15px">직접입력</div>
-                            <input  style="width: 60px;margin-right: 10px; padding:0px 10px; text-align: center; font-size: 15px;" type="text"  maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                            <span>초</span>
+                            <div style="display: inline-block; width: 65px; font-size:15px"></div>
+                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{setTimerMin * 60}}</div>
+                            <span style="font-size: 20px;">초</span>
                         </div>
                         <div style="width: 150px;">
-                            <span style="margin-right:5px">ON</span>
-                            <span class="material-icons" style="margin-right: 20px;">check_box</span>
-                            <span style="margin-right:5px">OFF</span>
-                            <span class="material-icons">check_box_outline_blank</span>
+                            <div style="display: inline-block;" (click)="activeTimer=true">
+                                <span style="margin-right:5px">ON</span>
+                                <span class="material-icons" style="margin-right: 20px;">{{activeTimer ? 'check_box' : 'check_box_outline_blank'}}</span>
+                            </div>
+
+                            <div style="display: inline-block;" (click)="activeTimer=false">
+                                <span style="margin-right:5px" (click)="activeTimer=false">OFF</span>
+                                <span class="material-icons">{{activeTimer ? 'check_box_outline_blank' : 'check_box'}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,40 +78,60 @@
                 <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
                     <div style="display: flex; width: 100%; align-items: center;">
                         <div style="width: 35px;"></div>
+                        <!-- <input class="slider" type="range" min="1" max="10" step="1" value="3" list="tickmarks">
+                        <datalist id="tickmarks">
+                            <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+                                <option [value]="item"></option>
+                            </ng-container>
+                        </datalist> -->
                         <div style="width: 150px;">
-                            <span>딜레이 설정</span>
+                            딜레이 설정
                         </div>
                         <div style="width: 290px;">
                             <div style="position:relative">
                                 <img src="/assets/control-bar.svg">
-                                <img [style.left.px]="slideWidth" style="position: absolute; top:5px;" src="/assets/control-circle.png">
+                                <img [style.left.%]="slideWidth" style="position: absolute; top:5px;" src="/assets/control-circle.png">
                             </div>
                         </div>
                         <div style="width:150px">
                             <div style="display: inline-block; width: 25px;"></div>
-                            <input  style="width: 60px;margin-right: 10px; padding:0px 10px;">
-                            <span>초</span>
+                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{delayTime}}</div>
+                            <span style="font-size: 20px;">초</span>
                         </div>
                         <div style="width: 150px;">
-                            <span style="margin-right:5px">ON</span>
-                            <span class="material-icons" style="margin-right: 20px;">check_box</span>
-                            <span style="margin-right:5px">OFF</span>
-                            <span class="material-icons">check_box_outline_blank</span>
+                            <div style="display: inline-block;" (click)="activeDelay = true">
+                                <span style="margin-right:5px">ON</span>
+                                <span class="material-icons" style="margin-right: 20px;">{{activeDelay ? 'check_box' : 'check_box_outline_blank'}}</span>
+                            </div>
+                            <div style="display: inline-block;" (click)="activeDelay = false">
+                                <span style="margin-right:5px">OFF</span>
+                                <span class="material-icons">{{activeDelay ? 'check_box_outline_blank' : 'check_box'}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
     
             <div style="display: flex; margin-top:15px;">
-                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">표적지 변경</div>
+                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px; display: flex; justify-content: center; align-items: center;">표적지 변경</div>
                 <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
                     <div style="display: flex; width: 100%; align-items: center;">
                         <div style="width: 35px;"></div>
                         <div style="width: 150px;">
-                            <span>표적지 선택</span>
+                            표적지 선택
                         </div>
-                        <div style="width: 315px;">
-                            <span>3분</span>
+                        <div style="width: 315px; position: relative;">
+                            <div (click)="activeTargetConfig = activeTargetConfig ? false : true" style="width: 222px; cursor: pointer;">
+                                <div style="display: inline-block; background-color: #fff; width: 200px;height: 22px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 16px;">{{titleTarget}}</div>
+                                <img style="width: 22px; height: 22px;" src="/assets/down-arrow.svg">
+                            </div>
+                            <ng-container *ngIf="activeTargetConfig">
+                                <div style="display: inline-block; background-color: #fff; width: 222px;height: 24px; color:#1B1623; text-align: center; line-height: 22px; font-size: 17px; font-weight: 400; position:absolute; bottom: -24px; left: 0px; z-index: 999;">
+                                    <ng-container *ngFor="let item of targetTitleArr">
+                                        <div style="border:1px solid #ccc; background-color: #fff; margin-bottom: -1px; padding:3px; cursor: pointer;" (click)="titleTarget = item; activeTargetConfig=false;">{{item}}</div>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
                         </div>
                         <div class="btn-wrap" style="width:250px">
                             <button>적용</button>
@@ -108,13 +142,12 @@
             </div>
     
             <div style="display: flex; margin-top:15px;">
-                <div style="padding:7px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px;">영점 조절</div>
-                <div style="flex:1; padding:7px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
+                <div style="padding:5px 0px; width: 190px; text-align: center;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); color:#fff; font-size: 21px; display: flex; justify-content: center; align-items: center;">영점 조절</div>
+                <div style="flex:1; padding:5px 30px; background-color: #4A4F5E; color:#fff; font-size:17px">
                     <div style="display: flex; width: 100%; align-items: center;">
                         <div style="width: 35px;"></div>
                         <div style="width: 465px;">
-                            <span>표적지 영점 조절 </span>
-                            <span style="font-size: 13px; font-weight: 400;">( X값, Y값 )</span>
+                            표적지 영점 조절 <span style="font-size: 13px; font-weight: 400; vertical-align: baseline;">( X값, Y값 )</span>
                         </div>
                         <div class="btn-wrap" style="width:250px">
                             <button>조절</button>
@@ -160,7 +193,7 @@
                     <div style="display: flex; width: 100%; align-items: center;">
                         <div style="width: 35px;"></div>
                         <div style="width: 117px;">
-                            <span>사격 횟수 변경</span>
+                            사격 횟수 변경
                         </div>
                         <div style="width: 325px;">
                             <div style="position:relative">
@@ -189,7 +222,7 @@
                     <div style="display: flex; width: 100%; align-items: center; ">
                         <div style="width: 35px;"></div>
                         <div style="width: 150px;">
-                            <span>다음 라운드 넘어가기</span>
+                            다음 라운드 넘어가기
                         </div>
                         <div style="flex:1;"></div>
                         <div style="width: 150px;">
@@ -208,7 +241,7 @@
                     <div style="display: flex; width: 100%; align-items: center; ">
                         <div style="width: 35px;"></div>
                         <div style="width: 150px;">
-                            <span>사운드 설정</span>
+                            사운드 설정
                         </div>
                         <div style="flex:1;"></div>
                         <div style="width: 150px;">
@@ -223,14 +256,14 @@
     
             <div style="display: flex; margin-top:15px;">
                 <div style="padding:7px 0px; width: 190px;"></div>
-                <button style="flex:1;padding:6px 0px; font-size: 16px; font-weight: 500;box-shadow: 3px 0px 6px #00000029;">동기화</button>
+                <button style="flex:1;padding:6px 0px; font-size: 16px; font-weight: 500;box-shadow: 3px 0px 6px #00000029; margin-right: 3px;">동기화</button>
                 <button style="flex:1; font-size: 16px; font-weight: 500;box-shadow: 3px 0px 6px #00000029;">기본값</button>
             </div>
-    
-            <div style="display: flex; margin-top:15px; justify-content: right; gap:5px;">
-                <button style="width: 100px; height: 35px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">적용</button>
-                <button style="width: 100px; height: 35px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">확인</button>
-            </div>
+        </div>
+
+        <div style="display: flex; margin-top:15px; justify-content: right; gap:5px;">
+            <button style="width: 90px; height: 30px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">적용</button>
+            <button style="width: 90px; height: 30px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">확인</button>
         </div>
         
 
