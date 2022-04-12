@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 import { GameMainComponent } from './component/game-main/game-main.component';
 import { GameConfigComponent } from './component/game-config/game-config.component';
 import { FormsModule } from '@angular/forms';
+import { GameTargetConfigComponent } from './component/game-target-config/game-target-config.component';
+import { GameZeroConfigComponent } from './component/game-zero-config/game-zero-config.component';
 
 
 
 @NgModule({
   declarations: [
     GameMainComponent,
-    GameConfigComponent
+    GameConfigComponent,
+    GameTargetConfigComponent,
+    GameZeroConfigComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +21,9 @@ import { FormsModule } from '@angular/forms';
   ],
   exports:[
     GameMainComponent,
-    GameMainComponent
+    GameMainComponent,
+    GameTargetConfigComponent,
+    GameZeroConfigComponent
   ]
 })
 export class GameModule { }

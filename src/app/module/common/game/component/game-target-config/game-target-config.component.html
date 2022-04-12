@@ -1,0 +1,102 @@
+<div style="width: 1000px; background-color: #F6F6F6;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding:15px 25px; background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);">
+        <div style="font-size: 21px; color:#fff; font-weight: 500;">표적지 변경</div>
+        <svg (click)="closeTargetConfig();" xmlns="http://www.w3.org/2000/svg" width="22.851" height="22.851" viewBox="0 0 22.851 22.851"><path id="패스_7744" data-name="패스 7744" d="M772.744,1147.345l-3.6-3.6-7.825,7.825-7.825-7.825-3.6,3.6,7.825,7.825L749.893,1163l3.6,3.6,7.825-7.825,7.825,7.825,3.6-3.6-7.825-7.825Z" transform="translate(-749.893 -1143.745)" fill="#fff"/></svg>          
+    </div>
+    <div style="padding:20px;">
+
+        <div style="display: flex; padding:35px 50px; border:1px solid #ccc">
+
+            <div style="flex:1;">
+                <div (click)="targetType='사격 표적지(일반형)'" style="cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 5px;">
+                    <div  style="display: inline-block; border-radius:100%; width: 19px; height: 19px; border:1px solid #085292; position:relative;">
+                        <ng-container *ngIf="targetType==='사격 표적지(일반형)'">
+                            <div style="position: absolute;top:2px;left: 2px; border-radius: 100%; width: 13px; height: 13px; background-color: #085292;"></div>
+                        </ng-container>
+                    </div>
+                    <div style="font-size: 21px; font-weight: bold;">사격 표적지(일반형)</div>
+                </div>
+                <div style="height: 420px; width: 420px; margin-top:10px;">
+                    <div [style.background-image]="'url(' + '/assets/target-config-main.png' + ')'" style="height: 100%;width: 100%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"></div>
+                </div>
+                <div style="font-size: 15px; font-weight: 400; margin-top:5px; text-align: center;">가시면적 : 170mm X 170mm</div>
+            </div>
+            <div style="width: 50px;"></div>
+
+            <div style="flex:1;">
+
+                <div style="display: flex; justify-content: center; gap:50px;">
+                    <div style="flex:1;">
+                        <div (click)="targetType='20M / 50M 표적'"  style="cursor: pointer; display: flex; justify-content: left; align-items: center; gap:5px;">
+                            <div style="display: inline-block; border-radius:100%; width: 19px; height: 19px; border:1px solid #085292; position:relative;">
+                                <ng-container *ngIf="targetType==='20M / 50M 표적'">
+                                    <div style="position: absolute;top:2px;left: 2px; border-radius: 100%; width: 13px; height: 13px; background-color: #085292;"></div>
+                                </ng-container>
+                            </div>
+                            <span style="font-size: 18px; font-weight: bold;">20M / 50M 표적</span>
+                        </div>
+                        <div style="border:1px solid black; padding:40px; margin-top:10px; background-color: #fff; ">
+                            <div [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style="height: 94px; background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"></div>
+                        </div>
+                        <div style="font-size: 15px; font-weight: 400; margin-top:5px;">가시면적 : 250mm X 250mm</div>
+                    </div>
+
+                    <div style="flex:1;">
+                        <div (click)="targetType='경찰 연습용'" style="cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 5px; margin-right: 15px;">
+                            <div  style="display: inline-block; border-radius:100%; width: 19px; height: 19px; border:1px solid #085292; position:relative;">
+                                <ng-container *ngIf="targetType==='경찰 연습용'">
+                                    <div style="position: absolute;top:2px;left: 2px; border-radius: 100%; width: 13px; height: 13px; background-color: #085292;"></div>
+                                </ng-container>
+                            </div>
+                            <span style="font-size: 18px; font-weight: bold;">경찰 연습용</span>
+                        </div>
+                        <div style="border:1px solid black; padding-top:5px; margin-top:10px; background-color: #fff; ">
+                            <div [style.background-image]="'url(' + '/assets/police.svg' + ')'" style=" height: 169px; background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"></div>
+                        </div>
+                        <div style="font-size: 15px; font-weight: 400; margin-top:5px;">가시면적 : 250mm X 250mm</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap:50px; margin-top:20px;">
+                    <div style="flex:1;">
+                        <div (click)="targetType='10M 공기소총 표적'" style="cursor: pointer; display: flex; justify-content: left; align-items: center; gap:5px;">
+                            <div  style="display: inline-block; border-radius:100%; width: 19px; height: 19px; border:1px solid #085292; position:relative;">
+                                <ng-container *ngIf="targetType==='10M 공기소총 표적'">
+                                    <div style="position: absolute;top:2px;left: 2px; border-radius: 100%; width: 13px; height: 13px; background-color: #085292;"></div>
+                                </ng-container>
+                            </div>
+                            <span style="font-size: 18px; font-weight: bold;">10M 공기소총 표적</span>
+                        </div>
+                        <div style="border:1px solid black; padding:40px; margin-top:10px; background-color: #fff; ">
+                            <div [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style="height: 94px; background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"></div>
+                        </div>
+                        <div style="font-size: 15px; font-weight: 400; margin-top:5px;">가시면적 : 80mm X 80mm</div>
+                    </div>
+
+                    <div style="flex:1;">
+                        <div (click)="targetType='10M 공기권총 표적'" style="cursor: pointer; display: flex; justify-content: left; align-items: center; gap: 5px;">
+                            <div style="display: inline-block; border-radius:100%; width: 19px; height: 19px; border:1px solid #085292; position:relative;">
+                                <ng-container *ngIf="targetType==='10M 공기권총 표적'">
+                                    <div style="position: absolute;top:2px;left: 2px; border-radius: 100%; width: 13px; height: 13px; background-color: #085292;"></div>
+                                </ng-container>
+                            </div>
+                            <span style="font-size: 18px; font-weight: bold;">10M 공기권총 표적</span>
+                        </div>
+                        <div style="border:1px solid black; padding-top:5px; margin-top:10px; background-color: #fff; ">
+                            <div [style.background-image]="'url(' + '/assets/police.svg' + ')'" style=" height: 169px; background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"></div>
+                        </div>
+                        <div style="font-size: 15px; font-weight: 400; margin-top:5px;">가시면적 : 170mm X 170mm</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div style="text-align: right; margin-top:10px;">
+            <button (click)="closeTargetConfig();" style="cursor: pointer; width: 100px; height: 38px; margin-right: 10px; background: transparent linear-gradient(180deg, #FFFFFF 0%, #C1C1C1 100%) 0% 0% no-repeat padding-box; box-shadow: 1px 1px 1px #00000029; border: 1px solid #707070;">적용</button>
+            <button (click)="cancleTargetConfig();" style="cursor: pointer; width: 100px; height: 38px; background: transparent linear-gradient(180deg, #FFFFFF 0%, #C1C1C1 100%) 0% 0% no-repeat padding-box; box-shadow: 1px 1px 1px #00000029; border: 1px solid #707070;">취소</button>
+        </div>
+
+    </div>
+</div>
