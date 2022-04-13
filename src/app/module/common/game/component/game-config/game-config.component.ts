@@ -1,6 +1,7 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameTargetConfigComponent } from '../game-target-config/game-target-config.component';
+import { GameZeroConfigComponent } from '../game-zero-config/game-zero-config.component';
 
 @Component({
     selector: 'app-game-config',
@@ -12,7 +13,7 @@ export class GameConfigComponent implements OnInit {
     constructor(public _matRef:MatDialogRef<GameConfigComponent>, public _mat:MatDialog, @Inject(MAT_DIALOG_DATA) public data:{titleTarget:string}) { }
 
     ngOnInit(): void {
-
+        this.openGameZeroConfig();
     }
 
     openGameTargetConfig(){
@@ -25,6 +26,10 @@ export class GameConfigComponent implements OnInit {
             }
             console.log(this.titleTarget);
         })
+    }
+
+    openGameZeroConfig(){
+        this._mat.open(GameZeroConfigComponent);
     }
 
     closeGameConfig(){
