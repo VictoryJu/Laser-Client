@@ -1,17 +1,17 @@
 <div>
 
-    <div style="display: flex; gap: 5px; align-items: center; padding:0px 25px;">
+    <div style="display: flex; gap: 5px; align-items: center; padding:0px 25px; max-width: 500px;">
 
-        <div style="border: 1px solid #ccc; color:#fff; width: 55px; height: 55px; text-align: center; font-size: 14px; background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;">
-            <div style="font-size: 34px; font-weight: bold;">3</div>
+        <div style="border: 1px solid #ccc; color:#fff; flex:0.3; height: 55px; text-align: center; font-size: 0.8rem; background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;">
+            <div style="font-size: 2rem; font-weight: bold;">3</div>
             <div>LANE</div>
         </div>
 
-        <div style=" height: 55px; padding:13px 15px; background-color: #fff;">
-            <div style="display: flex; justify-content: space-between; font-size: 26px; font-weight: bold; align-items: center;">
+        <div style=" height: 55px; padding:13px 15px; background-color: #fff; flex:2.3">
+            <div style="display: flex; justify-content: space-between; font-size: 1.8rem; font-weight: bold; align-items: center;">
                 <div>KSLS / 영점사격왕</div>
                 <div style="width: 60px;"></div>
-                <div style="text-align: right; padding-left: 15px; font-size: 30px; color: #CECECE;" class="material-icons">settings</div>            
+                <div style="text-align: right; padding-left: 15px; font-size: 1.8rem; color: #CECECE;" class="material-icons">settings</div>            
             </div>
         </div>
 
@@ -22,46 +22,51 @@
         <div style="flex:2.5;">
 
             <div style="margin-top:5px; color:#fff; box-shadow: 3px 3px 6px #00000029;">
-                <div style="background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;  padding:10px 0px; text-align:center; font-size: 42px; border-bottom:1px solid #ccc; height: 65px;">19.4(38.8%)</div>
-                <div  style="background-color: #fff; height: 680px; width: 100%; padding:30px 0px;">
-                    <div [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style="height: 100%;width: 100%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%;"></div>
+                <div style="background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;  padding:10px 0px; text-align:center; font-size: 2.5rem; border-bottom:1px solid #ccc; height: 65px;">19.4(38.8%)</div>
+                <div [style.height.px]="rightinfoHeight"  style="background-color: #fff; width: 100%; padding: 40px 0px;">
+                    <div #target [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style=" padding-top:75%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; position:relative">
+                        <ng-container *ngFor="let item of shotRoundInfo;">
+                            <div [style.left.px]="item.x" [style.top.px]="item.y" style="position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); border-radius: 100%;">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="red"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        <div style="flex:0.8;">
-            <div style="margin: 0px 10px;margin-top:5px; padding:16px 0px; text-align:center; font-size: 31px;  background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box; color:#fff; height: 65px;">1 시리즈</div>
-            <div style="display: flex; flex-direction: column; margin: 0px 10px; height: 680px; justify-content: space-between;">
+        <div style="flex:1;">
+            <div style="margin: 0px 10px;margin-top:5px; padding:16px 0px; text-align:center; font-size: 2.2rem;  background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box; color:#fff; height: 65px;">{{round}} 시리즈</div>
+            <div style="display: flex; flex-direction: column; margin: 0px 10px; height: 100%; justify-content: space-between;">
 
                 <div style="padding:10px 0px; text-align: center; background-color: #fff; flex:0.5; box-shadow: 3px 3px 6px #00000029;">
-                    <div style="font-size: 53px; font-weight: 500; display: flex; align-items: center; justify-content: center;">
-                        <span style="color: #e90000; margin-right: 10px;">7</span><span>/10</span>
+                    <div style="font-size: 3.5rem; font-weight: 500; display: flex; align-items: center; justify-content: center;">
+                        <span style="color: #e90000; margin-right: 10px;">{{shotCnt}}</span><span>/10</span>
                     </div>
-                    <div style=" margin:40px auto; background-color:#ccc; width:140px; height:140px; border-radius: 50%; padding:10px;">
-                        <div style="background-color: #fff; width: 120px; height: 120px; border-radius: 50%; display: flex; flex-direction: column; ; justify-content: center; line-height: 5px;">
-                            <div style="font-size: 70px; font-weight: 500;">90</div>
+                    <div style=" margin:40px auto; background-color:#ccc; width:230px; height:230px; border-radius: 50%; position: relative;">
+                        <div style="position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); background-color: #fff; width: 195px; height: 195px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <div style="font-size: 3.5rem; font-weight: 500;">{{min > 9 ? min : '0'+min}} : {{sec > 9 ? sec : '0'+sec}}</div>
                         </div>
                     </div>
                 </div>
 
-                <div style="flex:0 0 auto;">
-                    <div style="margin:10px 0px;">
+                <div style="flex:0.5; padding-top:50px">
+                    <div>
                         <div style="text-align: center;">
-                            <img style="width: 150px; height: 150px;" src="assets/start_228.png" alt="">
-                            <div style="font-size: 35px; font-weight: bold; color:#004089">시작</div>
+                            <img (click)="shotRoundInfo = []"  [style.pointerEvents]="activeTimer ? 'none':'all'" (click)="timer(); activeTimer=true;" style="cursor: pointer; width: 120px; height: 120px;" src="assets/start_228.png" alt="">
                         </div>
                     </div>
                     <div style="margin-top:10px;">
                         <div style="display: flex; justify-content: center;">
                             <div style="text-align: center;">
-                                <img style="width: 90px; height: 90px;" src="assets/stop_232.png" alt="">
-                                <div style="font-size: 22px;">멈춤</div>
+                                <img (click)="stopTime();" style="width: 90px; height: 90px; cursor: pointer;" src="assets/stop_232.png" alt="">
+                                <div style="font-size: 1.3rem;">멈춤</div>
                             </div>
                             <div style="width: 20px;"></div>
                             <div style="text-align: center;">
-                                <img style="width: 90px; height: 90px;" src="assets/reset_233.png" alt="">
-                                <div style="font-size: 22px;">정지</div>
+                                <img (click)="resetTime();"style="cursor: pointer; width: 90px; height: 90px;" src="assets/reset_233.png" alt="">
+                                <div style="font-size: 1.3rem;">정지</div>
                             </div>
                         </div>
                     </div>
@@ -70,10 +75,10 @@
             </div>
         </div>
 
-        <div style="flex:1.8; height: 100%;">
+        <div #rightInfo style="flex:1.8; ">
             <div style="margin-top:5px;">
-                <div style="padding:16px 0px; text-align:center; font-size: 31px; height: 65px; background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box; color:#fff">시리즈 정보</div>
-                <div style="height: 680px; background-color: #fff; position: relative; padding:0px 10px; box-shadow: 3px 3px 6px #00000029;">
+                <div style="padding:16px 0px; text-align:center; font-size: 2.2rem; height: 65px; background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box; color:#fff">시리즈 정보</div>
+                <div [style.height.px]="rightinfoHeight" style="background-color: #fff; position: relative; padding:0px 10px; box-shadow: 3px 3px 6px #00000029;">
                     <div style="padding:25px 15px;">
                         <div class="round-title">
                             <div style="flex:0.2;"></div>
@@ -82,33 +87,33 @@
                             <div class="item">경과시간</div>
                             <div class="item">점수</div>
                         </div>
-                        <ng-container *ngFor="let item of [1,2,3,4]; let i = index;">
+                        <ng-container *ngFor="let item of shotTotalInfo; let i = index;">
                             <div class="round-value">
                                 <div class="item" style="flex:0.2; background-color: #B5DAE5; position: relative;">
                                     <span class="material-icons" style="position: absolute; top:50%;left: 50%; transform: translate(-50%,-50%); font-size: 35px;">arrow_right</span>
                                 </div>
                                 <div class="item round">
-                                    <span>{{i+1}}</span>
+                                    <span>{{item.round}}</span>
                                 </div>
                                 <div class="item hit">
-                                    <span>5</span>
+                                    <span>{{item.shotCnt}}</span>
                                 </div>
                                 <div class="item time">
-                                    <span>00:03:25</span>
+                                    <span>{{item.shotTime}}</span>
                                 </div>
                                 <div class="item score">
-                                    <span>19.4</span>
+                                    <span>{{item.score}}</span>
                                 </div>
                             </div>
                         </ng-container>
                     </div>
                     <div style="display: flex; position:absolute; bottom: 10px; right:20px; align-items: center; gap:10px;">
-                        <div style="font-size: 25px;">
+                        <div style="font-size: 1.7rem;">
                             <span style="margin-right: 20px;">HIT</span>
                             <span>/</span>
                             <span style="margin:0px 20px;">TOTAL</span>
                         </div>
-                        <div style="font-size: 35px; padding: 5px 20px; background-color: #BEF1FF; ">
+                        <div style="font-size: 2.2rem; padding: 5px 20px; background-color: #BEF1FF; ">
                             <span style="margin-right: 20px; vertical-align: baseline;">*15</span>
                             <span style="vertical-align: baseline;">/</span>
                             <span style="margin-left: 20px; vertical-align: baseline;">476.4</span>
@@ -118,5 +123,7 @@
             </div>
         </div>
     </div>  
-
+    <div style="text-align: right; padding:20px 25px; font-size: 1rem; font-weight: 400;">
+        {{today | date:'yyyy년 MM월 dd일 HH:mm:ss'}}
+    </div>
 </div>

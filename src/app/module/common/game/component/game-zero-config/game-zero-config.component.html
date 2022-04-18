@@ -5,9 +5,21 @@
     </div>
     <div style="display: flex;">
         <div style="flex:1;">
-            <div #target style="background-image: url('http://localhost:8000/video_feed'); background-size: 100% 100%; height: 480px; position:relative" >
-                <div style="position:absolute; top:50%;left:50%; transform: translate(-50%,-50%); border-radius: 100%; background-color: red; width: 25px; height: 25px;"></div>
-                <div style="position:absolute; top:50%;left:50%; transform: translate(-50%,-50%); border-radius: 100%; background-color: blue; width: 25px; height: 25px;"></div>
+            <div (click)="mouseOffset($event);" #target style="background-image: url('http://localhost:8000/video_feed'); background-size: 100% 100%; height: 480px; position:relative" >
+                <div [style.left.px]="zeroX" [style.top.px]="zeroY" style="pointer-events: none; position:absolute; top:50%;left:50%; transform: translate(-50%,-50%);">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="red"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                </div>
+                <div [style.left.px]="centerX" [style.top.px]="centerY" style="pointer-events: none; position:absolute; top:240px;left:320px; transform: translate(-50%,-50%);">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="blue"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                </div>
+
+                <ng-container *ngFor="let item of dotArr">
+                    <div [style.left.px]="item.x" [style.top.px]="item.y" style="pointer-events: none; position:absolute; top:240px;left:320px; transform: translate(-50%,-50%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="green"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    </div>
+                </ng-container>
+
+                
             </div>
         </div>
         <div style="flex:1">
@@ -23,7 +35,7 @@
                         <div style="display: inline-block; font-size: 22px; box-shadow:inset 1px 1px 2px #00000029; width: 130px; height: 35px; text-align: center; line-height: 35px;">{{zeroX}}</div>
                         <div style="display: inline-block;">
                             <div style="display: flex; flex-direction: column;">
-                                <button (click)="zeroX = zeroX < 100 ? zeroX + 1 : zeroX;" style="cursor: pointer; border:none; outline:none; background-image:url('/assets/small-up-arrow.svg'); width: 31px;height: 18px; background-size:100% 100%;"></button>
+                                <button (click)="zeroX = zeroX < 640 ? zeroX + 1 : zeroX;" style="cursor: pointer; border:none; outline:none; background-image:url('/assets/small-up-arrow.svg'); width: 31px;height: 18px; background-size:100% 100%;"></button>
                                 <button (click)="zeroX = zeroX > 0 ? zeroX - 1 : zeroX;"style="cursor: pointer; border:none; background-image:url('/assets/small-down-arrow.svg'); width: 31px;height: 18px; background-size:100% 100%;"></button>  
                             </div>
                         </div>
@@ -33,8 +45,8 @@
                         <div style="display: inline-block; font-size: 22px; box-shadow:inset 1px 1px 2px #00000029; width: 130px; height: 35px; text-align: center; line-height: 35px;">{{zeroY}}</div>
                         <div style="display: inline-block;">
                             <div style="display: flex; flex-direction: column;">
-                                <button (click)="zeroY = zeroY < 100 ? zeroY + 1 : zeroY;" style="cursor: pointer; border:none; background-image:url('/assets/small-up-arrow.svg'); width: 31px;height: 18px; background-size:100% 100%;"></button>
-                                <button (click)="zeroY = zeroY > 0 ? zeroY - 1 : zeroY;" style="cursor: pointer; border:none; background-image:url('/assets/small-down-arrow.svg'); width: 31px;height: 18px; background-size:100% 100%;"></button>  
+                                <button (click)="zeroY = zeroY < 480 ? zeroY - 1 : zeroY;" style="cursor: pointer; border:none; background-image:url('/assets/small-up-arrow.svg'); width: 31px;height: 18px; background-size:100% 100%;"></button>
+                                <button (click)="zeroY = zeroY > 0 ? zeroY + 1  : zeroY;" style="cursor: pointer; border:none; background-image:url('/assets/small-down-arrow.svg'); width: 31px;height: 18px; background-size:100% 100%;"></button>  
                             </div>
                         </div>
                     </div>
@@ -54,7 +66,7 @@
         </div>
     </div>
     <div style="padding:15px; text-align: right;">
-        <button (click)="closeZeroConfig();" style="width: 100px; height: 35px; background: transparent linear-gradient(180deg, #FFFFFF 0%, #C1C1C1 100%); border: 1px solid #707070; margin-right: 10px;">적용</button>
+        <button (click)="saveZeroConfig();;" style="width: 100px; height: 35px; background: transparent linear-gradient(180deg, #FFFFFF 0%, #C1C1C1 100%); border: 1px solid #707070; margin-right: 10px;">적용</button>
         <button (click)="closeZeroConfig();" style="width: 100px; height: 35px; background: transparent linear-gradient(180deg, #FFFFFF 0%, #C1C1C1 100%); border: 1px solid #707070">취소</button>
     </div>
 </div>

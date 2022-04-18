@@ -10,7 +10,7 @@ import { GameZeroConfigComponent } from '../game-zero-config/game-zero-config.co
 })
 export class GameConfigComponent implements OnInit {
 
-    constructor(public _matRef:MatDialogRef<GameConfigComponent>, public _mat:MatDialog, @Inject(MAT_DIALOG_DATA) public data:{titleTarget:string}) { }
+    constructor(public _matRef:MatDialogRef<GameConfigComponent>, public _mat:MatDialog, @Inject(MAT_DIALOG_DATA) public data:{zeroX:number,zeroY:number}) { }
 
     ngOnInit(): void {
         this.openGameZeroConfig();
@@ -28,12 +28,23 @@ export class GameConfigComponent implements OnInit {
         })
     }
 
+    zeroX:number;
+    zeroY:number
     openGameZeroConfig(){
-        this._mat.open(GameZeroConfigComponent);
+        const dialogRef = this._mat.open(GameZeroConfigComponent,{
+            data:{zeroX:this.zeroX,zeroY:this.zeroY}
+        });
+        dialogRef.afterClosed().subscribe(result=>{
+            if(result){
+                this.zeroX = result.zeroX;
+                this.zeroY = result.zeroY;
+            }
+            console.log(result);
+        })
     }
 
     closeGameConfig(){
-        this._matRef.close();
+        this._matRef.close({zeroX:this.zeroX,zeroY:this.zeroY});
     }
 
     timerMinObj = [3,5,15,75];

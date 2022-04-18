@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './component/layout/layout.component';
+import { GameModule } from '../game/game.module';
 
 
 
@@ -9,7 +10,8 @@ import { LayoutComponent } from './component/layout/layout.component';
     LayoutComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    GameModule
   ],
   exports:[
     LayoutComponent,

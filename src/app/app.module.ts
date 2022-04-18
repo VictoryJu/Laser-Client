@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { GamePageModule } from './module/page/game-page/game-page.module';
 import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { SocketService } from './service/socket.service';
 
 @NgModule({
   declarations: [
@@ -18,14 +19,17 @@ import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
       {path: '', loadChildren: ()=> GamePageModule}
     ])
   ],
-  providers: [{
-    provide: MAT_DIALOG_DEFAULT_OPTIONS,
-    useValue: (() => {
-      const config = new MatDialogConfig();
-      config.panelClass = `mat-default-dialog-panel`;
-      return {
-        ...config,
-      } as MatDialogConfig;
+  providers: [
+    SocketService,
+    {
+        provide: MAT_DIALOG_DEFAULT_OPTIONS,
+    
+        useValue: (() => {
+            const config = new MatDialogConfig();
+            config.panelClass = `mat-default-dialog-panel`;
+            return {
+                ...config,
+        } as MatDialogConfig;
     })()
   }],
   bootstrap: [AppComponent]
