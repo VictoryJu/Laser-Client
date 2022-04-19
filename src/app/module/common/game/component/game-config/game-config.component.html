@@ -2,7 +2,7 @@
 
     <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding:10px 30px">
         <div style="margin-left: 20px; font-size: 25px; font-weight: 500;">시스템 환경설정</div>
-        <div class="material-icons" style="font-size: 35px; font-weight: bold;" (click)="closeGameConfig();">close</div>
+        <div class="material-icons" style="font-size: 35px; font-weight: bold;" (click)="closeCancelConfig();">close</div>
     </div>
 
     <div style="padding:60px; background:linear-gradient(to bottom,#1B1623,#433754); position: relative;">
@@ -23,9 +23,18 @@
                 <div style="padding:7px 0px; width: 160px;"></div>
                 <div style="flex:1; padding:7px 30px; color:#fff; font-size:15px">
                     <div style="display: flex; width: 100%; align-items: center;">
-                        <div style="width: 150px;">
+                        <div (click)="activeLanguage = activeLanguage ? false : true" style="cursor: pointer;">
                             <span style="letter-spacing: 2px; margin-right: 5px;">언어</span>
-                            <div style="display: inline-block; background-color: #fff; width: 70px;height: 19px; color:#1B1623; text-align: center; font-size:13px; font-weight: 500; letter-spacing: 1px; line-height: 18px;">한국어</div>
+                            <div style="position:relative; display: inline-block; background-color: #fff; width: 70px;height: 19px; color:#1B1623; text-align: center; font-size:13px; font-weight: 500; letter-spacing: 1px; line-height: 18px;">
+                                {{selectLanguage}}
+                                <ng-container *ngIf="activeLanguage">
+                                    <div style="display: inline-block; background-color: #fff; width: 89px;height: 19px; color:#1B1623; text-align: center; line-height: 22px; font-size: 13px; font-weight: 500; position:absolute; bottom: -19px; left: 0px; z-index: 999;">
+                                        <ng-container *ngFor="let item of languageArr">
+                                            <div style="border:1px solid #ccc; background-color: #fff; margin-bottom: -1px; cursor: pointer;" (click)="selectLanguage = item; activeTimerConfig=false;">{{item}}</div>
+                                        </ng-container>
+                                    </div>
+                                </ng-container>
+                            </div>
                             <img style="width: 19px; height: 19px;" src="/assets/down-arrow.svg">
                         </div>
                     </div>
@@ -42,31 +51,31 @@
                         </div>
                         <div style="width: 255px; position:relative;">
                             <div (click)="activeTimerConfig = activeTimerConfig ? false : true" style="width: 104px; ">
-                                <div style="cursor: pointer; display: inline-block; background-color: #fff; width: 80px;height: 24px; color:#1B1623; text-align: center; line-height: 22px; font-size: 17px; font-weight: 400;">{{setTimerMin}} 분</div>
+                                <div style="cursor: pointer; display: inline-block; background-color: #fff; width: 80px;height: 24px; color:#1B1623; text-align: center; line-height: 22px; font-size: 17px; font-weight: 400;">{{config.setTimerMin}} 분</div>
                                 <img style="width: 24px; cursor: pointer;" src="/assets/down-arrow.svg">
                             </div>
                             <ng-container *ngIf="activeTimerConfig">
                                 <div style="display: inline-block; background-color: #fff; width: 104px;height: 24px; color:#1B1623; text-align: center; line-height: 22px; font-size: 17px; font-weight: 400; position:absolute; bottom: -24px; left: 0px; z-index: 999;">
                                     <ng-container *ngFor="let item of timerMinObj">
-                                        <div style="border:1px solid #ccc; background-color: #fff; margin-bottom: -1px; padding:3px; cursor: pointer;" (click)="setTimerMin = item; activeTimerConfig=false;">{{item}} 분</div>
+                                        <div style="border:1px solid #ccc; background-color: #fff; margin-bottom: -1px; padding:3px; cursor: pointer;" (click)="config.setTimerMin = item; activeTimerConfig=false;">{{item}} 분</div>
                                     </ng-container>
                                 </div>
                             </ng-container>
                         </div>
                         <div style="width:190px">
                             <div style="display: inline-block; width: 65px; font-size:15px"></div>
-                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{setTimerMin * 60}}</div>
+                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{config.setTimerMin * 60}}</div>
                             <span style="font-size: 20px;">초</span>
                         </div>
                         <div style="width: 150px;">
-                            <div style="display: inline-block;cursor: pointer;" (click)="activeTimer=true">
+                            <div style="display: inline-block;cursor: pointer;" (click)="config.activeTimer=true">
                                 <span style="margin-right:5px">ON</span>
-                                <span class="material-icons" style="margin-right: 20px;">{{activeTimer ? 'check_box' : 'check_box_outline_blank'}}</span>
+                                <span class="material-icons" style="margin-right: 20px;">{{config.activeTimer ? 'check_box' : 'check_box_outline_blank'}}</span>
                             </div>
 
-                            <div style="display: inline-block;cursor: pointer;" (click)="activeTimer=false">
-                                <span style="margin-right:5px" (click)="activeTimer=false">OFF</span>
-                                <span class="material-icons">{{activeTimer ? 'check_box_outline_blank' : 'check_box'}}</span>
+                            <div style="display: inline-block;cursor: pointer;" (click)="config.activeTimer=false">
+                                <span style="margin-right:5px">OFF</span>
+                                <span class="material-icons">{{config.activeTimer ? 'check_box_outline_blank' : 'check_box'}}</span>
                             </div>
                         </div>
                     </div>
@@ -83,23 +92,23 @@
                         </div>
                         <div style="width: 295px;">
                             <div style="position:relative">
-                                <input class="delay-bar" [(ngModel)]="delayTime" type="range" min="1" max="10" value="1" step="1" >
-                                <img [style.left.px]="delayTime === 1 ? 3 : 31*(delayTime-1)+0.5" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
+                                <input class="delay-bar" [(ngModel)]="config.delayTime" type="range" min="1" max="10" value="1" step="1" >
+                                <img [style.left.px]="config.delayTime === 1 ? 3 : 31*(config.delayTime-1)+0.5" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
                             </div>
                         </div>
                         <div style="width:150px">
                             <div style="display: inline-block; width: 25px;"></div>
-                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{delayTime}}</div>
+                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{config.delayTime}}</div>
                             <span style="font-size: 20px;">초</span>
                         </div>
                         <div style="width: 150px;">
-                            <div style="display: inline-block;cursor: pointer;" (click)="activeDelay = true">
+                            <div style="display: inline-block;cursor: pointer;" (click)="config.activeDelay = true">
                                 <span style="margin-right:5px">ON</span>
-                                <span class="material-icons" style="margin-right: 20px;">{{activeDelay ? 'check_box' : 'check_box_outline_blank'}}</span>
+                                <span class="material-icons" style="margin-right: 20px;">{{config.activeDelay ? 'check_box' : 'check_box_outline_blank'}}</span>
                             </div>
-                            <div style="display: inline-block;cursor: pointer;" (click)="activeDelay = false">
+                            <div style="display: inline-block;cursor: pointer;" (click)="config.activeDelay = false">
                                 <span style="margin-right:5px">OFF</span>
-                                <span class="material-icons">{{activeDelay ? 'check_box_outline_blank' : 'check_box'}}</span>
+                                <span class="material-icons">{{config.activeDelay ? 'check_box_outline_blank' : 'check_box'}}</span>
                             </div>
                         </div>
                     </div>
@@ -116,13 +125,13 @@
                         </div>
                         <div style="width: 315px; position: relative;">
                             <div (click)="activeTargetConfig = activeTargetConfig ? false : true" style="width: 222px; cursor: pointer;">
-                                <div style="display: inline-block; background-color: #fff; width: 200px;height: 22px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 16px;">{{titleTarget}}</div>
+                                <div style="display: inline-block; background-color: #fff; width: 200px;height: 22px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 16px;">{{config.titleTarget}}</div>
                                 <img style="width: 22px; height: 22px;" src="/assets/down-arrow.svg">
                             </div>
                             <ng-container *ngIf="activeTargetConfig">
                                 <div style="display: inline-block; background-color: #fff; width: 222px;height: 24px; color:#1B1623; text-align: center; line-height: 22px; font-size: 17px; font-weight: 400; position:absolute; bottom: -24px; left: 0px; z-index: 999;">
                                     <ng-container *ngFor="let item of targetTitleArr">
-                                        <div style="border:1px solid #ccc; background-color: #fff; margin-bottom: -1px; padding:3px; cursor: pointer;" (click)="titleTarget = item; activeTargetConfig=false;">{{item}}</div>
+                                        <div style="border:1px solid #ccc; background-color: #fff; margin-bottom: -1px; padding:3px; cursor: pointer;" (click)="config.titleTarget = item; activeTargetConfig=false;">{{item}}</div>
                                     </ng-container>
                                 </div>
                             </ng-container>
@@ -161,8 +170,8 @@
                                 <img (click)="prevCameraLight()" src="/assets/left-btn.svg">
                                 
                                 <div style="position:relative; width: 140px; margin-right: 5px;">
-                                    <input class="short-bar" [(ngModel)]="cameraLight" type="range" min="1" max="5" value="1" step="1">
-                                    <img [style.left.px]="cameraLight === 1 ? 1 : (cameraLight-1)*30+4" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
+                                    <input class="short-bar" [(ngModel)]="config.cameraLight" type="range" min="1" max="5" value="1" step="1">
+                                    <img [style.left.px]="config.cameraLight === 1 ? 1 : (config.cameraLight-1)*30+4" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
                                 </div>
 
                                 <img (click)="plusCameraLight()" src="/assets/right-btn.svg">
@@ -175,8 +184,8 @@
                                 <img (click)="prevIlluminance()" src="/assets/left-btn.svg">
                                 
                                 <div style="position:relative; width: 140px; margin-right: 5px;">
-                                    <input class="short-bar" [(ngModel)]="illuminance" type="range" min="1" max="5" value="1" step="1">
-                                    <img [style.left.px]="illuminance === 1 ? 1 : (illuminance-1)*30+4" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
+                                    <input class="short-bar" [(ngModel)]="config.illuminance" type="range" min="1" max="5" value="1" step="1">
+                                    <img [style.left.px]="config.illuminance === 1 ? 1 : (config.illuminance-1)*30+4" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
                                 </div>
                                 
                                 <img (click)="plusIlluminance()" src="/assets/right-btn.svg">
@@ -197,13 +206,13 @@
                         </div>
                         <div style="width: 290px; margin-right: 5px;">
                             <div style="position:relative">
-                                <input class="count-bar" [(ngModel)]="shotCnt" type="range" min="1" max="10" value="1" step="1" >
-                                <img [style.left.px]="shotCnt === 1 ? 3 : 30*(shotCnt-1)+2" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
+                                <input class="count-bar" [(ngModel)]="config.shotCnt" type="range" min="1" max="10" value="1" step="1" >
+                                <img [style.left.px]="config.shotCnt === 1 ? 3 : 30*(config.shotCnt-1)+2" style="position: absolute; top:5px;pointer-events: none;" src="/assets/control-circle.png">
                             </div>
                         </div>
                         <div style="width: 150px;">
                             <div style="display: inline-block; width: 25px;"></div>
-                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{shotCnt}}</div>
+                            <div style="display: inline-block; background-color: #fff; width: 60px;height: 28px; color:#1B1623; text-align: center; letter-spacing: 1px; line-height: 22px; font-size: 18px; font-weight: 400; margin-right: 10px;">{{config.shotCnt}}</div>
                             <span style="font-size: 20px;">발</span>
                         </div>
                     </div>
@@ -220,13 +229,13 @@
                         </div>
                         <div style="flex:1;"></div>
                         <div style="width: 150px;">
-                            <div style="display: inline-block;cursor: pointer;" (click)="activeAutoRound=true">
+                            <div style="display: inline-block;cursor: pointer;" (click)="config.activeAutoRound=true">
                                 <span style="margin-right:5px">ON</span>
-                                <span class="material-icons" style="margin-right: 20px;">{{ activeAutoRound ? 'check_box' : 'check_box_outline_blank'}}</span>
+                                <span class="material-icons" style="margin-right: 20px;">{{ config.activeAutoRound ? 'check_box' : 'check_box_outline_blank'}}</span>
                             </div>
-                            <div style="display: inline-block;cursor: pointer;" (click)="activeAutoRound=false">
+                            <div style="display: inline-block;cursor: pointer;" (click)="config.activeAutoRound=false">
                                 <span style="margin-right:5px">OFF</span>
-                                <span class="material-icons">{{ activeAutoRound ? 'check_box_outline_blank' : 'check_box'}}</span>
+                                <span class="material-icons">{{ config.activeAutoRound ? 'check_box_outline_blank' : 'check_box'}}</span>
                             </div>
                         </div>
                     </div>
@@ -242,13 +251,13 @@
                                 사운드 설정
                             </div>
                             <div style="width: 150px; display: inline-block;">
-                                <div style="display: inline-block;" (click)="activeSound=true">
+                                <div style="display: inline-block;" (click)="config.activeSound=true">
                                     <span style="margin-right:5px">ON</span>
-                                    <span class="material-icons" style="margin-right: 20px;">{{ activeSound ? 'check_box' : 'check_box_outline_blank'}}</span>
+                                    <span class="material-icons" style="margin-right: 20px;">{{ config.activeSound ? 'check_box' : 'check_box_outline_blank'}}</span>
                                 </div>
-                                <div style="display: inline-block; cursor: pointer;" (click)="activeSound=false">
+                                <div style="display: inline-block; cursor: pointer;" (click)="config.activeSound=false">
                                     <span style="margin-right:5px">OFF</span>
-                                    <span class="material-icons">{{ activeSound ? 'check_box_outline_blank' : 'check_box'}}</span>
+                                    <span class="material-icons">{{ config.activeSound ? 'check_box_outline_blank' : 'check_box'}}</span>
                                 </div>
                             </div>
                         </div>
@@ -257,13 +266,13 @@
                                 소수점 설정
                             </div>
                             <div style="width: 150px; display: inline-block;">
-                                <div style="display: inline-block;" (click)="activeDeciaml=true">
+                                <div style="display: inline-block;" (click)="config.activeDecimal=true">
                                     <span style="margin-right:5px">ON</span>
-                                    <span class="material-icons" style="margin-right: 20px;">{{ activeDeciaml ? 'check_box' : 'check_box_outline_blank'}}</span>
+                                    <span class="material-icons" style="margin-right: 20px;">{{ config.activeDecimal ? 'check_box' : 'check_box_outline_blank'}}</span>
                                 </div>
-                                <div style="display: inline-block; cursor: pointer;" (click)="activeDeciaml=false">
+                                <div style="display: inline-block; cursor: pointer;" (click)="config.activeDecimal=false">
                                     <span style="margin-right:5px">OFF</span>
-                                    <span class="material-icons">{{ activeDeciaml ? 'check_box_outline_blank' : 'check_box'}}</span>
+                                    <span class="material-icons">{{ config.activeDecimal ? 'check_box_outline_blank' : 'check_box'}}</span>
                                 </div>
                             </div>
                         </div>
@@ -279,8 +288,8 @@
         </div>
 
         <div style="display: flex; margin-top:15px; justify-content: right; gap:5px;">
-            <button style="width: 90px; height: 30px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">적용</button>
-            <button style="width: 90px; height: 30px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;">확인</button>
+            <button style="width: 90px; height: 30px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;" (click)="closeGameConfig();">적용</button>
+            <button style="width: 90px; height: 30px; font-size: 16px; letter-spacing: 3px;box-shadow: 3px 0px 6px #00000029;" (click)="closeGameConfig();">확인</button>
         </div>
         
 

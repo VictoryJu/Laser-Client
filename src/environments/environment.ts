@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: "http://192.168.210.85:8000",
+  videoUrl: "http://192.168.210.85:8000/video_feed",
+  detectUrl: "http://192.168.210.85:8000/video_feed_detect",
+
 };
 
 /*

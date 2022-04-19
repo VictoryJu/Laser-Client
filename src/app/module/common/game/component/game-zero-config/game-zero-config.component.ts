@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SocketService } from 'src/app/service/socket.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-game-zero-config',
@@ -23,6 +24,8 @@ export class GameZeroConfigComponent implements OnInit {
   closeZeroConfig(){
     this._matRef.close();
   }
+
+  environment = environment;
 
   threshole = 70;
   zeroX=320;

@@ -5,7 +5,7 @@
     </div>
     <div style="display: flex;">
         <div style="flex:1;">
-            <div (click)="mouseOffset($event);" #target style="background-image: url('http://localhost:8000/video_feed'); background-size: 100% 100%; height: 480px; position:relative" >
+            <div [style.background-image]="'url('+ environment.videoUrl+')'" (click)="mouseOffset($event);" #target style="background-size: 100% 100%; height: 480px; position:relative" >
                 <div [style.left.px]="zeroX" [style.top.px]="zeroY" style="pointer-events: none; position:absolute; top:50%;left:50%; transform: translate(-50%,-50%);">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="red"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                 </div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div style="flex:1">
-            <div style="background-image: url('	http://localhost:8000/video_feed_detect'); background-size: 100% 100%; height: 480px;"></div>
+            <div [style.background-image]="'url('+ environment.detectUrl+')'" style=" background-size: 100% 100%; height: 480px;"></div>
         </div>
     </div>
     <div style="padding:15px; margin-top: 20px;">

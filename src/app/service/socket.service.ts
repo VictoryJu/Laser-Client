@@ -1,13 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
+import { environment } from 'src/environments/environment';
 import { GameMainComponent } from '../module/common/game/component/game-main/game-main.component';
 
 @Injectable() 
 export class SocketService {
     private socket: Socket;
+    environment = environment;
     constructor() { 
-        // this.socket = io('http://localhost:8000');
     }
 
     seneMessage(msg: string){
@@ -25,7 +26,7 @@ export class SocketService {
 
     getMessages() {
         let observable = new Observable(observer => {
-            this.socket = io('http://localhost:8000');
+            this.socket = io(environment.apiUrl);
             this.socket.on('result', (data) => {
             observer.next(data);    
         });

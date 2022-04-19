@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-game-target-config',
@@ -20,5 +21,5 @@ export class GameTargetConfigComponent implements OnInit {
       this._matRef.close({selectTarget:this.targetType});
   }
   targetType = this.data.selectTarget;
-
+  environment = environment;
 }
