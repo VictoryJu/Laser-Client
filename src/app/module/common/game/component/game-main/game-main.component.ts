@@ -4,6 +4,7 @@ import { SocketService } from 'src/app/service/socket.service';
 import { LoginComponent } from '../../../auth/component/login/login.component';
 import { GameConfigComponent } from '../game-config/game-config.component';
 import * as io from 'socket.io-client';
+import { MyMainComponent } from '../../../my/component/my-main/my-main.component';
 
 @Component({
   selector: 'app-game-main',
@@ -21,6 +22,7 @@ export class GameMainComponent implements OnInit {
             this.setTarget(); 
         }) 
         this._socket.getMessages().subscribe(msg=>{  
+            console.log('실행');
             this.setCenterCoordinate(msg);
         })
     } 
@@ -30,6 +32,14 @@ export class GameMainComponent implements OnInit {
         }) 
         console.log(this.shotCnt);
         
+    }
+
+    openLogin(){
+        this._mat.open(LoginComponent);
+    }
+
+    openMyPage(){
+        this._mat.open(MyMainComponent);
     }
 
     zeroX = 0;
@@ -46,18 +56,20 @@ export class GameMainComponent implements OnInit {
         activeSound : true,
         activeDecimal : true,
         zeroX : 0,
-        zeroY : 0        
+        zeroY : 0,
     }
 
     initGameConfg(config){
         if(config){
             this.config = {...config};
             this.bullet = this.config.shotCnt;
+            this.shotCnt = this.bullet;
             this.timeSec = this.config.setTimerMin*60;
             this.min = Math.floor(this.timeSec/60);
             this.sec = this.timeSec%60;
             this.zeroX = this.config.zeroX;
-            this.zeroY = this.config.zeroY;            
+            this.zeroY = this.config.zeroY;      
+            this.delayTime = this.config.delayTime;      
         }else{
 
         }
@@ -112,6 +124,7 @@ export class GameMainComponent implements OnInit {
                     this.shotCnt = this.bullet;
                     this.activeTimer = false;
                     this.setRoundScore();
+                    this.showRoundInfo = '';
                     clearInterval(this.startTimer);
                 }
             },1000)            
@@ -120,11 +133,19 @@ export class GameMainComponent implements OnInit {
 
     startShotTimer:any;
     shotTime = 0;
-    shotRoundInfo = [];
+    sumShotTime = 0;
     shotTimer(){
         this.startShotTimer = setInterval(()=>{
-        this.shotTime += 1;
+        if(!this.delay){
+            this.shotTime += 1;
+        }
         },1000)
+    }
+
+    clearShotTimer(){
+        clearInterval(this.startShotTimer);
+        this.sumShotTime = 0;
+        this.shotTime = 0; 
     }
 
     serverX:number;
@@ -139,7 +160,7 @@ export class GameMainComponent implements OnInit {
         // console.log(s);
         
         // console.log(decodeURIComponent(atob(s)));
-        
+        if(this.isIntervalDelay)return;
         this.serverX = (data.maxX + data.minX) / 2.0;
         this.serverY = (data.maxY + data.minY) / 2.0;
         
@@ -148,15 +169,18 @@ export class GameMainComponent implements OnInit {
 
     shotCnt = 10;
     playTime:number;
-    
-
+    shotRoundInfo:any = [];
+    shotingCount = 0;
+    sumScore = 0;
+    showRoundInfo:any;
+    hitCount = 0;
+    totalScore = 0;
+    isEnd = false;
     shoting(serverX,serverY){
-        if(this.activeTimer && this.shotCnt > 0){
-            console.log(this.ratio);
-            
+        if(this.activeTimer && this.shotCnt > 0 && !this.delay){
+            this.sumShotTime += this.shotTime;
             clearInterval(this.startShotTimer);
             let x = (serverX + this.zeroX) * this.ratio;
-            console.log(this.zeroX, serverX, x);
             let y = (serverY + this.zeroY) * this.ratio;
             let distance = Math.sqrt(Math.pow(x-this.centerX,2) + Math.pow(y-this.centerY,2));
             let breakPoint = this.maxRadius / 10;
@@ -166,28 +190,75 @@ export class GameMainComponent implements OnInit {
                 console.log("탔음");
             } 
             if(score <= 0) score = 0;
-            console.log(score);
             let time = this.shotTime;
-            let obj = {x,y,score,time}
+            this.sumScore = score;
+            
+            if(this.shotingCount > 0){
+                this.sumScore = this.shotRoundInfo[this.shotingCount-1].sumScore + score;
+            }
+            this.shotingCount += 1;
+            let obj = {x,y,score,time,shotingCount:this.shotingCount,sumScore:this.sumScore};
+            let obj2 = {round:this.round,time:this.sumShotTime,score,shotingCount:this.shotingCount,sumScore:this.sumScore};
+            this.showRoundInfo = obj2;
             this.shotRoundInfo.push(obj);
             this.shotTime = 0;
+            this.totalScore += score;
+            if(score>=9){
+                this.hitCount +=1;
+            }
             this.shotCnt -= 1;                
             this.shotTimer();
+            if(this.shotCnt > 0){
+                this.startDelay();
+            }
             if(this.shotCnt === 0){
-                this.resetTime();
+                this.isEnd = true;
                 this.round += 1;
                 this.shotCnt = this.bullet;
                 this.playTime =  Date.now() - this.startTime;
+                this.clearDelay();
                 this.setRoundScore();
+                this.resetTime();
             }
+
         }
     }
 
-    shotDelay(){
+    clearScoreShoting(){
+        if(!this.activeStopTimer){
+            this.shotingCount = 0;
+            this.sumScore = 0;
+        }
+    }
+
+    delay = false;
+    delayTime = 3;
+    isIntervalDelay = false;
+    startDelayInterval:any;
+    startDelay(){
+        if(this.isIntervalDelay)return;
+        if(this.isEnd) return;
+        this.delay = true;
+        this.stopTime();
+        if(this.delay){
+            this.startDelayInterval = setInterval(()=>{
+                this.isIntervalDelay = true;
+                this.delayTime -= 1;
+                if(this.delayTime===0){
+                    this.delayTime = 3;
+                    this.delay = false;
+                    this.activeTimer=true; 
+                    this.isIntervalDelay = false;
+                    this.activeStopTimer = true;
+                    this.timer();
+                    clearInterval(this.startDelayInterval);
+                }
+            },1000)
+        }
 
     }
 
-
+    selectShotTotalInfo:number;
     shotTotalInfo = []
     setRoundScore(){
         let score = 0;
@@ -198,8 +269,7 @@ export class GameMainComponent implements OnInit {
             score += item.score;
             shotTime += item.time
         })
-        
-        let obj = {round,score,shotCnt,shotTime};
+        let obj = {round,score,shotCnt,shotTime,roundInfo:this.shotRoundInfo};
         this.shotTotalInfo.push(obj);
         console.log(this.shotTotalInfo);
         
@@ -229,13 +299,22 @@ export class GameMainComponent implements OnInit {
     
     resetTime(){
         clearInterval(this.startTimer);
-        this.shotRoundInfo = [];
         this.timeSec = this.config.setTimerMin*60;
         this.min = Math.floor(this.timeSec / 60);
         this.sec = this.timeSec % 60;
         this.activeTimer = false;
+        this.shotCnt = this.bullet;
+        this.showRoundInfo = '';
+        this.isEnd = false;
+        this.clearDelay();
+        this.clearShotTimer();
     }
 
+    clearDelay(){
+        clearInterval(this.startDelayInterval);
+        this.delay = false;
+        this.delayTime = 3;
+    }
 
 
     _today = new Date();

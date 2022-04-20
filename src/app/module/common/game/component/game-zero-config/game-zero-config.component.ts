@@ -34,6 +34,9 @@ export class GameZeroConfigComponent implements OnInit {
   centerX=320;
   centerY=240;
   dotArr=[];
+  sinArr=[];
+  realLengh = 422;
+
     mouseOffset(e){
         if(this.dotArr.length > 3){
             this.zeroX= e.offsetX;
@@ -41,9 +44,47 @@ export class GameZeroConfigComponent implements OnInit {
         }
         if(this.dotArr.length < 4){
             let obj = {x:e.offsetX,y:e.offsetY}
-
+            console.log(obj);
+            
+            this.sinArr.push(obj);
             this.dotArr.push(obj);
             console.log(this.dotArr.length);
+        }
+    }
+
+    arr = [];
+    clickArr(){
+        this.arr = [];
+        let baseX = 150;
+        let baseY = 38;
+        let deltaX =  307 - this.zeroX;
+        let deltaY = 245 - this.zeroY;
+        
+        
+        for(let i = 0; i<21; i++){
+            let radian = 45 * Math.PI / 180;
+            let distance = i *30.65 ;
+            if(i>10){
+                distance = (i-10) * 30.65;
+                radian = 225 * Math.PI / 180;
+            }
+
+            
+                let mX = (817.5/2 + (distance * Math.cos(radian))) * 0.3840 + baseX + deltaX;
+                let my = (613/2 + (distance * Math.sin(radian))) * 0.6753 + baseY - deltaY;
+                this.arr.push({x:mX,y:my});
+            
+
+            
+            let xh = (i *40.875) * 0.3840 + baseX + deltaX;
+            let yh = (613/2 * 0.6753) + baseY - deltaY;
+            this.arr.push({x:xh , y:yh});
+            let xv = 817.5/2 * 0.3840 + baseX + deltaX;
+            let yv =  (i*30.65) * 0.6753 + baseY - deltaY;
+            this.arr.push({x:xv , y:yv});
+            // let xh2 = (i *40.875) * 0.3840 + baseX + deltaX;
+            // let yv2 =  (i*30.65) * 0.6753 + baseY - deltaY;
+            // this.arr.push({x:xh2, y:yv2});
         }
     }
 
@@ -51,6 +92,9 @@ export class GameZeroConfigComponent implements OnInit {
     saveZeroConfig(){
         let zeroX;
         let zeroY;
+        let topLength = Math.abs(this.sinArr[1] - this.sinArr[0]);
+        let bottomLength = Math.abs(this.sinArr[2] - this.sinArr[3]);
+
         zeroX = this.centerX - this.zeroX;
         zeroY = this.centerY- this.zeroY ;
         console.log(zeroX, zeroY);

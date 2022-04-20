@@ -5,10 +5,10 @@
             <img src="assets/logo.svg">
         </div>
         <div style="display: flex; gap: 20px; align-items: center;">
-            <div style="cursor: pointer;">
+            <div (click)="openLogin();" style="cursor: pointer;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="27.137" height="35.618" viewBox="0 0 27.137 35.618"><path id="login" data-name="패스 379" d="M4,36.618a13.569,13.569,0,0,1,27.138,0ZM17.569,21.353A10.177,10.177,0,1,1,27.745,11.177,10.174,10.174,0,0,1,17.569,21.353Z" transform="translate(-4 -1)" fill="#cecece"/></svg>
             </div>
-            <div style="cursor: pointer;" >
+            <div (click)="openMyPage()" style="cursor: pointer;" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="42.224" height="28.22" viewBox="0 0 42.224 28.22"><path id="my" data-name="패스 8173" d="M-239.34,1168.29l-35.908-.118a3.121,3.121,0,0,0-3.133,3.111l-.071,21.858a3.12,3.12,0,0,0,3.111,3.132l35.909.118a3.122,3.122,0,0,0,3.133-3.111l.072-21.858A3.122,3.122,0,0,0-239.34,1168.29Zm-33.388,17.031,11.7-.013v.882l-11.7.012Zm0,4.174v-.881l23.4-.025v.881Zm23.231-6.159-.011-10.935,8.731-.01.012,10.935Z" transform="translate(278.453 -1168.172)" fill="#cecece"/></svg>  
             </div>
             <div style="cursor: pointer;">
@@ -31,7 +31,7 @@
             <div style="display: flex; justify-content: space-between; font-size: 1.8rem; font-weight: bold; align-items: center;">
                 <div>KSLS / 영점사격왕</div>
                 <div style="width: 60px;"></div>
-                <div style="text-align: right; padding-left: 15px; font-size: 1.8rem; color: #CECECE;" class="material-icons">settings</div>            
+                <div style="text-align: right; padding-left: 15px; font-size: 1.8rem; color: #CECECE;" (click)="openSystemConfig()" class="material-icons">settings</div>            
             </div>
         </div>
 
@@ -42,7 +42,7 @@
         <div style="flex:2.5;">
 
             <div style="margin-top:5px; color:#fff; box-shadow: 3px 3px 6px #00000029;">
-                <div style="background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;  padding:10px 0px; text-align:center; font-size: 2.5rem; border-bottom:1px solid #ccc; height: 65px;">19.4(38.8%)</div>
+                <div style="background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;  padding:10px 0px; text-align:center; font-size: 2.5rem; border-bottom:1px solid #ccc; height: 65px;">{{sumScore}} ({{sumScore === 0 ? 0 :sumScore/shotingCount*bullet | number:'0.0-2'}}%)</div>
                 <div [style.height.px]="rightinfoHeight"  style="background-color: #fff; width: 100%; padding: 40px 0px;">
                     <div #target [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style=" padding-top:75%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; position:relative">
                         <ng-container *ngFor="let item of shotRoundInfo;">
@@ -60,7 +60,7 @@
             <div style="margin: 0px 10px;margin-top:5px; padding:16px 0px; text-align:center; font-size: 2.2rem;  background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box; color:#fff; height: 65px;">{{round}} 시리즈</div>
             <div style="display: flex; flex-direction: column; margin: 0px 10px; height: 100%; justify-content: space-between;">
 
-                <div style="padding:10px 0px; text-align: center; background-color: #fff; flex:0.5; box-shadow: 3px 3px 6px #00000029;">
+                <div style="padding:10px 0px; text-align: center; background-color: #fff; flex:0.5; box-shadow: 3px 3px 6px #00000029; position: relative;">
                     <div style="font-size: 3.5rem; font-weight: 500; display: flex; align-items: center; justify-content: center;">
                         <span style="color: #e90000; margin-right: 10px;">{{shotCnt}}</span><span>/{{bullet}}</span>
                     </div>
@@ -69,12 +69,13 @@
                             <div style="font-size: 3.5rem; font-weight: 500;">{{min > 9 ? min : '0'+min}} : {{sec > 9 ? sec : '0'+sec}}</div>
                         </div>
                     </div>
+                    <div *ngIf="delay" style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); font-size: 35px; font-weight: bold; color:red;">{{delayTime}}</div>
                 </div>
 
                 <div style="flex:0.5; padding-top:50px">
                     <div>
                         <div style="text-align: center;">
-                            <img [style.pointerEvents]="activeTimer ? 'none':'all'" (click)="activeTimer=true; timer(); ;" style="cursor: pointer; width: 120px; height: 120px;" src="assets/start_228.png" alt="">
+                            <img [style.pointerEvents]="activeTimer||delay ? 'none':'all'" (click)="activeTimer=true; timer(); shotTimer(); clearScoreShoting(); shotRoundInfo = [];" style="cursor: pointer; width: 120px; height: 120px;" src="assets/start_228.png" alt="">
                         </div>
                     </div>
                     <div style="margin-top:10px;">
@@ -85,7 +86,7 @@
                             </div>
                             <div style="width: 20px;"></div>
                             <div style="text-align: center;">
-                                <img (click)="resetTime();"style="cursor: pointer; width: 90px; height: 90px;" src="assets/reset_233.png" alt="">
+                                <img (click)="resetTime(); shotRoundInfo=[];"style="cursor: pointer; width: 90px; height: 90px;" src="assets/reset_233.png" alt="">
                                 <div style="font-size: 1.3rem;">정지</div>
                             </div>
                         </div>
@@ -108,9 +109,9 @@
                             <div class="item">점수</div>
                         </div>
                         <ng-container *ngFor="let item of shotTotalInfo; let i = index;">
-                            <div class="round-value">
+                            <div class="round-value" (click)="selectShotTotalInfo = selectShotTotalInfo === i ? '' : i">
                                 <div class="item" style="flex:0.2; background-color: #B5DAE5; position: relative;">
-                                    <span class="material-icons" style="position: absolute; top:50%;left: 50%; transform: translate(-50%,-50%); font-size: 35px;">arrow_right</span>
+                                    <span class="material-icons" style="position: absolute; top:50%;left: 50%; transform: translate(-50%,-50%); font-size: 35px; color:black;">arrow_right</span>
                                 </div>
                                 <div class="item round">
                                     <span>{{item.round}}</span>
@@ -119,10 +120,48 @@
                                     <span>{{item.shotCnt}}</span>
                                 </div>
                                 <div class="item time">
-                                    <span>{{item.shotTime}}</span>
+                                    <span>00 : 0{{item.shotTime/60 | number : '0.0-0'}} : {{item.shotTime%60 >= 10 ? item.shotTime%60 : '0'+item.shotTime%60}}</span>
                                 </div>
                                 <div class="item score">
                                     <span>{{item.score}}</span>
+                                </div>
+                            </div>
+                            <ng-container *ngFor="let detail of item.roundInfo;">
+                                <ng-container *ngIf="selectShotTotalInfo === i">
+                                    <div class="round-value">
+                                        <div class="item" style="flex:0.2; border:none;margin-right: 1px; position: relative; "></div>
+                                        <div class="item round">
+                                            <span>{{item.round}}</span>
+                                        </div>
+                                        <div class="item hit">
+                                            <span>{{detail.shotingCount}}</span>
+                                        </div>
+                                        <div class="item time">
+                                            <span>00 : 0{{detail.time/60 | number : '0.0-0'}} : {{detail.time%60 >= 10 ? detail.time%60 : '0'+detail.time%60}}</span>
+                                        </div>
+                                        <div class="item score">
+                                            <span>{{detail.score}}</span>
+                                        </div>
+                                    </div>                                    
+                                </ng-container>
+                            </ng-container>                            
+                        </ng-container>
+                        <ng-container *ngIf="showRoundInfo">
+                            <div class="round-value">
+                                <div class="item" style="flex:0.2; background-color: #B5DAE5; position: relative;">
+                                    <span class="material-icons" style="position: absolute; top:50%;left: 50%; transform: translate(-50%,-50%); font-size: 35px; color:black">arrow_right</span>
+                                </div>
+                                <div class="item round">
+                                    <span>{{round}}</span>
+                                </div>
+                                <div class="item hit">
+                                    <span>{{showRoundInfo.shotingCount}}</span>
+                                </div>
+                                <div class="item time">
+                                    <span>00 : 0{{showRoundInfo.time/60 | number : '0.0-0'}} : {{showRoundInfo.time%60 >= 10 ? showRoundInfo.time%60 : '0'+showRoundInfo.time%60 }}</span>
+                                </div>
+                                <div class="item score">
+                                    <span>{{showRoundInfo.sumScore}}</span>
                                 </div>
                             </div>
                         </ng-container>
@@ -134,9 +173,9 @@
                             <span style="margin:0px 20px;">TOTAL</span>
                         </div>
                         <div style="font-size: 2.2rem; padding: 5px 20px; background-color: #BEF1FF; ">
-                            <span style="margin-right: 20px; vertical-align: baseline;">*15</span>
+                            <span style="margin-right: 20px; vertical-align: baseline;">*{{hitCount}}</span>
                             <span style="vertical-align: baseline;">/</span>
-                            <span style="margin-left: 20px; vertical-align: baseline;">476.4</span>
+                            <span style="margin-left: 20px; vertical-align: baseline;">{{totalScore}}</span>
                         </div>
                     </div>
                 </div>

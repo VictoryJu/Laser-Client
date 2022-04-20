@@ -9,11 +9,14 @@ import { RegistComponent } from '../regist/regist.component';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public _mat:MatDialog) { }
+  constructor(public _mat:MatDialog, public _matRef:MatDialogRef<LoginComponent>) { }
 
   ngOnInit(): void {
   }
   openRegist(){
     this._mat.open(RegistComponent);
+  }
+  closeLogin(){
+      this._matRef.close();
   }
 }
