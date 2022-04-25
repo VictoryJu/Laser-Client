@@ -18,6 +18,7 @@ export class LayoutComponent implements OnInit {
     url:string;
     ngOnInit(): void {
         this.url = this._router.url;
+        this.setToday();
     }
     openLogin(){
         this._mat.open(LoginComponent);
@@ -30,4 +31,17 @@ export class LayoutComponent implements OnInit {
     }
 
     mouseHoverPerson=false;
+
+    today:Date;
+    interval:any;
+    setToday(){
+        this.interval = setInterval(()=>{
+            this.today = new Date();
+        })
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.interval);
+    }
+
 }
