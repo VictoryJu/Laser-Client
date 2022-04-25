@@ -3,13 +3,19 @@
     // justify-content: center;
     .menu-wrap {
         display: grid; 
-        grid-template-columns: repeat(3,1fr);
-        gap: 20px;
+        grid-template-columns: repeat(4,1fr);
+        align-items: center;        
         article {
             padding: 40px 25px;
             text-align: center;
-            background-color: #fff;
             cursor: pointer;
+            img {
+                height: 100px;
+            }
+            h3 {
+                margin-top: 20px;
+                color: #fff;
+            }
         }
     }
 }

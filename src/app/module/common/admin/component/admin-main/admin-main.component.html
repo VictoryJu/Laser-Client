@@ -3,34 +3,28 @@
     <header style="width: 50%; margin: 0 auto; text-align: center; font-size: 56px; color: #fff;">관리자모드 메인 화면</header>
     <div class="menu-container" style="margin-top: 100px;"> <!--flex 부모 컨테이너-->
         <section class="menu-wrap"> <!--grid 자식 요소-->
-            <article [routerLink]="['/admin/lane']">
+            <article (click)="openLane()">
+                <img src="assets/relay.svg" />
                 <h3>
-                    레인선택하기
+                    대회(중계)
                 </h3>
             </article>
             <article>
+                <img src="assets/user-management.svg" />
                 <h3>
-                    다른기능
+                    회원관리
                 </h3>
             </article>
             <article>
+                <img src="assets/network.svg" />
                 <h3>
-                    다른기능2
+                    네트워크 설정
                 </h3>
             </article>
             <article>
+                <img src="assets/data.svg" />
                 <h3>
-                    다른기능3
-                </h3>
-            </article>
-            <article>
-                <h3>
-                    다른기능4
-                </h3>
-            </article>
-            <article>
-                <h3>
-                    일반모드
+                    데이터
                 </h3>
             </article>
         </section>

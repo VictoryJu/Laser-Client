@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RelayGameComponent } from './component/relay-game/relay-game.component';
 import { AdminMainComponent } from './component/admin-main/admin-main.component';
 import { AdminSelectLaneComponent } from './component/admin-select-lane/admin-select-lane.component';
+import { MatRippleModule } from '@angular/material/core';
 
 
 
@@ -15,7 +16,8 @@ import { AdminSelectLaneComponent } from './component/admin-select-lane/admin-se
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatRippleModule
   ],
   exports:[
     RelayGameComponent,
