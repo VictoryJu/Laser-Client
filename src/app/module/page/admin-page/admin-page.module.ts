@@ -7,6 +7,7 @@ import { AdminModule } from '../../common/admin/admin.module';
 import { RouterModule } from '@angular/router';
 import { AdminMainPageComponent } from './component/admin-main-page/admin-main-page.component';
 import { AdminShowSelectLanePageComponent } from './component/admin-show-select-lane-page/admin-show-select-lane-page.component';
+import { AdminLayoutModule } from '../../common/admin-layout/admin-layout.module';
 
 
 
@@ -19,6 +20,7 @@ import { AdminShowSelectLanePageComponent } from './component/admin-show-select-
   imports: [
     CommonModule,
     LayoutModule,
+    AdminLayoutModule,
     MatDialogModule,
     AdminModule,
     RouterModule.forChild([
