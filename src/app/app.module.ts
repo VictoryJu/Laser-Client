@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { GamePageModule } from './module/page/game-page/game-page.module';
 import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SocketService } from './service/socket.service';
+import { AdminPageModule } from './module/page/admin-page/admin-page.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SocketService } from './service/socket.service';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      {path: '', loadChildren: ()=> GamePageModule}
+      {path: '', loadChildren: ()=> GamePageModule},
+      {path: 'admin',loadChildren: ()=>AdminPageModule}
     ])
   ],
   providers: [

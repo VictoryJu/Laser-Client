@@ -1,0 +1,80 @@
+<div class="logo">
+    <img src="assets/logo.svg"> 
+</div>
+
+<div style="width: 100%; padding-top:50px;">
+    <div style="width: 50%; margin:0 auto; background-color: #1C4660; padding:7px;">
+        <div style="display: flex; gap: 5px;">
+            <div style="flex:5">
+                <div style="display: flex; flex-direction: column;">
+                    <div style="flex:1; margin-bottom: 10px;">
+                        <div style="display: flex; align-items: center; gap: 7px;">
+                            <div style="font-size: 35px; color: #fff;" class="material-icons">check_box</div>
+                            <div style="text-align: center; background-color: #0063D4; padding:3px 13px; color:#fff">
+                                <div style="font-size: 1.8rem; font-weight: bold;">1</div>
+                                <div style="font-size: 0.8rem;">LANE</div>
+                            </div>
+                            <div style="flex:1; background-color: #0063D4;">
+                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 5px 10px;">
+                                    <div>
+                                        <div style="display: inline-block;">
+                                            <img width="80%%" src="/assets/korea-flag.svg">
+                                        </div>
+                                        <div style="display: inline-block; font-size: 2rem; color:#fff; font-weight: 500; margin-left: 15px;">KSLS777</div>
+                                    </div>
+                                    <div class="material-icons" style="color:#fff">
+                                        settings
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex:auto; background-color: black;">
+                        <div style="background-color: #fff; width: 100%; padding:5px 0px;">
+                            <div [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style=" padding-top:75%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; position:relative"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="flex:1.5 ">
+                <div style="display: flex; flex-direction: column; gap:6px">
+                    <div style="padding:15px 0px; text-align: center; border:1px solid #fff">
+                        <div style="color:#fff">
+                            <span style="font-size: 1.2rem;">1 시리즈</span>
+                            <span style="color:#E90000; font-size: 2rem;"> 7 </span>
+                            <span style="font-size: 2rem;">/ 10</span>
+                        </div>
+                        <div style="font-size: 3rem; margin-top:5px;font-size:bold; color:#fff">03 : 00</div>
+                    </div>
+                    <ng-container *ngFor="let item of [1,2,3,4,5,6]">
+                        <div style="flex:1;">
+                            <div style="display: flex; align-items: center;">
+                                <div>
+                                    <div style="padding:5px; background-color:#E8E8E8; font-weight: 400;">Elapsed Time</div>
+                                    <div style="font-size: 24px; color:#fff; background-color: #004492; text-align: center; font-weight: 500; padding:10px 5px">02 : 24</div>
+                                </div>
+                                <div style="flex:1; background-color: #0063D4; font-size: 45px; color:#fff; padding:13px 10px;">55.7</div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; gap:5px; padding-top:10px;">
+            <div style="flex:3; background-color: #fff; padding:10px 20px;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <div style="flex:0.5; background-image: url('/assets/start-btn.svg'); background-size: cover; background-repeat: no-repeat; background-position: center; padding-top: 35%; margin-right: 10px;"></div>
+                    <div style="flex:0.4; background-image: url('/assets/pause-btn.svg'); background-size: cover; background-repeat: no-repeat; background-position: center; padding-top: 28%; "></div>
+                    <div style="flex:0.4; background-image: url('/assets/stop-btn.svg'); background-size: cover; background-repeat: no-repeat; background-position: center; padding-top: 28%; "></div>
+                </div>
+            </div>
+            <div style="flex:5; background-color: #0063D4; justify-content: right; display: flex; align-items: center;">
+                <div style="font-size:55px; color:#fff; padding:0px 13px;">
+                    <span style="vertical-align: baseline;">*15</span>
+                    <span style="vertical-align: baseline; margin: 0 15px;">/</span>
+                    <span style="vertical-align: baseline;">321.4</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
