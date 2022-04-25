@@ -1,3 +1,4 @@
+import { MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSelectLaneComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _mat:MatDialogRef<AdminSelectLaneComponent>) { }
 
   ngOnInit(): void {
   }
 
+  closeLane() {
+    this._mat.close();
+  }
 }
