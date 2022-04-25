@@ -1,3 +1,5 @@
+import { AdminSelectLaneComponent } from './../admin-select-lane/admin-select-lane.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _mat:MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  openLane() {
+    this._mat.open(AdminSelectLaneComponent);
+  }
 }
