@@ -11,7 +11,7 @@ import { AdminPageModule } from './module/page/admin-page/admin-page.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
