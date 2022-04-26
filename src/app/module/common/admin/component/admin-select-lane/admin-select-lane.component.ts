@@ -11,9 +11,26 @@ export class AdminSelectLaneComponent implements OnInit {
   constructor(public _mat:MatDialogRef<AdminSelectLaneComponent>) { }
 
   ngOnInit(): void {
+      this.setArr();
   }
 
   closeLane() {
     this._mat.close();
+  }
+
+  arr = []
+  setArr(){
+      for(let i=0; i<80; i++){
+        this.arr[i] = i+1
+      }
+  }
+
+  isFinal = false;
+
+  selectArr = [];
+  selectLane(index){
+    if(!this.selectArr.includes(index)){
+        this.selectArr.push(index);
+    }
   }
 }

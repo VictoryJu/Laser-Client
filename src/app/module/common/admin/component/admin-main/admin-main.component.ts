@@ -1,6 +1,7 @@
 import { AdminSelectLaneComponent } from './../admin-select-lane/admin-select-lane.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 
 @Component({
   selector: 'app-admin-main',
@@ -12,9 +13,10 @@ export class AdminMainComponent implements OnInit {
   constructor(public _mat:MatDialog) { }
 
   ngOnInit(): void {
+      this.openDashboard();
   }
 
-  openLane() {
-    this._mat.open(AdminSelectLaneComponent);
+  openDashboard(){
+      this._mat.open(AdminDashboardComponent);
   }
 }

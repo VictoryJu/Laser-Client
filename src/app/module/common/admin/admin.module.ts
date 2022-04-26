@@ -5,6 +5,7 @@ import { RelayGameComponent } from './component/relay-game/relay-game.component'
 import { AdminMainComponent } from './component/admin-main/admin-main.component';
 import { AdminSelectLaneComponent } from './component/admin-select-lane/admin-select-lane.component';
 import { MatRippleModule } from '@angular/material/core';
+import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -12,7 +13,8 @@ import { MatRippleModule } from '@angular/material/core';
   declarations: [
     RelayGameComponent,
     AdminMainComponent,
-    AdminSelectLaneComponent
+    AdminSelectLaneComponent,
+    AdminDashboardComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { MatRippleModule } from '@angular/material/core';
   exports:[
     RelayGameComponent,
     AdminMainComponent,
-    AdminSelectLaneComponent
+    AdminSelectLaneComponent,
+    AdminDashboardComponent
   ]
 })
 export class AdminModule { }
