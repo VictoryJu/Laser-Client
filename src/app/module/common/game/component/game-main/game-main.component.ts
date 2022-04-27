@@ -5,6 +5,8 @@ import { LoginComponent } from '../../../auth/component/login/login.component';
 import { GameConfigComponent } from '../game-config/game-config.component';
 import * as io from 'socket.io-client';
 import { MyMainComponent } from '../../../my/component/my-main/my-main.component';
+import { SignalRService } from 'src/app/service/signal-r.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-game-main',
@@ -13,7 +15,7 @@ import { MyMainComponent } from '../../../my/component/my-main/my-main.component
 })
 export class GameMainComponent implements OnInit {
     
-  constructor(public _mat:MatDialog, private render:Renderer2, private _socket:SocketService) { }
+  constructor(public _mat:MatDialog, private render:Renderer2, private _socket:SocketService, public _signal:SignalRService, private _http: HttpClient) { }
     msg: any;
     
   ngOnInit(): void {
@@ -25,7 +27,17 @@ export class GameMainComponent implements OnInit {
             console.log('실행');
             this.setCenterCoordinate(msg);
         })
+        this._signal.startConnection();
+        this._signal.addTransferChartDataListener();
+        this.startHttpRequest();
     } 
+
+    startHttpRequest(){
+        this._http.get('https://localhost:22092')
+        .subscribe(res=>{
+            console.log(res);
+        })
+    }
     ngAfterViewInit(){
         setTimeout(()=>{
             this.setRightInfoHeight();
