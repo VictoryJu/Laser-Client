@@ -1,25 +1,49 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";  // or from "@microsoft/signalr" if you are using a new library
+import { Observable, observable } from 'rxjs';
 import { ChartModel } from '../interface/chartmodel';
 @Injectable({
   providedIn: 'root'
 })
 export class SignalRService {
   public data: ChartModel[];
-private hubConnection: signalR.HubConnection
-  public startConnection = () => {
+  public hubConnection: signalR.HubConnection
+  public startConnection = (method) => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('https://localhost:22092/')
+                            .withUrl('http://192.168.210.67:22092/txlive')
                             .build();
     this.hubConnection
       .start()
-      .then(() => console.log('Connection started'))
+      .then(() => {
+            console.log('Connect');
+            if(method === 'lane') this.sendMsg('lane');
+            if(method === 'main') this.sendMsg('main');
+        })
       .catch(err => console.log('Error while starting connection: ' + err))
   }
-  public addTransferChartDataListener = () => {
-    this.hubConnection.on('transferchartdata', (data) => {
-      this.data = data;
-      console.log(data);
-    });
+  LaneDataListener(){
+    let observable = new Observable(observer=>{
+        this.hubConnection.on('lane_start', (data) => {
+            this.data = data;
+            observer.next(this.data);
+        });          
+    })
+    return observable; 
   }
+
+  MainDataListener(){
+    let observable:any = new Observable(observer=>{
+        this.hubConnection.on('summary', (data) => {
+            this.data = data;
+            observer.next(this.data);
+        });          
+    })
+    return observable; 
+  }
+
+  public sendMsg = (data)=>{
+      this.hubConnection.send("join",data);
+      console.log(data);    
+  }
+
 }

@@ -1,0 +1,14 @@
+.menu-container {
+    padding:50px;
+    .menu-wrap {
+        border:1px solid #fff;
+        padding:70px 40px;
+    }
+}
+
+.final-btn{
+    &.active{
+        background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;
+        color:#fff
+    }
+}

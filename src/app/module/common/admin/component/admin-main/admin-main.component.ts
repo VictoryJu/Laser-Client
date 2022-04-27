@@ -2,6 +2,7 @@ import { AdminSelectLaneComponent } from './../admin-select-lane/admin-select-la
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { AdminGameConfigComponent } from '../admin-game-config/admin-game-config.component';
 
 @Component({
   selector: 'app-admin-main',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AdminGameConfigComponent } from '../admin-game-config/admin-game-config.component';
 import { AdminSelectLaneComponent } from '../admin-select-lane/admin-select-lane.component';
 
 @Component({
@@ -9,14 +10,17 @@ import { AdminSelectLaneComponent } from '../admin-select-lane/admin-select-lane
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor(public _mat:MatDialog) { }
+  constructor(public _mat:MatDialog, public _matRef:MatDialogRef<AdminDashboardComponent>) { }
 
   ngOnInit(): void {
-      this.openLane();
+      this.openLaneConfig();
   }
 
-  openLane() {
-    this._mat.open(AdminSelectLaneComponent);
+  openLaneConfig() {
+    let dialogRef = this._mat.open(AdminGameConfigComponent);
+    dialogRef.afterClosed().subscribe(()=>{
+        this._matRef.close();
+    })
   }
 
 }
