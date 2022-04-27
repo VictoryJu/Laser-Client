@@ -9,6 +9,11 @@ import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.comp
   styleUrls: ['./relay-game.component.scss']
 })
 export class RelayGameComponent implements OnInit {
+  countByPlayers = {
+    6: 3,
+    4: 2,
+    8: 4
+  }
 
   constructor(public _router:ActivatedRoute) {
       this._router.queryParams.subscribe(params=>{
