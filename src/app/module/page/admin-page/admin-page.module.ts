@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AdminMainPageComponent } from './component/admin-main-page/admin-main-page.component';
 import { AdminShowSelectLanePageComponent } from './component/admin-show-select-lane-page/admin-show-select-lane-page.component';
 import { AdminLayoutModule } from '../../common/admin-layout/admin-layout.module';
+import { RelayGameComponent } from '../../common/admin/component/relay-game/relay-game.component';
 
 
 
@@ -26,7 +27,8 @@ import { AdminLayoutModule } from '../../common/admin-layout/admin-layout.module
     RouterModule.forChild([
       {path: '', component: AdminManagementGamePageComponent },
       {path: 'main', component: AdminMainPageComponent },
-      {path: 'lane', component: AdminShowSelectLanePageComponent}
+      {path: 'lane', component: AdminShowSelectLanePageComponent},
+      {path: 'relay', component: RelayGameComponent}
     ])
   ]
 })

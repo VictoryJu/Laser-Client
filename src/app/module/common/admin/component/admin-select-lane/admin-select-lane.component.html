@@ -23,12 +23,12 @@
                 <div style="font-size: 17px;">KSLS 청라 본점</div>
                 <ng-container *ngIf="isFinal">
                     <div style="display: flex; gap:10px; padding-right: 40px;">
-                        <div>
-                            <div style="display: inline-block;margin-right: 5px;" class="material-icons">check_box</div>
+                        <div style="cursor: pointer;" (click)="isAGroup = isAGroup ? false : true; isBGroup = false">
+                            <div style="display: inline-block;margin-right: 5px;" class="material-icons">{{isAGroup ? 'check_box' : 'check_box_outline_blank'}}</div>
                             <div style="display: inline-block;">A조</div>
                         </div>
-                        <div>
-                            <div style="display: inline-block;margin-right: 5px;" class="material-icons">check_box_outline_blank</div>
+                        <div style="cursor: pointer;" (click)="isBGroup = isBGroup ? false : true; isAGroup = false;">
+                            <div style="display: inline-block;margin-right: 5px;" class="material-icons">{{isBGroup ? 'check_box' : 'check_box_outline_blank'}}</div>
                             <div style="display: inline-block;">B조</div>
                         </div>
                     </div>
@@ -37,11 +37,10 @@
             <!-- 여기다가 80명일때 아닐때 옵션 걸어주면됨 -->
             <ng-container *ngIf="isFinal"> 
                 <section style="display: flex; justify-content: space-between; gap:5px; flex-wrap: wrap;" class="menu-wrap">
-                    <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8]">
+                    <ng-container *ngFor="let item of selectArr ; let i = index;">
                         <div style="width: 49%; padding-top:15px;">
-                            <div style="display: flex; align-items: center;">
-                                <div style="font-size: 35px; color: #fff; padding-right: 5px;" class="material-icons">check_box</div>
-                                <div style="text-align: center; background-color: #0063D4; padding:3px 13px; color:#fff;">
+                            <div style="display: flex; align-items: center; cursor: pointer;" (click)="selectSemiFinal(item);">
+                                <div [style.background-color]="selectAGroup.includes(item) ? '#E20000' : '#0063D4'" style="text-align: center; background-color: #0063D4; padding:3px 13px; color:#fff;">
                                     <div style="font-size: 1.8rem; font-weight: bold;">{{item}}</div>
                                     <div style="font-size: 0.8rem;">LANE</div>
                                 </div>
@@ -65,10 +64,10 @@
             </ng-container>
             <ng-container *ngIf="!isFinal"> 
                 <section style="display: flex; flex-wrap: wrap; border: 1px solid #fff; padding:15px 40px;">
-                    <ng-container *ngFor="let item of arr">
+                    <ng-container *ngFor="let item of arr; let i = index;">
                         <div style="width:20%; padding-top:10px; padding:5px">
-                            <div style="display: flex; align-items: center;" (click)="selectLane(item)">
-                                <div style="text-align: center; background-color: #0063D4; padding:3px 5px; color:#fff;">
+                            <div style="display: flex; align-items: center; cursor: pointer;" (click)="selectLane(i);" >
+                                <div [style.background-color]="selectArr.includes(i) ? '#E20000' : '#0063D4'" style="text-align: center; background-color: #0063D4; padding:3px 5px; color:#fff;">
                                     <div style="font-size: 16px; font-weight: bold;">{{item}}</div>
                                     <div style="font-size: 14px;">LANE</div>
                                 </div>
@@ -92,7 +91,12 @@
             </ng-container> 
 
             <div style="text-align: right; padding-top:10px;">
-                <button (click)="isFinal = isFinal ? false : true" style="width: 150px; height: 40px; font-size: 19px; font-weight: 500;">{{isFinal ? '매치하기' : '결선진출'}}</button>
+                <ng-container *ngIf="isFinal">
+                    <button (click)="openGame();" style="cursor: pointer; width: 150px; height: 40px; font-size: 19px; font-weight: 500;">매치하기</button>
+                </ng-container>
+                <ng-container *ngIf="!isFinal">
+                    <button (click)="sortArr();" style="cursor: pointer; width: 150px; height: 40px; font-size: 19px; font-weight: 500;">결선진출</button>
+                </ng-container>
             </div>
         </div>
     </main>
