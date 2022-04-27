@@ -18,24 +18,15 @@
         <div style="position: absolute; left: 20%; bottom:0px;"> 
             <img src="/assets/bottom-setting.svg" >
         </div>
-        <div class="menu-container"> <!--flex 부모 컨테이너-->
-            <div style="display: flex; justify-content: space-between; width: 100%; color:#fff; padding-bottom: 15px;">
-                <div style="font-size: 17px;">KSLS 청라 본점</div>
-                <ng-container *ngIf="isFinal">
-                    <div style="display: flex; gap:10px; padding-right: 40px;">
-                        <div style="cursor: pointer;" (click)="isAGroup = isAGroup ? false : true; isBGroup = false">
-                            <div style="display: inline-block;margin-right: 5px;" class="material-icons">{{isAGroup ? 'check_box' : 'check_box_outline_blank'}}</div>
-                            <div style="display: inline-block;">A조</div>
-                        </div>
-                        <div style="cursor: pointer;" (click)="isBGroup = isBGroup ? false : true; isAGroup = false;">
-                            <div style="display: inline-block;margin-right: 5px;" class="material-icons">{{isBGroup ? 'check_box' : 'check_box_outline_blank'}}</div>
-                            <div style="display: inline-block;">B조</div>
-                        </div>
-                    </div>
-                </ng-container> 
+        <div style="position: relative;" class="menu-container"> <!--flex 부모 컨테이너-->
+            <div style="width: 100%; color:#fff; padding-bottom: 15px;">
+                <span style="font-size: 17px;">KSLS 청라 본점</span>
             </div>
+            <ng-container *ngIf="startGame">
+                <span style="position: absolute; top:46px; left: 50%; transform: translateX(-50%); font-size: 25px; color:#fff">Start!</span>
+            </ng-container>
             <!-- 여기다가 80명일때 아닐때 옵션 걸어주면됨 -->
-            <ng-container *ngIf="isFinal"> 
+            <!-- <ng-container *ngIf="isFinal"> 
                 <section style="display: flex; justify-content: space-between; gap:5px; flex-wrap: wrap;" class="menu-wrap">
                     <ng-container *ngFor="let item of selectArr ; let i = index;">
                         <div style="width: 49%; padding-top:15px;">
@@ -61,14 +52,14 @@
                         </div>
                     </ng-container>
                 </section>
-            </ng-container>
+            </ng-container> -->
             <ng-container *ngIf="!isFinal"> 
-                <section style="display: flex; flex-wrap: wrap; border: 1px solid #fff; padding:15px 40px;">
-                    <ng-container *ngFor="let item of arr; let i = index;">
-                        <div style="width:20%; padding-top:10px; padding:5px">
-                            <div style="display: flex; align-items: center; cursor: pointer;" (click)="selectLane(i);" >
-                                <div [style.background-color]="selectArr.includes(i) ? '#E20000' : '#0063D4'" style="text-align: center; background-color: #0063D4; padding:3px 5px; color:#fff;">
-                                    <div style="font-size: 16px; font-weight: bold;">{{item}}</div>
+                <section style="display: flex; flex-wrap: wrap; border: 1px solid #fff; padding:15px 40px; width: 1200px; height: 500px;">
+                    <ng-container *ngFor="let item of signalInfo; let i = index;">
+                        <div style="width:25%; padding-top:10px; padding:5px">
+                            <div style="display: flex; align-items: center; cursor: pointer;" (click)="selectLane(item.lane);" >
+                                <div [style.background-color]="selectArr.includes(item.lane) ? '#E20000' : '#0063D4'" style="text-align: center; background-color: #0063D4; padding:3px 5px; color:#fff;">
+                                    <div style="font-size: 16px; font-weight: bold;">{{item.lane}}</div>
                                     <div style="font-size: 14px;">LANE</div>
                                 </div>
                                 <div style="flex:1; background-color: #25548A; padding-right: 5px;">
@@ -77,10 +68,11 @@
                                             <div style="display: inline-block;">
                                                 <img width="55px" src="/assets/korea-flag.svg">
                                             </div>
-                                            <div style="display: inline-block; font-size: 16px; color:#fff; font-weight: 500; margin-left: 15px;">KSLS777</div>
+                                            <div style="display: inline-block; font-size: 16px; color:#fff; font-weight: 500; margin-left: 15px;">{{item.name}}</div>
                                         </div>
                                         <div style="color:#fff; padding-right: 5px; color:yellow; font-weight: bold;">
-                                            72.5
+                                            <!-- {{item.totalScore === 0 ? 0 : item.totalScore}} -->
+                                            {{item.totalScore}}
                                         </div>
                                     </div>
                                 </div>
@@ -91,12 +83,8 @@
             </ng-container> 
 
             <div style="text-align: right; padding-top:10px;">
-                <ng-container *ngIf="isFinal">
-                    <button (click)="openGame();" style="cursor: pointer; width: 150px; height: 40px; font-size: 19px; font-weight: 500;">매치하기</button>
-                </ng-container>
-                <ng-container *ngIf="!isFinal">
-                    <button (click)="sortArr();" style="cursor: pointer; width: 150px; height: 40px; font-size: 19px; font-weight: 500;">결선진출</button>
-                </ng-container>
+                <button (click)="gameStart();" style="cursor: pointer; width: 150px; height: 40px; font-size: 19px; font-weight: 500; margin-right: 5px;">시작</button>
+                <button (click)="openGame();" style="cursor: pointer; width: 150px; height: 40px; font-size: 19px; font-weight: 500;">결선진출</button>
             </div>
         </div>
     </main>

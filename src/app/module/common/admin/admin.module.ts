@@ -6,6 +6,8 @@ import { AdminMainComponent } from './component/admin-main/admin-main.component'
 import { AdminSelectLaneComponent } from './component/admin-select-lane/admin-select-lane.component';
 import { MatRippleModule } from '@angular/material/core';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { AdminGameConfigComponent } from './component/admin-game-config/admin-game-config.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,12 +16,14 @@ import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashb
     RelayGameComponent,
     AdminMainComponent,
     AdminSelectLaneComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminGameConfigComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MatRippleModule
+    MatRippleModule,
+    FormsModule
   ],
   exports:[
     RelayGameComponent,
