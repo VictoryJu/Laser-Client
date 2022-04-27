@@ -5,6 +5,9 @@ import { LoginComponent } from '../../../auth/component/login/login.component';
 import { GameConfigComponent } from '../game-config/game-config.component';
 import * as io from 'socket.io-client';
 import { MyMainComponent } from '../../../my/component/my-main/my-main.component';
+import { SignalRService } from 'src/app/service/signal-r.service';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from 'src/app/service/api-service';
 
 @Component({
   selector: 'app-game-main',
@@ -13,7 +16,7 @@ import { MyMainComponent } from '../../../my/component/my-main/my-main.component
 })
 export class GameMainComponent implements OnInit {
     
-  constructor(public _mat:MatDialog, private render:Renderer2, private _socket:SocketService) { }
+  constructor(public _mat:MatDialog, private render:Renderer2, private _socket:SocketService, public _signal:SignalRService, private _http: HttpClient, private _api:ApiService) { }
     msg: any;
     
   ngOnInit(): void {
@@ -25,6 +28,10 @@ export class GameMainComponent implements OnInit {
             console.log('실행');
             this.setCenterCoordinate(msg);
         })
+        this._signal.startConnection('lane');
+        this.laneInfo = this._signal.LaneDataListener();
+        console.log(this.laneInfo);
+        
     } 
     ngAfterViewInit(){
         setTimeout(()=>{
@@ -32,6 +39,29 @@ export class GameMainComponent implements OnInit {
         }) 
         console.log(this.shotCnt);
         
+    }
+
+    getMsg(){
+        this._http.get('http://192.168.210.67:22092/txlive').subscribe(res=>{console.log(res)});
+    }
+    
+    laneInfo:any;
+    lane = 1;
+    matchId = "aaa"
+    async sendServerShotInfo(x,y,score){
+        try{
+            const res:any = await this._api.sendShotServer({
+                matchId : this.matchId,
+                lane : this.lane,
+                x ,
+                y,
+                score
+            })
+            console.log(res);
+            
+        }catch(e){
+            console.log(e);
+        }
     }
 
     openLogin(){
@@ -199,6 +229,7 @@ export class GameMainComponent implements OnInit {
             this.shotingCount += 1;
             let obj = {x,y,score,time,shotingCount:this.shotingCount,sumScore:this.sumScore};
             let obj2 = {round:this.round,time:this.sumShotTime,score,shotingCount:this.shotingCount,sumScore:this.sumScore};
+            this.sendServerShotInfo(x,y,score);
             this.showRoundInfo = obj2;
             this.shotRoundInfo.push(obj);
             this.shotTime = 0;
