@@ -222,7 +222,8 @@ export class GameMainComponent implements OnInit {
             let y = (serverY + this.zeroY) * this.ratio;
             let distance = Math.sqrt(Math.pow(x-this.centerX,2) + Math.pow(y-this.centerY,2));
             let breakPoint = this.maxRadius / 10;
-            let score = 10 - Math.floor(distance / breakPoint);
+            let score = 10.9 - (distance / breakPoint);
+            score = Math.round(score*10)/10;
             if(distance >= this.maxRadius * 0.075 && distance <= this.maxRadius*0.1){
                 score = 9;
                 console.log("탔음");
@@ -235,13 +236,14 @@ export class GameMainComponent implements OnInit {
                 this.sumScore = this.shotRoundInfo[this.shotingCount-1].sumScore + score;
             }
             this.shotingCount += 1;
-            let obj = {x,y,score,time,shotingCount:this.shotingCount,sumScore:this.sumScore};
+            let obj = {x,y,score,time,shotingCount:this.shotingCount,sumScore:this.sumScore,index:this.shotingCount};
             let obj2 = {round:this.round,time:this.sumShotTime,score,shotingCount:this.shotingCount,sumScore:this.sumScore};
             this.sendServerShotInfo(x,y,score);
             this.showRoundInfo = obj2;
             this.shotRoundInfo.push(obj);
             this.shotTime = 0;
             this.totalScore += score;
+            this.totalScore = Math.round(this.totalScore*10)/10
             if(score>=9){
                 this.hitCount +=1;
             }

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32.996" height="32.996" viewBox="0 0 32.996 32.996">
   <defs>
-    <filter id="타원_189" x="0" y="0" width="32.996" height="32.996" filterUnits="userSpaceOnUse">
+    <filter id="타원_187" x="0" y="0" width="32.996" height="32.996" filterUnits="userSpaceOnUse">
       <feOffset dx="2" dy="2" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="1" result="blur"/>
       <feFlood flood-color="#1a1311" flood-opacity="0.302"/>
@@ -8,14 +8,14 @@
       <feComposite in="SourceGraphic"/>
     </filter>
   </defs>
-  <g id="그룹_1360" data-name="그룹 1360" transform="translate(-474.666 -1019.004)">
-    <g id="그룹_1358" data-name="그룹 1358">
-      <g transform="matrix(1, 0, 0, 1, 474.67, 1019)" filter="url(#타원_189)">
-        <circle id="타원_189-2" data-name="타원 189" cx="13.498" cy="13.498" r="13.498" transform="translate(1 1)" fill="#cc0c2f"/>
+  <g id="그룹_1354" data-name="그룹 1354" transform="translate(-638.248 -1019.004)">
+    <g id="그룹_1352" data-name="그룹 1352">
+      <g transform="matrix(1, 0, 0, 1, 638.25, 1019)" filter="url(#타원_187)">
+        <circle id="타원_187-2" data-name="타원 187" cx="13.498" cy="13.498" r="13.498" transform="translate(1 1)" fill="#e37e13"/>
       </g>
     </g>
-    <g id="그룹_1359" data-name="그룹 1359">
-      <path id="패스_8544" data-name="패스 8544" d="M484.425,1038.263l1.284-1.774a4.339,4.339,0,0,0,3.077,1.415,2.345,2.345,0,0,0,2.472-2.566,2.26,2.26,0,0,0-2.359-2.529,3.341,3.341,0,0,0-2.1.735l-1.265-.83.378-6.776h7.474v2.322h-5.078l-.264,2.963a3.605,3.605,0,0,1,1.68-.4,4.056,4.056,0,0,1,4.3,4.436,4.721,4.721,0,0,1-4.889,4.908A6.364,6.364,0,0,1,484.425,1038.263Z" fill="#fff"/>
+    <g id="그룹_1353" data-name="그룹 1353">
+      <path id="패스_8541" data-name="패스 8541" d="M650.149,1037.3a3.2,3.2,0,0,0,2.208.981c1.567,0,2.869-1.188,2.982-4.7a3.884,3.884,0,0,1-2.869,1.528c-2.321,0-4-1.434-4-4.4a4.378,4.378,0,0,1,4.4-4.662c2.642,0,5.021,2.076,5.021,6.927,0,5.285-2.586,7.569-5.361,7.569a5.239,5.239,0,0,1-3.832-1.586Zm5.153-5.662c-.246-2.549-1.208-3.492-2.4-3.492-1.038,0-1.887.849-1.887,2.567,0,1.642.774,2.416,1.982,2.416A2.79,2.79,0,0,0,655.3,1031.636Z" fill="#fff"/>
     </g>
   </g>
 </svg>
