@@ -36,8 +36,10 @@
                                     <div style="flex:auto; background-color: black;">
                                         <div style="background-color: #fff; width: 100%; padding:5px 0px;">
                                             <div #target  [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style=" padding-top:75%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; position:relative">
-                                                <ng-container *ngFor="let target of item?.historyList;">
-                                                    <div [style.background-image]="'/assets/bullet'+(i+1)" [style.left.px]="target.X * xRate" [style.top.px]="target.Y * yRate" style="position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); border-radius: 100%;"></div>
+                                                <ng-container *ngFor="let target of item?.historyList; ">
+                                                    <div [style.left.px]="target.X * xRate" [style.top.px]="target.Y * yRate" style="position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); border-radius: 100%;">
+                                                        <img style="fill:red;"  width="12px" height="12px" src="/assets/fill-circle.svg">
+                                                    </div>
                                                 </ng-container>
                                             </div>
                                         </div>
