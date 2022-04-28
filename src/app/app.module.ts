@@ -8,20 +8,28 @@ import { GamePageModule } from './module/page/game-page/game-page.module';
 import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SocketService } from './service/socket.service';
 import { AdminPageModule } from './module/page/admin-page/admin-page.module';
+import { NgChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './service/api-service';
+import { SignalRService } from './service/signal-r.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    NgChartsModule,
     RouterModule.forRoot([
       {path: '', loadChildren: ()=> GamePageModule},
       {path: 'admin',loadChildren: ()=>AdminPageModule}
     ])
   ],
   providers: [
+    ApiService,
+    SignalRService,
     SocketService,
     {
         provide: MAT_DIALOG_DEFAULT_OPTIONS,

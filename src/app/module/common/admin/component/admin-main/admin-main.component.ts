@@ -1,4 +1,8 @@
+import { AdminSelectLaneComponent } from './../admin-select-lane/admin-select-lane.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { AdminGameConfigComponent } from '../admin-game-config/admin-game-config.component';
 
 @Component({
   selector: 'app-admin-main',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _mat:MatDialog) { }
 
   ngOnInit(): void {
+      this.openDashboard();
   }
 
+  openDashboard(){
+      this._mat.open(AdminDashboardComponent);
+  }
 }

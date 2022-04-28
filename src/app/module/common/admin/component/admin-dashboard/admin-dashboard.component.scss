@@ -1,0 +1,25 @@
+.menu-container {
+    // display: flex; 
+    // justify-content: center;
+    padding:80px;
+    .menu-wrap {
+        display: flex; 
+        align-items: center;
+        justify-content: space-between;
+        border:1px solid #fff;
+        padding:70px 40px;
+        article {
+            padding: 40px 25px;
+            text-align: center;
+            cursor: pointer;
+            z-index: 1;
+            // img {
+            //     height: 100px;
+            // }
+            h3 {
+                margin-top: 20px;
+                color: #fff;
+            }
+        }
+    }
+}

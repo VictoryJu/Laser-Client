@@ -1,13 +1,15 @@
-<ng-container *ngIf="!url.includes('admin')">
-    <header>
+<div class="layout-wrap">
+    <ng-container *ngIf="!url.includes('admin')">
+        <header>
+            <div></div>
+        </header>    
+    </ng-container>
+    
+    <main>
+        <ng-content></ng-content>
+    </main>
+    
+    <footer>
         <div></div>
-    </header>    
-</ng-container>
-
-<main>
-    <ng-content></ng-content>
-</main>
-
-<footer>
-    <div></div>
-</footer>
+    </footer>
+</div>
