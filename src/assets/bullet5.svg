@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32.996" height="32.996" viewBox="0 0 32.996 32.996">
   <defs>
-    <filter id="타원_185" x="0" y="0" width="32.996" height="32.996" filterUnits="userSpaceOnUse">
+    <filter id="타원_189" x="0" y="0" width="32.996" height="32.996" filterUnits="userSpaceOnUse">
       <feOffset dx="2" dy="2" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="1" result="blur"/>
       <feFlood flood-color="#1a1311" flood-opacity="0.302"/>
@@ -8,14 +8,14 @@
       <feComposite in="SourceGraphic"/>
     </filter>
   </defs>
-  <g id="그룹_1348" data-name="그룹 1348" transform="translate(-557.696 -1019.004)">
-    <g id="그룹_1346" data-name="그룹 1346">
-      <g transform="matrix(1, 0, 0, 1, 557.7, 1019)" filter="url(#타원_185)">
-        <circle id="타원_185-2" data-name="타원 185" cx="13.498" cy="13.498" r="13.498" transform="translate(1 1)" fill="#00468f"/>
+  <g id="그룹_1360" data-name="그룹 1360" transform="translate(-474.666 -1019.004)">
+    <g id="그룹_1358" data-name="그룹 1358">
+      <g transform="matrix(1, 0, 0, 1, 474.67, 1019)" filter="url(#타원_189)">
+        <circle id="타원_189-2" data-name="타원 189" cx="13.498" cy="13.498" r="13.498" transform="translate(1 1)" fill="#cc0c2f"/>
       </g>
     </g>
-    <g id="그룹_1347" data-name="그룹 1347">
-      <path id="패스_8539" data-name="패스 8539" d="M573.484,1029.26H567.2v-2.322h9.287v1.679c-3.247,3.964-3.68,6.815-3.907,12.288h-2.812C570.012,1036.055,570.823,1032.959,573.484,1029.26Z" fill="#fff"/>
+    <g id="그룹_1359" data-name="그룹 1359">
+      <path id="패스_8544" data-name="패스 8544" d="M484.425,1038.263l1.284-1.774a4.339,4.339,0,0,0,3.077,1.415,2.345,2.345,0,0,0,2.472-2.566,2.26,2.26,0,0,0-2.359-2.529,3.341,3.341,0,0,0-2.1.735l-1.265-.83.378-6.776h7.474v2.322h-5.078l-.264,2.963a3.605,3.605,0,0,1,1.68-.4,4.056,4.056,0,0,1,4.3,4.436,4.721,4.721,0,0,1-4.889,4.908A6.364,6.364,0,0,1,484.425,1038.263Z" fill="#fff"/>
     </g>
   </g>
 </svg>

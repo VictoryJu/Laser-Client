@@ -42,12 +42,12 @@
         <div style="flex:2.5;">
 
             <div style="margin-top:5px; color:#fff; box-shadow: 3px 3px 6px #00000029;">
-                <div style="background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;  padding:10px 0px; text-align:center; font-size: 2.5rem; border-bottom:1px solid #ccc; height: 65px;">{{sumScore}} ({{sumScore === 0 ? 0 :sumScore/shotingCount*bullet | number:'0.0-2'}}%)</div>
+                <div style="background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;  padding:10px 0px; text-align:center; font-size: 2.5rem; border-bottom:1px solid #ccc; height: 65px;">{{sumScore | number:'0.0-1'}} ({{sumScore === 0 ? 0 :sumScore/shotingCount*bullet | number:'0.0-1'}}%)</div>
                 <div [style.height.px]="rightinfoHeight"  style="background-color: #fff; width: 100%; padding: 40px 0px;">
                     <div #target [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'" style=" padding-top:75%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; position:relative">
                         <ng-container *ngFor="let item of shotRoundInfo;">
-                            <div [style.left.px]="item.x" [style.top.px]="item.y" style="position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); border-radius: 100%;">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="red"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                            <div   [style.left.px]="item.x" [style.top.px]="item.y" style="position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); border-radius: 100%;">
+                                <img [src]="'/assets/bullet'+item.index+'.svg'">
                             </div>
                         </ng-container>
                     </div>
@@ -123,7 +123,7 @@
                                     <span>00 : 0{{item.shotTime/60 | number : '0.0-0'}} : {{item.shotTime%60 >= 10 ? item.shotTime%60 : '0'+item.shotTime%60}}</span>
                                 </div>
                                 <div class="item score">
-                                    <span>{{item.score}}</span>
+                                    <span>{{item.score | number:'0.0-1'}}</span>
                                 </div>
                             </div>
                             <ng-container *ngFor="let detail of item.roundInfo;">
@@ -140,7 +140,7 @@
                                             <span>00 : 0{{detail.time/60 | number : '0.0-0'}} : {{detail.time%60 >= 10 ? detail.time%60 : '0'+detail.time%60}}</span>
                                         </div>
                                         <div class="item score">
-                                            <span>{{detail.score}}</span>
+                                            <span>{{detail.score | number:'0.0-1'}}</span>
                                         </div>
                                     </div>                                    
                                 </ng-container>
@@ -161,7 +161,7 @@
                                     <span>00 : 0{{showRoundInfo.time/60 | number : '0.0-0'}} : {{showRoundInfo.time%60 >= 10 ? showRoundInfo.time%60 : '0'+showRoundInfo.time%60 }}</span>
                                 </div>
                                 <div class="item score">
-                                    <span>{{showRoundInfo.sumScore}}</span>
+                                    <span>{{showRoundInfo.sumScore | number:'0.0-1'}}</span>
                                 </div>
                             </div>
                         </ng-container>
@@ -175,7 +175,7 @@
                         <div style="font-size: 2.2rem; padding: 5px 20px; background-color: #BEF1FF; ">
                             <span style="margin-right: 20px; vertical-align: baseline;">*{{hitCount}}</span>
                             <span style="vertical-align: baseline;">/</span>
-                            <span style="margin-left: 20px; vertical-align: baseline;">{{totalScore}}</span>
+                            <span style="margin-left: 20px; vertical-align: baseline;">{{totalScore | number:'0.0-1'}}</span>
                         </div>
                     </div>
                 </div>
