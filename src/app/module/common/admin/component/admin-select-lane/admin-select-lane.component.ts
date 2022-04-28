@@ -24,9 +24,8 @@ export class AdminSelectLaneComponent implements OnInit {
       this._signal.startConnection('main');
       this._signal.MainDataListener().subscribe(msg=>{  
         this.signalInfo = msg.partA;
-        console.log(this.signalInfo);
-        console.log('dasdasdasdsa');
-        
+        this.history = JSON.parse(msg.partA[0].history);
+        console.log(this.history);
         })
       this.getMathcInfo();
       console.log(this.mainInfo);
@@ -35,8 +34,10 @@ export class AdminSelectLaneComponent implements OnInit {
   signalInfo:any;
   mainInfo:any;
   gameId = 'gameId'
+  history:object
+  disabledPlayer(){
 
-
+  }
 
   matchInfo = [];
   async getMathcInfo(){
@@ -44,6 +45,7 @@ export class AdminSelectLaneComponent implements OnInit {
         const res:any = await this._api.getMatch(this.matchId);
         this.matchInfo = [...res.data.partAGameMemberList];
         console.log(this.matchInfo);
+        
       }catch(e){
           console.log(e)
       }

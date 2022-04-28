@@ -29,7 +29,12 @@ export class GameMainComponent implements OnInit {
             this.setCenterCoordinate(msg);
         })
         this._signal.startConnection('lane');
-        this.laneInfo = this._signal.LaneDataListener();
+        this._signal.LaneDataListener().subscribe(data=>{
+            this.laneInfo = data;
+            this.matchId = this.laneInfo.matchId;
+            console.log(this.matchId);
+            
+        });
         console.log(this.laneInfo);
         
     } 
@@ -46,8 +51,8 @@ export class GameMainComponent implements OnInit {
     }
     
     laneInfo:any;
-    lane = 1;
-    matchId = "aaa"
+    lane = 100;
+    matchId:string;
     async sendServerShotInfo(x,y,score){
         try{
             const res:any = await this._api.sendShotServer({
@@ -57,7 +62,10 @@ export class GameMainComponent implements OnInit {
                 y,
                 score
             })
+            // if(this.lane <103) this.lane +=1 ;
+            // else this.lane = 100;
             console.log(res);
+            console.log('테스트');
             
         }catch(e){
             console.log(e);
