@@ -36,7 +36,7 @@ export class ApiService {
     }
     
     sendShotServer(data:{matchId:string, lane:number,x:number, y:number, score:number}){
-        return this._http.put(`${environment.apiUrl}/match`,data).toPromise();
+        return this._http.put(`${environment.serviceUrl}/match`,data).toPromise();
     }
 
     getWinners(matchId:string){

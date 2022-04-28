@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32.996" height="32.996" viewBox="0 0 32.996 32.996">
+  <defs>
+    <filter id="타원_184" x="0" y="0" width="32.996" height="32.996" filterUnits="userSpaceOnUse">
+      <feOffset dx="2" dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-color="#1a1311" flood-opacity="0.302"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_1345" data-name="그룹 1345" transform="translate(-434.166 -1019.004)">
+    <g id="그룹_1343" data-name="그룹 1343">
+      <g transform="matrix(1, 0, 0, 1, 434.17, 1019)" filter="url(#타원_184)">
+        <circle id="타원_184-2" data-name="타원 184" cx="13.498" cy="13.498" r="13.498" transform="translate(1 1)" fill="#00468f"/>
+      </g>
+    </g>
+    <g id="그룹_1344" data-name="그룹 1344">
+      <path id="패스_8538" data-name="패스 8538" d="M453.315,1036.281h-1.661v3.624h-2.586v-3.624h-5.945v-1.887l5.21-8.456h3.321v8.229h1.661Zm-4.247-2.114v-2.85c0-.811.076-2.076.114-2.888h-.076c-.339.736-.717,1.51-1.113,2.265l-2.171,3.473Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>
