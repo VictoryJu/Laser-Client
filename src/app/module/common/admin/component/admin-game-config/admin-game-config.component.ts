@@ -110,6 +110,8 @@ export class AdminGameConfigComponent implements OnInit {
   matchId:string;
   async createGame(){
       try{
+          console.log('실행');
+          
         const res:any = await this._api.createGame({
             matchType:this.preset.id,
             personnel: this.people,

@@ -5,3 +5,9 @@
         padding:70px 40px;
     }
 }
+
+.player-wrap{
+    &.disabled{
+        opacity: 0.1;
+    }
+}
