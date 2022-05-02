@@ -1,0 +1,51 @@
+<div style="overflow: hidden; width: 1000px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding:15px 35px; background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);">
+        <div style="color:#fff; font-size:25px; font-weight:500;">관리자 그룹관리</div>
+        <div></div>
+    </div>
+    <div style="background-color: #fff; padding:30px 40px;">
+        <div>
+            <span style="color:black; font-weight: bold; font-size: 18px;">그룹 관리</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <div style="flex:1.5;">
+                <div style="display: flex; align-items: center;">
+                    <div style="margin-right: 40px;">그룹수 20</div>
+                    <div style="border:1px solid #ccc; padding:1px 30px; font-size: 14px;">선택</div>
+                    <img style="width: 20px; margin-right: 10px;" src="/assets/down-arrow.svg">
+                    <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" value="강남구청">
+                    <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none">검색</button>
+                </div>
+            </div>
+            <div style="flex:1; text-align: right;">
+                <button style="padding:1px 10px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none">그룹추가</button>
+            </div>
+        </div>
+        <div style="border:2px solid #0047A4; width: 100%; margin-top:15px;"></div>
+        <div style="background-color: #E4EAF8; padding:10px 0px">
+            <div class="board-header-wrap">
+                <div class="item">No.</div>
+                <div class="item">쳌</div>
+                <div class="item" style="flex:2;">그룹명</div>
+                <div class="item">인원</div>
+                <div class="item">그룹생성일</div>
+                <div class="item">기능</div>
+            </div>
+        </div>
+        <ng-container *ngFor="let item of [1,2,3,4,5]">
+            <div style="background-color: #F0F0F0; padding:5px 0px; border-bottom: 1px solid #ccc;">
+                <div class="board-main-wrap">
+                    <div class="item">1</div>
+                    <div class="item">쳌</div>
+                    <div class="item" style="flex:2;">강남구청</div>
+                    <div class="item">15명</div>
+                    <div class="item">2022-03-18</div>
+                    <div class="item">
+                        <button class="edit-btn" style="margin-right: 5px;">수정</button>
+                        <button class="del-btn">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
