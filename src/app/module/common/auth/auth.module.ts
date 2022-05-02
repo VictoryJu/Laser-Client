@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './component/login/login.component';
@@ -14,7 +15,8 @@ import { MatRippleModule } from '@angular/material/core';
   ],
   imports: [
     CommonModule,
-    MatRippleModule
+    MatRippleModule,
+    FormsModule
   ],
   exports:[
     LoginComponent,

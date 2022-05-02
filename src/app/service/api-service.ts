@@ -42,7 +42,16 @@ export class ApiService {
     getWinners(matchId:string){
         return this._http.get(`${environment.serviceUrl}/match/winners${this.getQueryString(matchId)}`).toPromise();
     }
-
+    login(data: {
+        id:string,password:string,matchId:string,lane:number
+    }) {
+        return this._http.post(`${environment.serviceUrl}/member/login`, data).toPromise();
+    }
+    register(data: {
+        id:string,password:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,groupId:number,address:string,zipCode:string
+    }) {
+        return this._http.post(`${environment.serviceUrl}/member/signup`, data).toPromise();
+    }
     getQueryString(data: any) {
         return '?' + Object.keys(data).map(function(k) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
