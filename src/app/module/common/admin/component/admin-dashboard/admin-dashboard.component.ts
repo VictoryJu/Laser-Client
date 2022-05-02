@@ -17,7 +17,9 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   openLaneConfig() {
-    let dialogRef = this._mat.open(AdminGameConfigComponent);
+    let dialogRef = this._mat.open(AdminGameConfigComponent, {
+        hasBackdrop:false
+    });
     dialogRef.afterClosed().subscribe(()=>{
         this._matRef.close();
     })

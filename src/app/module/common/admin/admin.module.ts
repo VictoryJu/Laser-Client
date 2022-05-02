@@ -8,6 +8,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
 import { AdminGameConfigComponent } from './component/admin-game-config/admin-game-config.component';
 import { FormsModule } from '@angular/forms';
+import { AdminGroupBoardComponent } from './component/admin-group-board/admin-group-board.component';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     AdminMainComponent,
     AdminSelectLaneComponent,
     AdminDashboardComponent,
-    AdminGameConfigComponent
+    AdminGameConfigComponent,
+    AdminGroupBoardComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     RelayGameComponent,
     AdminMainComponent,
     AdminSelectLaneComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminGroupBoardComponent
   ]
 })
 export class AdminModule { }
