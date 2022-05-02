@@ -19,6 +19,6 @@ export class AdminMainComponent implements OnInit {
   }
 
   openDashboard(){
-      this._mat.open(AdminGroupBoardComponent);
+      this._mat.open(AdminDashboardComponent);
   }
 }
