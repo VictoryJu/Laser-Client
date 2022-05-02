@@ -3,7 +3,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api-service';
 import { AdminSelectLaneComponent } from '../admin-select-lane/admin-select-lane.component';
-
 @Component({
   selector: 'app-admin-game-config',
   templateUrl: './admin-game-config.component.html',
@@ -14,10 +13,12 @@ export class AdminGameConfigComponent implements OnInit {
   constructor(private _api:ApiService, private _router:Router, public _matRef:MatDialogRef<AdminGameConfigComponent>, public _mat:MatDialog) { }
 
   ngOnInit(): void {
-      this.getPresets();
-      this.getLaneInfo();
-  }
+    this.getPresets();
+    this.getLaneInfo();
+  } 
 
+    
+    
   presets = [];
   qualifier = [];
   finals = [];

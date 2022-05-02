@@ -1,3 +1,4 @@
+import { AdminNetworkConfigComponent } from './component/admin-network-config/admin-network-config.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,6 +10,8 @@ import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashb
 import { AdminGameConfigComponent } from './component/admin-game-config/admin-game-config.component';
 import { FormsModule } from '@angular/forms';
 import { AdminGroupBoardComponent } from './component/admin-group-board/admin-group-board.component';
+import { AdminModalComponent } from './component/admin-modal/admin-modal.component';
+
 
 
 
@@ -19,7 +22,9 @@ import { AdminGroupBoardComponent } from './component/admin-group-board/admin-gr
     AdminSelectLaneComponent,
     AdminDashboardComponent,
     AdminGameConfigComponent,
-    AdminGroupBoardComponent
+    AdminGroupBoardComponent,
+    AdminNetworkConfigComponent,
+    AdminModalComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +37,9 @@ import { AdminGroupBoardComponent } from './component/admin-group-board/admin-gr
     AdminMainComponent,
     AdminSelectLaneComponent,
     AdminDashboardComponent,
-    AdminGroupBoardComponent
+    AdminGroupBoardComponent,
+    AdminNetworkConfigComponent,
+    AdminModalComponent
   ]
 })
 export class AdminModule { }
