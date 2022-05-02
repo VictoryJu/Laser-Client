@@ -1,3 +1,4 @@
+import { AdminNetworkConfigComponent } from './component/admin-network-config/admin-network-config.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,8 @@ import { MatRippleModule } from '@angular/material/core';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
 import { AdminGameConfigComponent } from './component/admin-game-config/admin-game-config.component';
 import { FormsModule } from '@angular/forms';
+import { AdminModalComponent } from './component/admin-modal/admin-modal.component';
+
 
 
 
@@ -17,7 +20,9 @@ import { FormsModule } from '@angular/forms';
     AdminMainComponent,
     AdminSelectLaneComponent,
     AdminDashboardComponent,
-    AdminGameConfigComponent
+    AdminGameConfigComponent,
+    AdminNetworkConfigComponent,
+    AdminModalComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +34,9 @@ import { FormsModule } from '@angular/forms';
     RelayGameComponent,
     AdminMainComponent,
     AdminSelectLaneComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminNetworkConfigComponent,
+    AdminModalComponent
   ]
 })
 export class AdminModule { }

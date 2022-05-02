@@ -3,7 +3,7 @@
 <div style="overflow: hidden;">
     <div class="title-bar" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding:10px 30px">
         <div style="margin-left: 20px; font-size: 25px; font-weight: 500;">관리자 기능</div>
-        <div class="material-icons" style="font-size: 35px; font-weight: bold;">close</div>
+        <div class="material-icons" style="font-size: 35px; font-weight: bold;" (click)="closeConfig();">close</div>
     </div>
     <main style="width: 1000px; height: 100%; background:linear-gradient(to bottom,#1B1623,#433754); position: relative;">
         <div style="position: absolute; left: 0px; top:50%; transform: translateY(-50%);z-index: 0;"> 
@@ -32,7 +32,7 @@
                         회원관리
                     </h3>
                 </article>
-                <article>
+                <article (click)="openNetworkConfig()">
                     <img src="/assets/network.svg" />
                     <h3>
                         네트워크 설정
