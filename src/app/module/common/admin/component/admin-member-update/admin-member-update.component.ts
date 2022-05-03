@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-member-update',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMemberUpdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _matRef:MatDialogRef<AdminMemberUpdateComponent>) { }
 
   ngOnInit(): void {
   }
 
+  close() {
+    this._matRef.close();
+  }
 }
