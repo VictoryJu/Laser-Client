@@ -1,3 +1,4 @@
+import { AdminGameManagementComponent } from './../admin-game-management/admin-game-management.component';
 import { AdminMemberComponent } from './../admin-member/admin-member.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -34,6 +35,11 @@ export class AdminDashboardComponent implements OnInit {
   openMemberConfig() {
     this._mat.open(AdminMemberComponent);
   }
+
+  openGameManagement() {
+    this._mat.open(AdminGameManagementComponent);
+  }
+
 
   closeConfig(){
     matClose(this._matRef);

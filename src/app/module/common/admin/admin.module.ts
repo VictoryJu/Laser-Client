@@ -14,6 +14,7 @@ import { AdminModalComponent } from './component/admin-modal/admin-modal.compone
 import { AdminQualifierComponent } from './component/admin-qualifier/admin-qualifier.component';
 import { AdminMemberComponent } from './component/admin-member/admin-member.component';
 import { AdminMemberUpdateComponent } from './component/admin-member-update/admin-member-update.component';
+import { AdminGameManagementComponent } from './component/admin-game-management/admin-game-management.component';
 
 
 
@@ -30,7 +31,8 @@ import { AdminMemberUpdateComponent } from './component/admin-member-update/admi
     AdminModalComponent,
     AdminQualifierComponent,
     AdminMemberComponent,
-    AdminMemberUpdateComponent
+    AdminMemberUpdateComponent,
+    AdminGameManagementComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,9 @@ import { AdminMemberUpdateComponent } from './component/admin-member-update/admi
     AdminNetworkConfigComponent,
     AdminModalComponent,
     AdminQualifierComponent,
-    AdminMemberComponent
+    AdminMemberComponent,
+    AdminMemberUpdateComponent,
+    AdminGameManagementComponent
   ]
 })
 export class AdminModule { }
