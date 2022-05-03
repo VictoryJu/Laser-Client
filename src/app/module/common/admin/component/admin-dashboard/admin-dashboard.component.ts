@@ -1,3 +1,4 @@
+import { AdminMemberComponent } from './../admin-member/admin-member.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { matClose } from 'src/app/lib/utils';
@@ -28,6 +29,10 @@ export class AdminDashboardComponent implements OnInit {
 
   openNetworkConfig(){
       this._mat.open(AdminNetworkConfigComponent)
+  }
+
+  openMemberConfig() {
+    this._mat.open(AdminMemberComponent);
   }
 
   closeConfig(){

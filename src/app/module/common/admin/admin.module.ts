@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { AdminGroupBoardComponent } from './component/admin-group-board/admin-group-board.component';
 import { AdminModalComponent } from './component/admin-modal/admin-modal.component';
 import { AdminQualifierComponent } from './component/admin-qualifier/admin-qualifier.component';
+import { AdminMemberComponent } from './component/admin-member/admin-member.component';
+import { AdminMemberUpdateComponent } from './component/admin-member-update/admin-member-update.component';
 
 
 
@@ -26,7 +28,9 @@ import { AdminQualifierComponent } from './component/admin-qualifier/admin-quali
     AdminGroupBoardComponent,
     AdminNetworkConfigComponent,
     AdminModalComponent,
-    AdminQualifierComponent
+    AdminQualifierComponent,
+    AdminMemberComponent,
+    AdminMemberUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,8 @@ import { AdminQualifierComponent } from './component/admin-qualifier/admin-quali
     AdminGroupBoardComponent,
     AdminNetworkConfigComponent,
     AdminModalComponent,
-    AdminQualifierComponent
+    AdminQualifierComponent,
+    AdminMemberComponent
   ]
 })
 export class AdminModule { }
