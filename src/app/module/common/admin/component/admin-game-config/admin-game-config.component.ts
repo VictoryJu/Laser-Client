@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { matClose } from 'src/app/lib/utils';
 import { ApiService } from 'src/app/service/api-service';
 import { AdminSelectLaneComponent } from '../admin-select-lane/admin-select-lane.component';
 @Component({
@@ -154,5 +155,9 @@ export class AdminGameConfigComponent implements OnInit {
     if(this.isFinal)
     this._router.navigate(['/admin/relay/'],{queryParams:{players:this.people, gameId:this.matchId}});
     this._matRef.close();
+  }
+
+  closeConfig(){
+      matClose(this._matRef);
   }
 }

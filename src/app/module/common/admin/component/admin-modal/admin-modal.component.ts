@@ -1,5 +1,5 @@
 import { MatDialogRef } from '@angular/material/dialog';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { matClose } from 'src/app/lib/utils';
 
 @Component({
@@ -9,16 +9,25 @@ import { matClose } from 'src/app/lib/utils';
 })
 export class AdminModalComponent implements OnInit {
 
-  constructor(public _matDialogRef:MatDialogRef<AdminModalComponent>) { }
+  constructor(public _matDialogRef:MatDialogRef<AdminModalComponent>,) {
+    }
 
   ngOnInit(): void {
+
+    }
+
+close() {
+    this._matDialogRef.close();
   }
-  close() {
-    console.log(this.refData);
-    matClose(this.refData);
-  }
+  
   @Input() title: string;
-  @Input() isNeedBorder?: boolean = true; //보더 유무
+  @Input() isNeedBorder = true; //보더 유무
   @Input() subTitle?: string;
   @Input() refData?: any;
+  @Input() isConfig? = true;
+  @Output() isClose = new EventEmitter();
+
+  closeModal(){
+      this.isClose.emit(false);
+  }
 }

@@ -62,11 +62,6 @@ export class GameMainComponent implements OnInit {
                 y,
                 score
             })
-            // if(this.lane <103) this.lane +=1 ;
-            // else this.lane = 100;
-            console.log(res);
-            console.log('테스트');
-            
         }catch(e){
             console.log(e);
         }
