@@ -1,0 +1,29 @@
+<div class="container">
+    <header style="display: flex; justify-content: space-between; align-items: center; font-size: 36px;">
+        <div>[ 예선전 ]</div>
+        <div>[제 23회 미추홀기 전국사격대회]</div>
+    </header>
+    <div class="menu-wrap">
+        <div class="item" style="flex: 0.3;">순위</div>
+        <div class="item" style="flex: 0.3;">레인</div>
+        <div class="item" style="flex: 0.3;">성명</div>
+        <div class="item" style="flex: 1;">소속</div>
+        <div class="item" style="flex: 0.1;" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+            {{item}}
+        </div>
+        <div class="item" style="flex: 0.7">Total(*Hit)</div>
+    </div>
+    <div class="data-wrap" 
+        [style.border-bottom]="idx+1 === 8 ? '1px solid red': 'none'"  
+        [style.background-color]="idx+1 === 1 ? '#3A2727' : (idx+1) % 2 === 0 ? '#1E222E':'#272B3A' " 
+        *ngFor="let list of [1,2,3,4,5,6,7,8,9,10]; let idx =index;">
+        <div class="item" style="flex: 0.3;">{{idx + 1}}</div>
+        <div class="item" style="flex: 0.3;">{{idx + 1}}</div>
+        <div class="item" style="flex: 0.3;">김건수</div>
+        <div class="item" style="flex: 1;">가톨릭대학교</div>
+        <div class="item" style="flex: 0.1;" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+            {{item}}
+        </div>
+        <div class="item" style="flex: 0.7; color: #757A64;">Total(*Hit)</div>
+    </div>
+</div>

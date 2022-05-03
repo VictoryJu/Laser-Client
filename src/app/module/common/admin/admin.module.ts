@@ -11,6 +11,7 @@ import { AdminGameConfigComponent } from './component/admin-game-config/admin-ga
 import { FormsModule } from '@angular/forms';
 import { AdminGroupBoardComponent } from './component/admin-group-board/admin-group-board.component';
 import { AdminModalComponent } from './component/admin-modal/admin-modal.component';
+import { AdminQualifierComponent } from './component/admin-qualifier/admin-qualifier.component';
 
 
 
@@ -24,7 +25,8 @@ import { AdminModalComponent } from './component/admin-modal/admin-modal.compone
     AdminGameConfigComponent,
     AdminGroupBoardComponent,
     AdminNetworkConfigComponent,
-    AdminModalComponent
+    AdminModalComponent,
+    AdminQualifierComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { AdminModalComponent } from './component/admin-modal/admin-modal.compone
     AdminDashboardComponent,
     AdminGroupBoardComponent,
     AdminNetworkConfigComponent,
-    AdminModalComponent
+    AdminModalComponent,
+    AdminQualifierComponent
   ]
 })
 export class AdminModule { }

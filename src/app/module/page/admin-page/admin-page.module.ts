@@ -9,6 +9,7 @@ import { AdminMainPageComponent } from './component/admin-main-page/admin-main-p
 import { AdminShowSelectLanePageComponent } from './component/admin-show-select-lane-page/admin-show-select-lane-page.component';
 import { AdminLayoutModule } from '../../common/admin-layout/admin-layout.module';
 import { RelayGameComponent } from '../../common/admin/component/relay-game/relay-game.component';
+import { AdminQualifierPageComponent } from './component/admin-qualifier-page/admin-qualifier-page.component';
 
 
 
@@ -16,7 +17,8 @@ import { RelayGameComponent } from '../../common/admin/component/relay-game/rela
   declarations: [
     AdminManagementGamePageComponent,
     AdminMainPageComponent,
-    AdminShowSelectLanePageComponent
+    AdminShowSelectLanePageComponent,
+    AdminQualifierPageComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { RelayGameComponent } from '../../common/admin/component/relay-game/rela
       {path: '', component: AdminManagementGamePageComponent },
       {path: 'main', component: AdminMainPageComponent },
       {path: 'lane', component: AdminShowSelectLanePageComponent},
-      {path: 'relay', component: RelayGameComponent}
+      {path: 'relay', component: RelayGameComponent },
+      {path: 'qualifier', component: AdminQualifierPageComponent}
     ])
   ]
 })

@@ -1,0 +1,23 @@
+.container {
+    padding: 0 30px;
+}
+
+.menu-wrap {
+    display: flex; 
+    align-items: center; 
+    text-align: center;
+    .item {
+        // border-right: 1px solid;
+        padding: 5px 0;
+    }
+}
+
+.data-wrap {
+    display: flex; 
+    align-items: center; 
+    text-align: center;
+    color: #fff;
+    .item {
+        padding: 5px 0;
+    }
+}
