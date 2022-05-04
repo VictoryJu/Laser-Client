@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ApiService } from 'src/app/service/api-service';
+
 
 @Component({
   selector: 'app-admin-regist-player',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminRegistPlayerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _matDialogRef: MatDialogRef<AdminRegistPlayerComponent>, private _api:ApiService) { }
 
   ngOnInit(): void {
+    
+    
   }
 
+  close() { this._matDialogRef.close(); }  
+  
 }
