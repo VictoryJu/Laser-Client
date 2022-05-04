@@ -12,6 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { AdminGroupBoardComponent } from './component/admin-group-board/admin-group-board.component';
 import { AdminModalComponent } from './component/admin-modal/admin-modal.component';
 import { MyModule } from '../my/my.module';
+import { AdminQualifierComponent } from './component/admin-qualifier/admin-qualifier.component';
+import { AdminMemberComponent } from './component/admin-member/admin-member.component';
+import { AdminMemberUpdateComponent } from './component/admin-member-update/admin-member-update.component';
+import { AdminGameManagementComponent } from './component/admin-game-management/admin-game-management.component';
+import { AdminRegistPlayerComponent } from './component/admin-regist-player/admin-regist-player.component';
 
 
 
@@ -25,7 +30,12 @@ import { MyModule } from '../my/my.module';
     AdminGameConfigComponent,
     AdminGroupBoardComponent,
     AdminNetworkConfigComponent,
-    AdminModalComponent
+    AdminModalComponent,
+    AdminQualifierComponent,
+    AdminMemberComponent,
+    AdminMemberUpdateComponent,
+    AdminGameManagementComponent,
+    AdminRegistPlayerComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +51,12 @@ import { MyModule } from '../my/my.module';
     AdminDashboardComponent,
     AdminGroupBoardComponent,
     AdminNetworkConfigComponent,
-    AdminModalComponent
+    AdminModalComponent,
+    AdminQualifierComponent,
+    AdminMemberComponent,
+    AdminMemberUpdateComponent,
+    AdminGameManagementComponent,
+    AdminRegistPlayerComponent
   ]
 })
 export class AdminModule { }

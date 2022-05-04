@@ -1,0 +1,56 @@
+<div style="overflow: hidden; width: 1000px;">
+    <div class="title-bar">
+        <div class="title">참가자 등록</div>
+        <div class="material-icons" id="close" (click)="close();">close</div>
+    </div>
+    <div style="background-color: #fff; padding:30px 40px;">
+            <div>
+                <span style="color:black; font-weight: bold; font-size: 18px;">참가자 정보 입력</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                <div style="flex:1.5;">
+                    <div style="display: flex; align-items: center;">
+                        <!-- <div style="margin-right: 40px;">그룹수 20</div> -->
+                        <div style="border:1px solid #ccc; padding:1px 20px; font-size: 14px;">A조</div>
+                        <img style="width: 20px; margin-right: 10px;" src="/assets/down-arrow.svg">
+                        <input style="width: 100px; border: 1px solid #ccc; padding:0px 5px; margin-right: 10px; text-align: center;" type="text" value="레인">
+                        <input style="width: 100px; border: 1px solid #ccc; padding:0px 5px; margin-right: 10px; text-align: center;" type="text" value="소속">
+                        <input style="width: 100px; border: 1px solid #ccc; padding:0px 5px; margin-right: 10px; text-align: center;" type="text" value="성명">
+                        <input style="width: 100px; border: 1px solid #ccc; padding:0px 5px; margin-right: 10px; text-align: center;" type="text" value="생년월일">
+                        <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none">추가</button>
+                        <button style="margin-left: 15px; padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none">찾기</button>
+                    </div>
+                </div>
+            </div>
+            <div style="border:2px solid #0047A4; width: 100%; margin-top:15px;"></div>
+            <div style="background-color: #E4EAF8; padding:10px 0px">
+                <div class="board-header-wrap">
+                    <div class="item">No.</div>
+                    <div class="item">쳌</div>
+                    <div class="item">조별</div>
+                    <div class="item">레인</div>
+                    <div class="item">소속</div>
+                    <div class="item">사용자이름</div>
+                    <div class="item">생년월일</div>
+                    <div class="item">기능</div>
+                </div>
+            </div>
+            <ng-container *ngFor="let item of [1,2,3,4,5]">
+                <div style="background-color: #F0F0F0; padding:5px 0px; border-bottom: 1px solid #ccc;">
+                    <div class="board-main-wrap">
+                        <div class="item">1</div>
+                        <div class="item">쳌</div>
+                        <div class="item">A조</div>
+                        <div class="item">1</div>
+                        <div class="item">강남구청</div>
+                        <div class="item">홍길동</div>
+                        <div class="item">2022-03-18</div>
+                        <div class="item">
+                            <button class="edit-btn" style="margin-right: 5px;">수정</button>
+                            <button class="del-btn">삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+</div>

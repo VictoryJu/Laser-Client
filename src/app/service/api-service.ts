@@ -47,7 +47,7 @@ export class ApiService {
         return this._http.post(`${environment.serviceUrl}/member/login`,data).toPromise();
     }
 
-    regist(data:{id:string,password:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,adress:string,zipCode:string}){
+    regist(data:{id:string,password:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,address:string,zipCode:string}){
         return this._http.post(`${environment.serviceUrl}/member`,data).toPromise();
     }
 
