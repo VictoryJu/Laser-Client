@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { matClose } from 'src/app/lib/utils';
 import { AdminGameConfigComponent } from '../admin-game-config/admin-game-config.component';
+import { AdminGroupBoardComponent } from '../admin-group-board/admin-group-board.component';
 import { AdminNetworkConfigComponent } from '../admin-network-config/admin-network-config.component';
 import { AdminSelectLaneComponent } from '../admin-select-lane/admin-select-lane.component';
 
@@ -15,6 +16,7 @@ export class AdminDashboardComponent implements OnInit {
   constructor(public _mat:MatDialog, public _matRef:MatDialogRef<AdminDashboardComponent>) { }
 
   ngOnInit(): void {
+      this.openGroupBoard();
   }
 
   openLaneConfig() {
@@ -22,13 +24,17 @@ export class AdminDashboardComponent implements OnInit {
         hasBackdrop:false
     });
     dialogRef.afterClosed().subscribe(()=>{
-        this._matRef.close();
+        // this._matRef.close();
     })
   }
 
   openNetworkConfig(){
       this._mat.open(AdminNetworkConfigComponent)
   }
+  openGroupBoard(){
+      this._mat.open(AdminGroupBoardComponent)
+  }
+
 
   closeConfig(){
     matClose(this._matRef);

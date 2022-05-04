@@ -43,6 +43,14 @@ export class ApiService {
         return this._http.get(`${environment.serviceUrl}/match/winners${this.getQueryString(matchId)}`).toPromise();
     }
 
+    login(data:{id:string,password:string,lane:number}){
+        return this._http.post(`${environment.serviceUrl}/member/login`,data).toPromise();
+    }
+
+    regist(data:{id:string,password:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,adress:string,zipCode:string}){
+        return this._http.post(`${environment.serviceUrl}/member`,data).toPromise();
+    }
+
     getQueryString(data: any) {
         return '?' + Object.keys(data).map(function(k) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])

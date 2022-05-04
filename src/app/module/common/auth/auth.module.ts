@@ -4,6 +4,7 @@ import { LoginComponent } from './component/login/login.component';
 import { RegistComponent } from './component/regist/regist.component';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { MatRippleModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MatRippleModule } from '@angular/material/core';
   ],
   imports: [
     CommonModule,
-    MatRippleModule
+    MatRippleModule,
+    FormsModule
   ],
   exports:[
     LoginComponent,

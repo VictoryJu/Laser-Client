@@ -51,7 +51,7 @@ export class GameMainComponent implements OnInit {
     }
     
     laneInfo:any;
-    lane = 100;
+    lane = 1;
     matchId:string;
     async sendServerShotInfo(x,y,score){
         try{
@@ -62,18 +62,24 @@ export class GameMainComponent implements OnInit {
                 y,
                 score
             })
-            // if(this.lane <103) this.lane +=1 ;
-            // else this.lane = 100;
-            console.log(res);
-            console.log('테스트');
-            
         }catch(e){
             console.log(e);
         }
     }
 
+
+    userName:string;
+    groupName:string;
+    groupImg:string;
     openLogin(){
-        this._mat.open(LoginComponent);
+        let loginRef = this._mat.open(LoginComponent);
+        loginRef.afterClosed().subscribe(result=>{
+            if(result){
+                this.userName = result.name;
+                this.groupName = result.club;
+                this.groupImg = result.clubImage;
+            }
+        })
     }
 
     openMyPage(){
