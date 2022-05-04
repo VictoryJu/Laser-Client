@@ -13,20 +13,25 @@ export class AdminMemberComponent implements OnInit {
   constructor(public _matRef:MatDialogRef<AdminMemberComponent>, public _mat:MatDialog, private _api:ApiService) { }
 
   ngOnInit(): void {
+    this.getMemberList()
   }
 
   close() { this._matRef.close() }
   
   openMemberDetail() {
-    this._mat.open(AdminMemberUpdateComponent);
+    this._mat.open(AdminMemberUpdateComponent, {
+      data:{memberId: 'admin'}
+    });
   }
 
 
 
   searchType: number = 0;
-  keyword: string;
+  keyword: string = '';     
   start: number = 0;
   limit: number = 10;
+  allCount: number;
+  memberList:Array<any> = [];
   async getMemberList() {
     try {
       const res: any = await this._api.getMemberList({
@@ -35,6 +40,8 @@ export class AdminMemberComponent implements OnInit {
         start: this.start,
         limit: this.limit
       })
+      this.memberList = res.datas;
+      this.allCount = res.total_cnt;
       console.log(res);
     } catch (error) {
       console.log(error);

@@ -56,7 +56,11 @@ export class ApiService {
     }) {
         return this._http.get(`${environment.serviceUrl}/member/list${this.getQueryString(data)}`).toPromise();
     }
-
+    getMember(data: {
+        memberId:string    
+    }) {
+        return this._http.get(`${environment.serviceUrl}/member${this.getQueryString(data)}`).toPromise();
+    }
     getQueryString(data: any) {
         return '?' + Object.keys(data).map(function(k) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])

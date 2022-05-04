@@ -22,12 +22,13 @@ import { getCookie, logout } from "../lib/utils";
     isSessionExpired = false;
   
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+      console.log('들어가기점');
       req = req.clone({ //http요청전
+        
         headers: new HttpHeaders()
-          .append('SSID', (getCookie('SSID') || '')),
+          .append('sessionkey', (getCookie('SSID') || '')),
         params:
           (req.params ? req.params : new HttpParams())
-            .set('v', Math.floor(Math.random() * 100000).toString())
       });
       
       return next.handle(req).pipe(
@@ -38,9 +39,11 @@ import { getCookie, logout } from "../lib/utils";
           },
           res => { //http요청후 실패했을때
             if (res.status === 400) {
+              console.log(getCookie('SSID'));
+              
               if (res.error && res.error.msg) {
                 if(res.error.msg === "세션 정보를 입력해 주세요." && getCookie('SSID')){
-                  logout();
+                  console.log('로그아웃');
                 }
               } else {
                 console.log(res)

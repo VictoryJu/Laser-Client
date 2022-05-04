@@ -17,6 +17,7 @@ import { AdminMemberComponent } from './component/admin-member/admin-member.comp
 import { AdminMemberUpdateComponent } from './component/admin-member-update/admin-member-update.component';
 import { AdminGameManagementComponent } from './component/admin-game-management/admin-game-management.component';
 import { AdminRegistPlayerComponent } from './component/admin-regist-player/admin-regist-player.component';
+import { PagenationModule } from '../pagenation/pagenation.module';
 
 
 
@@ -42,7 +43,8 @@ import { AdminRegistPlayerComponent } from './component/admin-regist-player/admi
     RouterModule,
     MatRippleModule,
     FormsModule,
-    MyModule
+    MyModule,
+    PagenationModule
   ],
   exports:[
     RelayGameComponent,
