@@ -23,15 +23,15 @@
     <div style="display: flex; gap: 5px; align-items: center; padding:0px 25px; max-width: 500px;">
 
         <div style="border: 1px solid #ccc; color:#fff; flex:0.3; height: 55px; text-align: center; font-size: 0.8rem; background: transparent linear-gradient(90deg, #0079C6 0%, #0C3F79 100%) 0% 0% no-repeat padding-box;">
-            <div style="font-size: 2rem; font-weight: bold;">3</div>
-            <div>LANE</div>
+            <div style="font-size: 2rem; font-weight: bold;">{{lane}}</div>
+            <div style="font-size: 1rem;">LANE</div>
         </div>
 
         <div style=" height: 55px; padding:13px 15px; background-color: #fff; flex:2.3">
-            <div style="display: flex; justify-content: space-between; font-size: 1.8rem; font-weight: bold; align-items: center;">
-                <div>KSLS / 영점사격왕</div>
+            <div style="display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: bold; align-items: center;">
+                <div>{{groupName}} {{userName ? '/' : ''}} {{userName}}</div>
                 <div style="width: 60px;"></div>
-                <div style="text-align: right; padding-left: 15px; font-size: 1.8rem; color: #CECECE;" (click)="openSystemConfig()" class="material-icons">settings</div>            
+                <div style="text-align: right; padding-left: 15px; font-size: 1.5rem; color: #CECECE;" (click)="openSystemConfig()" class="material-icons">settings</div>            
             </div>
         </div>
 
