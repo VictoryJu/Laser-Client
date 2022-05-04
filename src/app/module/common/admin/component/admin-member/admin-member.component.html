@@ -22,7 +22,9 @@
         <div style="background-color: #E4EAF8; padding:10px 0px">
             <div class="board-header-wrap">
                 <div class="item">No.</div>
-                <div class="item">쳌</div>
+                <div class="item">
+                    <img src="assets/check_box.svg" style="width: 20px;"  />
+                </div>
                 <div class="item">아이디</div>
                 <div class="item">사용자이름</div>
                 <div class="item">회원상태</div>
@@ -41,7 +43,7 @@
                     <div class="item">{{item.name}}</div>
                     <div class="item">{{item.isAdult ? '성인' : '학생'}}</div>
                     <div class="item">{{item.phone}}</div>
-                    <div class="item">하드코딩</div>
+                    <div class="item">{{item.loginCount}}회</div>
                     <div class="item">{{item.ctime | date: "yyyy-MM-dd"}}</div>
                     <div class="item">
                         <button class="edit-btn" style="margin-right: 5px;" (click)="openMemberDetail()">수정</button>
