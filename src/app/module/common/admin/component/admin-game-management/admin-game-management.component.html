@@ -1,8 +1,13 @@
+<div class="title-bar">
+    <div class="title">대회 중계</div>
+    <div class="material-icons" id="close" (click)="close();">close</div>
+</div>
 <app-admin-modal
-    [title]="'대회(중계)'"
     [isNeedBorder]="true"
->
-    <div style="width: 250px;background-color: #E3E3E3; text-align: center; padding: 8px 20px;">
+    [refData]="_matDialogRef"
+>   
+<ng-container *ngIf="step===1">
+    <div style="cursor: pointer;width:250px;background-color: #E3E3E3; text-align: center; padding: 8px 20px;" (click)="step=2;">
         대회추가
     </div>
     <div style="color: #fff; margin-top: 20px;">
@@ -18,7 +23,23 @@
         지난 대회
     </div>
     <div style="margin-top: 20px; display: flex; align-items: center;"> <!--ngFor-->
-        <div style="background-color: #003B77; color: #fff; font-size: 24px; padding: 12px 15px;">제 23회 미추홀기 전국사격대회</div>
+        <div style="background-color: #003B77; color: #fff; font-size: 24px; padding: 8px 15px;">제 23회 미추홀기 전국사격대회</div>
         <div style="margin-left: 10px; background-color: #E3E3E3; padding: 8px; text-align: center; width: 100px;">조회</div>
     </div>
+</ng-container>
+<ng-container *ngIf="step===2">
+    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+        <div style="width: 400px; color: #fff; font-size: 18px;">대회이름 입력</div>
+            <div style="position: relative; width: 400px; margin-top: 20px; background-color: #003B77; color: #fff; font-size: 22px; padding: 12px 15px; text-align: center;">대회 이름을 입력해주세요
+                <button style="position: absolute; right: -150px; top: 5px; color: #000; display: inline-block; background-color: #E3E3E3; padding: 8px; text-align: center; width: 100px;">입력</button>
+            </div>
+            <div style="width: 400px; margin-top: 30px; background-color: #E3E3E3; padding: 8px 24px; text-align:center">
+                참가자 등록
+            </div>
+            <div style="width: 400px; margin-top: 30px; background-color: #E3E3E3; padding: 8px 24px; text-align:center">
+                경기설정
+            </div>
+    </div>
+</ng-container>
 </app-admin-modal>
+

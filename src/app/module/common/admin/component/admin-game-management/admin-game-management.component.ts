@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-game-management',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminGameManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(public _matDialogRef:MatDialogRef<AdminGameManagementComponent>) { }
 
   ngOnInit(): void {
   }
 
+  step: number = 1;
+  
+  close() {
+    if (this.step === 1) this._matDialogRef.close();
+    else this.step = 1;
+  }
 }

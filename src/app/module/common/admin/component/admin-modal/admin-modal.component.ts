@@ -15,7 +15,8 @@ export class AdminModalComponent implements OnInit {
   }
   close() {
     console.log(this.refData);
-    matClose(this.refData);
+    this._matDialogRef.close();
+    // matClose(this.refData);
   }
   @Input() title: string;
   @Input() isNeedBorder?: boolean = true; //보더 유무
