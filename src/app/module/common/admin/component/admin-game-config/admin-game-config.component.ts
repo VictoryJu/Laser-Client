@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { matClose } from 'src/app/lib/utils';
 import { ApiService } from 'src/app/service/api-service';
 import { AdminSelectLaneComponent } from '../admin-select-lane/admin-select-lane.component';
-
 @Component({
   selector: 'app-admin-game-config',
   templateUrl: './admin-game-config.component.html',
@@ -14,10 +14,12 @@ export class AdminGameConfigComponent implements OnInit {
   constructor(private _api:ApiService, private _router:Router, public _matRef:MatDialogRef<AdminGameConfigComponent>, public _mat:MatDialog) { }
 
   ngOnInit(): void {
-      this.getPresets();
-      this.getLaneInfo();
-  }
+    this.getPresets();
+    this.getLaneInfo();
+  } 
 
+    
+    
   presets = [];
   qualifier = [];
   finals = [];
@@ -110,6 +112,8 @@ export class AdminGameConfigComponent implements OnInit {
   matchId:string;
   async createGame(){
       try{
+          console.log('실행');
+          
         const res:any = await this._api.createGame({
             matchType:this.preset.id,
             personnel: this.people,
@@ -151,5 +155,9 @@ export class AdminGameConfigComponent implements OnInit {
     if(this.isFinal)
     this._router.navigate(['/admin/relay/'],{queryParams:{players:this.people, gameId:this.matchId}});
     this._matRef.close();
+  }
+
+  closeConfig(){
+      matClose(this._matRef);
   }
 }

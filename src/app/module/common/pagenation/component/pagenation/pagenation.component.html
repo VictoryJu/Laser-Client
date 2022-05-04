@@ -1,0 +1,31 @@
+<div class="page-nation">
+    <div *ngIf="pageNationArray[0] > 0" (click)="start = min(start + limit * pageNationLast, 0); change.emit(start);">
+    <<
+    </div>
+    <div
+    *ngIf="pageNationArray[0] > 0"
+    (click)="start = max(start - limit * 10, 0); change.emit(start)"
+    >
+    <
+    </div>
+    <div
+    class="btn-box"
+    *ngFor="let i of pageNationArray"
+    [class.active]="i === pageNationNow"
+    (click)="start = i * limit; change.emit(start)"
+    >
+    {{ i + 1 }}
+    </div>
+    <div
+    *ngIf="pageNationArray[pageNationArray.length - 1] < pageNationLast"
+    (click)="
+      start = min(start + limit * 10, pageNationLast * limit);
+        change.emit(start)
+    "
+    >
+    >
+    </div>
+    <div *ngIf="pageNationArray[pageNationArray.length - 1] < pageNationLast" (click)="start = min(start + limit * pageNationLast, pageNationLast * limit); change.emit(start);">
+    >>
+    </div>
+</div>

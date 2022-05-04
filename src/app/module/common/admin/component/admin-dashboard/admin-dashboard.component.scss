@@ -5,11 +5,13 @@
     .menu-wrap {
         display: flex; 
         align-items: center;
+        flex-wrap: wrap;
         justify-content: space-between;
         border:1px solid #fff;
-        padding:70px 40px;
+        padding:30px 50px;
         article {
-            padding: 40px 25px;
+            padding: 20px 25px;
+            width: 33%;
             text-align: center;
             cursor: pointer;
             z-index: 1;

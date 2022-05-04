@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api-service';
@@ -22,25 +22,67 @@ export class RelayGameComponent implements OnInit {
         if(params){
             this.players = parseInt(params.players);
             this.gameId = params.gameId;
-            this.setPlayers(this.players);
         }
       })
       this._signal.startConnection('main');
-      this._signal.LaneDataListener();
+      this._signal.MainDataListener().subscribe(msg=>{  
+            this.series = msg.currentSeries;
+            this.shot = msg.shot;
+            this.defaultShot = msg.shot
+            this.playersArr = msg.partA;
+            this.playersArr.forEach(item=>{
+                let historyTable = JSON.parse(item.history);
+                let historyList = historyTable[this.series];
+                item.historyList = historyList;
+            })
+            console.log(this.playersArr);
+            console.log(this.history);
+        })
    }
-
+   @ViewChild('target',{ static: false }) target:ElementRef;
   ngOnInit(): void {
+
   }
 
+  ngAfterViewInit(){
+    setTimeout(()=>{
+        this.setRate();
+    },2000) 
+  }
+
+
+  setRate(){
+      let rect = this.target.nativeElement.getBoundingClientRect()
+      let width = rect.width;
+      let height = rect.height;
+      this._xRate = width / 817.45;
+      this._yRate = height / 613;
+      console.log(rect);
+      
+  }
+
+  _xRate:number
+  _yRate:number
+
+  get xRate(){
+      return this._xRate;
+  }
+
+  get yRate(){
+      return this._yRate;
+  }
+
+
+
+  defaultShot:number;
+
+  history:object;
+  shot:number;
+  series:number;
   players:number;
   gameId:string;
 
   playersArr = [];
-  setPlayers(players){
-      for(let i = 0; i < players ; i++){
-        this.playersArr.push(i);
-      }
-  }
 
   async gameStart(){
       try{

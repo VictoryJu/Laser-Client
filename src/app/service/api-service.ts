@@ -36,11 +36,19 @@ export class ApiService {
     }
     
     sendShotServer(data:{matchId:string, lane:number,x:number, y:number, score:number}){
-        return this._http.put(`${environment.apiUrl}/match`,data).toPromise();
+        return this._http.put(`${environment.serviceUrl}/match`,data).toPromise();
     }
 
     getWinners(matchId:string){
         return this._http.get(`${environment.serviceUrl}/match/winners${this.getQueryString(matchId)}`).toPromise();
+    }
+
+    login(data:{id:string,password:string,lane:number}){
+        return this._http.post(`${environment.serviceUrl}/member/login`,data).toPromise();
+    }
+
+    regist(data:{id:string,password:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,address:string,zipCode:string}){
+        return this._http.post(`${environment.serviceUrl}/member`,data).toPromise();
     }
 
     getQueryString(data: any) {

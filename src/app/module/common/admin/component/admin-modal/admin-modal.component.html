@@ -1,0 +1,12 @@
+<div style="overflow: hidden;">
+    <main style="width: 1000px; height: 100%; background:linear-gradient(to bottom,#1B1623,#433754); position: relative; padding: 30px;">
+        <ng-container *ngIf="subTitle">
+            <div style="color: #fff; font-size: 27px;">
+                {{subTitle}}
+            </div>
+        </ng-container>
+    </main>
+    <ng-container *ngIf="!isConfig">
+            <ng-content select="[user]"></ng-content>
+    </ng-container>
+</div>
