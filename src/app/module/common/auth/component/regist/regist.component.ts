@@ -25,6 +25,7 @@ export class RegistComponent implements OnInit {
 
   id: string;
   password: string;
+  checkPassword:string;
   name: string;
   birthday: string;
   gender: number;
@@ -38,6 +39,12 @@ export class RegistComponent implements OnInit {
   club:string;
   async register() {
     this.birthday = `${this.Byear}${this.Bmonth}${this.Bday}`;
+    if(!this.id || !this.password || !this.name || !this.birthday || !this.gender || !this.gunType || !this.phone || !this.pphone || !this.address || !this.zipCode){
+        
+    }
+    if(this.password !== this.checkPassword){
+        alert('패스워드가 일치하지않습니다.')
+    }
     try {
       const res: any = await this._api.regist({
         id: this.id,

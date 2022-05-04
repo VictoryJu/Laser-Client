@@ -26,15 +26,17 @@
                     <span style="color:red">*</span> 
                     <span> 비밀번호</span>
                 </div>
-                <input placeholder="password" [(ngModel)]="password" style="width: 170px; border: 1px solid #D8D8D8; border-radius: 5px; padding:7px 10px;"/>
+                <input type="password" placeholder="password" [(ngModel)]="password" style="width: 170px; border: 1px solid #D8D8D8; border-radius: 5px; padding:7px 10px;"/>
             </div>
             <div style="margin-left: 20px;">
                 <div style="padding: 7px 0px;">
                     <span style="color:red">*</span> 
                     <span> 비밀번호 확인</span>
                 </div>
-                <input placeholder="password" [(ngModel)]="password" style="width: 170px; border: 1px solid #D8D8D8; border-radius: 5px; padding:7px 10px;"/>
-                <span style="font-size:10px; color:#CE0000; margin-left: 7px;">동일한 비밀번호를 입력해주세요.</span>
+                <input type="password" placeholder="password" [(ngModel)]="checkPassword" style="width: 170px; border: 1px solid #D8D8D8; border-radius: 5px; padding:7px 10px;"/>
+                <ng-container *ngIf="checkPassword !== password">
+                    <span style="font-size:10px; color:#CE0000; margin-left: 7px;">동일한 비밀번호를 입력해주세요.</span>
+                </ng-container>
             </div>
         </div>
 
