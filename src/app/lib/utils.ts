@@ -25,6 +25,10 @@ export function getCookie(c_name)
     }
 }
 
+export async function logout() {
+    setCookie('SSID', '');
+}
+
 export function matClose(refData:IRefDatas) {
     refData.close();
     console.log('모달창 닫기');
