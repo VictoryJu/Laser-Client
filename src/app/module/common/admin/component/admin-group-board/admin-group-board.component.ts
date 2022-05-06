@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ApiService } from 'src/app/service/api-service';
 import { AdminModalComponent } from '../admin-modal/admin-modal.component';
 
 @Component({
@@ -9,19 +10,49 @@ import { AdminModalComponent } from '../admin-modal/admin-modal.component';
 })
 export class AdminGroupBoardComponent implements OnInit {
 
-  constructor(public _matRef:MatDialogRef<AdminModalComponent>, public _mat:MatDialog) {
-    console.log(this._matRef._containerInstance);
+  constructor(public _matRef:MatDialogRef<AdminModalComponent>, public _mat:MatDialog, private _api:ApiService) {
 
-   }
-   @ViewChild('adminModal') adminModal:AdminModalComponent;
+  }
+  @ViewChild('adminModal') adminModal:AdminModalComponent;
   ngOnInit(): void {
-      console.log(this._matRef);      
+    this.getClubList();
   }
 
   activeModal = false;
   activeAddGroup = false;
   activeEditModal = false;
   updateUser = false;
+
+
+  searchType: number = 0;
+  keyword: string = '';     
+  start: number = 0;
+  limit: number = 10;
+  init: boolean = false;
+  allCount: number;
+  clubList:Array<any> = [];
+
+  async getClubList(init?: boolean) {
+    if (init) {
+      this.searchType = 0;
+      this.start = 0;
+      this.limit = 10;
+      this.keyword = '';
+    }
+    try {
+      const res: any = await this._api.getClubList({
+        searchType: this.searchType,
+        keyword: this.keyword,
+        start: this.start,
+        limit: this.limit
+      })
+      console.log(res);
+      this.clubList = res.datas;
+      this.allCount = res.total_cnt;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   image;
   base64Image;
@@ -63,4 +94,7 @@ export class AdminGroupBoardComponent implements OnInit {
     // }
     
   }
+  selectOptions = [
+    {name:'이름', value:1}
+  ]
 }

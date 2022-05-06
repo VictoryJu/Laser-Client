@@ -38,6 +38,9 @@
                 <div class="item">기능</div>
             </div>
         </div>
+        <ng-container *ngIf="memberList?.length < 1">
+            <div style="text-align: center; padding:10px;">회원이 존재하지 않습니다.</div>
+        </ng-container>
         <ng-container *ngFor="let item of memberList">
             <div style="background-color: #F0F0F0; padding:5px 0px; border-bottom: 1px solid #ccc;">
                 <div class="board-main-wrap">

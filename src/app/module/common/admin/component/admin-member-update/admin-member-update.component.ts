@@ -50,6 +50,8 @@ export class AdminMemberUpdateComponent implements OnInit {
   }
 
   async updateMember() {
+    let timeStamp = new Date();
+    let email = `${timeStamp.getTime().toString()}@naver.com`
     try {
       const res: any = await this._api.updateMember({
         id: 'admin',
@@ -61,7 +63,7 @@ export class AdminMemberUpdateComponent implements OnInit {
         gunType: this.member.gunType,
         phone: this.member.phone,
         pphone: this.member.pphone,
-        email: 'emptyData',
+        email: email,
         address: this.member.address,
         zipCode: this.member.zipCode,
         memo: this.member.memo,

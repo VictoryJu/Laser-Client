@@ -31,7 +31,6 @@ export class AdminMemberComponent implements OnInit {
   keyword: string = '';     
   start: number = 0;
   limit: number = 10;
-  init: boolean = false;
   allCount: number;
   memberList:Array<any> = [];
   async getMemberList(init?:boolean) { //해당 함수를 호출할때 arg값이 있으면 초기화된 리스트 출력
