@@ -51,6 +51,21 @@ export class ApiService {
         return this._http.post(`${environment.serviceUrl}/member`,data).toPromise();
     }
 
+    getMemberList(data: {
+        searchType:number,keyword:string,start:number,limit:number
+    }) {
+        return this._http.get(`${environment.serviceUrl}/member/list${this.getQueryString(data)}`).toPromise();
+    }
+    getMember(data: {
+        memberId:string    
+    }) {
+        return this._http.get(`${environment.serviceUrl}/member${this.getQueryString(data)}`).toPromise();
+    }
+    updateMember(data: {
+        id:string,password:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,address:string,zipCode:string,memo:string,level:number,point:number,status:number
+    }) {
+        return this._http.put(`${environment.serviceUrl}/member`,data).toPromise();
+    }
     getQueryString(data: any) {
         return '?' + Object.keys(data).map(function(k) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
