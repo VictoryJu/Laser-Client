@@ -5,6 +5,7 @@ import { GameConfigComponent } from './component/game-config/game-config.compone
 import { FormsModule } from '@angular/forms';
 import { GameTargetConfigComponent } from './component/game-target-config/game-target-config.component';
 import { GameZeroConfigComponent } from './component/game-zero-config/game-zero-config.component';
+import { NoticeModule } from '../notice/notice.module';
 
 
 
@@ -17,9 +18,10 @@ import { GameZeroConfigComponent } from './component/game-zero-config/game-zero-
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NoticeModule
   ],
-  exports:[
+  exports: [
     GameMainComponent,
     GameMainComponent,
     GameTargetConfigComponent,
