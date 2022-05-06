@@ -1,92 +1,116 @@
-<div style="width: 700px;">
-    <div class="title-bar" style="height: 70px; line-height: 70px; color:#fff; font-size: 30px; font-weight: bold; padding:0px 25px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="margin-left: 15px;">회원정보 수정</div>
-        <div style="font-size:40px; font-weight: bold;" class="material-icons" (click)="close();">close</div>
-    </div>
-    <div style="padding:15px 50px; background-color: #EDEFF5;">
-        <div style="display: flex; align-items: center;">
-            <div [style.background-image]="'url('+'/assets/user.svg' +')'" style="width: 93px; height: 93px; border-radius: 50%; background-size: cover; position:relative">
-                <div [style.background-image]="'url('+'/assets/user-add.svg' +')'" style="width: 25px;height: 25px; position: absolute;right: 0px;bottom: 0px; background-size: 100% 100%;"></div>
+<ng-container *ngIf="openStep===1">
+    <div style="width: 700px;">
+        <div class="title-bar" style="height: 70px; line-height: 70px; color:#fff; font-size: 30px; font-weight: bold; padding:0px 25px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="margin-left: 15px;">회원정보 수정</div>
+            <div style="font-size:40px; font-weight: bold;" class="material-icons" (click)="close();">close</div>
+        </div>
+        <div style="padding:15px 50px; background-color: #EDEFF5;">
+            <div style="display: flex; align-items: center;">
+                <div [style.background-image]="'url('+'/assets/user.svg' +')'" style="width: 93px; height: 93px; border-radius: 50%; background-size: cover; position:relative">
+                    <div [style.background-image]="'url('+'/assets/user-add.svg' +')'" style="width: 25px;height: 25px; position: absolute;right: 0px;bottom: 0px; background-size: 100% 100%;"></div>
+                </div>
+                <div style="margin-left: 20px;">
+                    <div>
+                        <span style="color:#0071E1; font-size:17px; font-weight: bold; margin-right: 15px; vertical-align: baseline;">{{member.memberId}}</span>
+                        <span style="font-size:17px; vertical-align: baseline;">{{member.name}}</span>
+                    </div>
+                    <div style="margin-top:5px; font-size: 15px; color:#888888">
+                        <span>{{member.gender === 0 ? '남성' : '여성'}} / </span>
+                        <span>19세 / </span>
+                        <span>{{member.address}}</span>
+                    </div>
+                </div>
             </div>
-            <div style="margin-left: 20px;">
+        </div>
+        <div style="width: 100%; height: 0px; border:1px solid #0564AA"></div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">이름</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                <input [value]="member.name" [(ngModel)]="member.name" />
+            </div>
+            <div class="item" style="background-color: #EDEFF5;">성별</div>
+            <div class="item">{{member.gender === 0 ? '남자' : '여자'}}</div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">생년월일</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                {{transBirthday}}
+            </div>
+            <div class="item" style="background-color: #EDEFF5;">회원형태</div>
+            <div class="item">
+                <input class="right-center" [value]="member.isAdult ? '성인' :'학생'" />
+            </div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">사용자 ID</div>
+            <div class="item" style="display: flex; justify-content: space-around; padding: 10px 35px;position: relative;">
+                <div>{{member.memberId}}</div>
                 <div>
-                    <span style="color:#0071E1; font-size:17px; font-weight: bold; margin-right: 15px; vertical-align: baseline;">{{member.memberId}}</span>
-                    <span style="font-size:17px; vertical-align: baseline;">{{member.name}}</span>
-                </div>
-                <div style="margin-top:5px; font-size: 15px; color:#888888">
-                    <span>{{member.gender === 0 ? '남성' : '여성'}} / </span>
-                    <span>19세 / </span>
-                    <span>{{member.address}}</span>
+                    <button>비밀번호 변경</button>
                 </div>
             </div>
+            <div class="item" style="background-color: #EDEFF5;">휴대전화</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                <input [value]="member.phone" [(ngModel)]="member.phone" />
+            </div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">휴대전화(보호자)</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                <input [value]="member.pphone" [(ngModel)]="member.pphone" />
+            </div>
+            <div class="item" style="background-color: #EDEFF5;">종목</div>
+            <div class="item">{{member.gunType === 0 ? '10m권총' : member.gunType===1 ? '소총' : '기타총기'}}</div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">주소</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                <input type="text" [value]="member.address" [(ngModel)]="member.address">
+            </div>
+            <div class="item" style="background-color: #EDEFF5;">회원 가입일</div>
+            <div class="item">{{member.ctime | date: "yyyy.MM.dd"}}</div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">소속</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                <input type="text" [value]="member.club" [(ngModel)]="member.club">
+            </div>
+            <div class="item" style="background-color: #EDEFF5;">강습횟수</div>
+            <div class="item">
+                <input class="right-center" type="text" [value]="member.loginCount + '회'">
+            </div>
+        </div>
+        <div class="info-wrap" style="grid-template-rows: 120px; grid-template-columns: 1fr 4.5fr;">
+            <div class="item" style="background-color: #EDEFF5;padding:15px 0px">기타</div>
+            <textarea style="padding:15px 35px;border-bottom:1px solid #C5C5C5; width: 100%;height: 100%;border: none;resize: none;"
+                [value]="member.memo"
+                [(ngModel)]="member.memo"
+            >
+        </textarea>
+        </div>
+        <div style="width: 100%;height: 30px; background-color: #EDEFF5;"></div>
+        <div style="width: 100%; background-color: #EDEFF5;">
+        <div style="padding: 6px 15px 10px 0; text-align: right; ">
+            <button (click)="openStep=2;" style="background-color: #0064FF;padding: 6px 10px; border-radius: 10px; color: #fff;" mat-ripple>수정하기</button>
+        </div>
         </div>
     </div>
-    <div style="width: 100%; height: 0px; border:1px solid #0564AA"></div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">이름</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input [value]="member.name"/>
-        </div>
-        <div class="item" style="background-color: #EDEFF5;">성별</div>
-        <div class="item">{{member.gender === 0 ? '남자' : '여자'}}</div>
+</ng-container>
+
+<ng-container *ngIf="openStep===2">
+    <div class="title-bar">
+        <div class="title">회원정보 수정</div>
+        <div class="material-icons" id="close" (click)="openStep=1;">close</div>
     </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">생년월일</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">
-            {{transBirthday}}
-        </div>
-        <div class="item" style="background-color: #EDEFF5;">회원형태</div>
-        <div class="item">
-            <input class="right-center" [value]="member.isAdult ? '성인' :'학생'" />
-        </div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">사용자 ID</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;position: relative;">
-            <span>{{member.memberId}}</span>
-        </div>
-        <div class="item" style="background-color: #EDEFF5;">휴대전화</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input [value]="member.phone" />
-        </div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">휴대전화(보호자)</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input [value]="member.pphone" />
-        </div>
-        <div class="item" style="background-color: #EDEFF5;">종목</div>
-        <div class="item">{{member.gunType === 0 ? '10m권총' : member.gunType===1 ? '소총' : '기타총기'}}</div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">주소</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input type="text" [value]="member.address">
-        </div>
-        <div class="item" style="background-color: #EDEFF5;">회원 가입일</div>
-        <div class="item">{{member.ctime | date: "yyyy.MM.dd"}}</div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">소속</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input type="text" [value]="member.club">
-        </div>
-        <div class="item" style="background-color: #EDEFF5;">강습횟수</div>
-        <div class="item">
-            <input class="right-center" type="text" [value]="member.loginCount + '회'">
-        </div>
-    </div>
-    <div class="info-wrap" style="grid-template-rows: 120px; grid-template-columns: 1fr 4.5fr;">
-        <div class="item" style="background-color: #EDEFF5;padding:15px 0px">기타</div>
-        <textarea style="padding:15px 35px;border-bottom:1px solid #C5C5C5; width: 100%;height: 100%;border: none;resize: none;"
-            [value]="member.memo"
-        >
-    </textarea>
-    </div>
-    <div style="width: 100%;height: 30px; background-color: #EDEFF5;"></div>
-    <div style="width: 100%; background-color: #EDEFF5;">
-    <div style="padding: 6px 15px 10px 0; text-align: right; ">
-        <button style="  background-color: #0064FF;padding: 6px 10px; border-radius: 10px; color: #fff;" mat-ripple>수정완료</button>
-    </div>
-</div>
-</div> 
+    <app-admin-modal  [isConfig]="false">
+        <div style="width: 400px; padding:20px 50px; text-align: center; font-size: 23px; font-weight: bold;" user>
+                    <span>해당 회원정보를 수정하시겠습니까?</span>
+                    <div style="padding-top:30px">
+                        <button (click)="updateMember();" style="font-size: 17px; width: 100px; height: 35px; margin-right: 15px; background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); border:none; color:#fff">수정</button>
+                        <button style="font-size: 17px; width: 100px; height: 35px; background-color: #9B9B9B; border:none; color:#fff"
+                            (click)="openStep=1"
+                        >취소</button>
+                    </div>
+                </div>
+    </app-admin-modal>
+</ng-container>

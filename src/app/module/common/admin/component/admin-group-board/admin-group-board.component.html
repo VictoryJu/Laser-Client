@@ -10,11 +10,16 @@
         <div style="display: flex; justify-content: space-between; margin-top: 10px;">
             <div style="flex:1.5;">
                 <div style="display: flex; align-items: center;">
-                    <div style="margin-right: 40px;">그룹수 20</div>
-                    <div style="border:1px solid #ccc; padding:1px 30px; font-size: 14px;">선택</div>
-                    <img style="width: 20px; margin-right: 10px;" src="/assets/down-arrow.svg">
-                    <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text">
-                    <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none">검색</button>
+                    <div style="margin-right: 40px;">그룹수 {{allCount}}</div>
+                    <div>
+                    <select>
+                        <option *ngFor="let opt of selectOptions">{{opt.name}}</option>
+                    </select>
+                    </div>
+                    <!-- <img style="width: 20px; margin-right: 10px;" src="/assets/down-arrow.svg"> -->
+                    <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" [(ngModel)]="keyword">
+                    <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none" (click)=" searchType=1;getClubList()">검색</button>
+                    <button style="margin-left: 10px; padding:1px 20px;background: transparent linear-gradient(180deg, #446A46 0%, #446A46 100%);color:#fff;border:none" (click)="getClubList(true)">초기화</button>                
                 </div>
             </div>
             <div style="flex:1; text-align: right;">
@@ -24,9 +29,9 @@
         <div style="border:2px solid #0047A4; width: 100%; margin-top:15px;"></div>
         <div style="background-color: #E4EAF8; padding:10px 20px">
             <div class="board-header-wrap">
-                <div class="item" style="flex:0.3;">
+                <!-- <div class="item" style="flex:0.3;">
                     <img style="width: 24px;" src="/assets/check_box.svg">
-                </div>
+                </div> -->
                 <div class="item" style="flex:0.5;">No.</div>
                 <div class="item" style="flex:1.5;">그룹명</div>
                 <div class="item">인원</div>
@@ -34,14 +39,20 @@
                 <div class="item">기능</div>
             </div>
         </div>
-        <ng-container *ngFor="let item of [1,2,3,4,5]">
+        <ng-container *ngIf="clubList?.length < 1">
+            <div style="text-align: center; padding:10px;">해당 그룹이 존재하지 않습니다.</div>
+        </ng-container>
+        <ng-container *ngFor="let item of clubList; let idx = index">
             <div style="background-color: #F0F0F0; padding:5px 20px; border-bottom: 1px solid #ccc;">
                 <div class="board-main-wrap">
-                    <div class="item" style="flex:0.3;">쳌</div>
-                    <div class="item" style="flex:0.5;">1</div>
-                    <div class="item" style="flex:1.5;">강남구청</div>
-                    <div class="item">15명</div>
-                    <div class="item">2022-03-18</div>
+                    <!-- <div class="item" style="flex:0.3;">쳌</div> -->
+                    <div class="item" style="flex:0.5;">{{idx+1}}</div>
+                    <div class="item" style="flex:1.5;">
+                        <span style="display: inline-block;">(이미지)</span>
+                        <span>{{item.name}}</span>
+                    </div>
+                    <div class="item">{{item.members.length}}명</div>
+                    <div class="item">{{item.mtime | date : "yyyy-MM-dd"}}</div>
                     <div class="item">
                         <button (click)="activeEditModal=true" class="edit-btn" style="margin-right: 5px;">수정</button>
                         <button class="del-btn">삭제</button>
@@ -52,6 +63,10 @@
     </div>
     <ng-container *ngIf="activeModal">
         <div style="position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); background-color: #fff;">
+            <div class="title-bar">
+                <div class="title">관리자 그룹관리</div>
+                <div class="material-icons" id="close" (click)="activeModal=false">close</div>
+            </div>
             <app-admin-modal (isClose)="activeModal=$event" [isConfig]="false" [refData]="_matRef" [title]="'관리자 그룹관리'">
                 <div style="width: 400px; padding:20px 50px; text-align: center; font-size: 23px; font-weight: bold;" user>
                     <span>새 그룹을 추가 하시겠습니까?</span>

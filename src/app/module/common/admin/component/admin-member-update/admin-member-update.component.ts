@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AdminMemberComponent } from './../admin-member/admin-member.component';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api-service';
 
@@ -20,6 +21,12 @@ export class AdminMemberUpdateComponent implements OnInit {
     this._matRef.close();
   }
   
+  //수정하기 yes or no 변수
+  openStep = 1;
+
+  //비밀번호 변경 변수
+  passwordChangeStep = 1;
+
   member: any = {};
   transBirthday: string='';
   async getMember() {
@@ -40,5 +47,36 @@ export class AdminMemberUpdateComponent implements OnInit {
     let month = birthday.slice(4, 6);
     let day = birthday.slice(6, 8);
     this.transBirthday = `${year}.${month}.${day}`;
+  }
+
+  async updateMember() {
+    let timeStamp = new Date();
+    let email = `${timeStamp.getTime().toString()}@naver.com`
+    try {
+      const res: any = await this._api.updateMember({
+        id: 'admin',
+        // password: 'admin1234',
+        club: this.member.club,
+        name: this.member.name,
+        birthday: this.member.birthday,
+        gender: this.member.gender,
+        gunType: this.member.gunType,
+        phone: this.member.phone,
+        pphone: this.member.pphone,
+        email: email,
+        address: this.member.address,
+        zipCode: this.member.zipCode,
+        memo: this.member.memo,
+        level: this.member.level,
+        point: this.member.point,
+        status: this.member.status
+      })
+      if (res.code === 0) {
+        this.openStep = 1;
+        alert('회원정보 수정 완료');
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
