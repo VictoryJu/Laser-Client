@@ -55,69 +55,7 @@ export class AddressSearchComponent implements OnInit {
       };
     });
   }
-  initedOpenDaumApi = false;
-  openDaumApiReceive() {
-    const element = this.mapWrapper.nativeElement;
-    if (!element) {
-      return;
-    }
-    if (this.initedOpenDaumApi) {
-      if (element.style.display === 'block') {
-        this._renderer2.setStyle(element, 'display', 'none');
-      } else {
-        this._renderer2.setStyle(element, 'display', 'block');
-      }
-    }
-    this.initedOpenDaumApi = true;
-    daum.postcode.load(() => {
-      new daum.Postcode({
-        oncomplete: (data) => {
-          console.log(data);
-          
-          let fullAddr = '',
-          extraAddr = '',
-          engAddr = '',
-          zipCode = '';
-          if (data.userSelectedType === 'R') {
-            fullAddr = data.roadAddress;
-            zipCode = data.zonecode;
-            engAddr = data.roadAddressEnglish;
-            if (data.bname !== '') {
-              extraAddr += data.bname;
-            }
-            if (data.buildingName !== '') {
-              extraAddr +=
-                extraAddr !== '' ? ', ' + data.buildingName : data.buildingName;
-            }
-            fullAddr += extraAddr !== '' ? ' (' + extraAddr + ')' : '';
-          } else {
-            fullAddr = data.jibunAddress;
-            zipCode = data.zonecode;
-            engAddr = data.jibunAddressEnglish;
-          }
-          const result = {
-            zipCode: zipCode,
-            address: fullAddr,
-            addressEng: engAddr,
-          };
-          this._zone.run(()=>{
-            this.onSubmit.emit(result);
-          });
-        },
-        onclose: () => {
-          // wrapper 감춤
-          this._renderer2.setStyle(element, 'display', 'none');
-        },
-        onresize: (size) => {
-          //  ($target.style.height = size.height + 'px')
-          // wrapper 높이값 재설정
-          this._renderer2.setStyle(element, 'height', size.height + 'px');
-        },
-        width: '100%',
-        height: '100%',
-      }).embed(element);
-    });
-  }
+
   width=500;
   height=600
   openDaumApi() {
@@ -128,14 +66,6 @@ export class AddressSearchComponent implements OnInit {
     if (!element) {
       return;
     }
-    if (this.initedOpenDaumApi) {
-      if (element.style.display === 'block') {
-        this._renderer2.setStyle(element, 'display', 'none');
-      } else {
-        this._renderer2.setStyle(element, 'display', 'block');
-      }
-    }
-    this.initedOpenDaumApi = true;
     daum.postcode.load(() => {
       new daum.Postcode({
         oncomplete: (data) => {

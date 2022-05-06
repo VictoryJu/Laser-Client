@@ -66,7 +66,21 @@
                     <span style="color:red">*</span> 
                     <span> 성별</span>
                 </div>
-                <input placeholder="성별" type="number" [(ngModel)]="gender" style="text-align: center; width: 70px; border: 1px solid #D8D8D8; border-radius: 5px; padding:7px 10px;"/>
+                <div (click)="activeGenderType = !activeGenderType" style="cursor: pointer; align-items: center; display: flex; justify-content: center; position: relative; width: 70px; border: 1px solid #D8D8D8; border-radius: 5px; padding:5px; background-color: #fff; text-align: center;">
+                    <div style="margin-right: 10px;">
+                        {{selectGender}}
+                    </div>
+                    <img width="24px" src="/assets/arrow_down.svg">
+                    <ng-container *ngIf="activeGenderType">
+                        <div style="text-align: center; border:1px solid #D8D8D8; position:absolute; bottom: -48px; left: -1px;">
+                            <ng-container *ngFor="let item of ['남','여']; let i = index">
+                                <div (click)="gender = i; selectGender = item" style="cursor: pointer; width: 70px; border:1px solid #D8D8D8; padding:5px; margin: -1px; background-color: #fff;">
+                                    {{item}}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
             </div>
 
         </div>
@@ -96,12 +110,27 @@
                 </div>
                 <input placeholder="휴대전화 번호 입력" [(ngModel)]="club" style="width: 170px; border: 1px solid #D8D8D8; border-radius: 5px; padding:7px 10px;"/>                    
             </div>
-            <div style="margin-left: 20px;">
+            <div style="margin-left: 20px; cursor: pointer;" (click)="activeGunType = !activeGunType">
                 <div style="padding: 7px 0px;">
                     <span style="color:red">*</span> 
                     <span> 종목</span>
                 </div>
-                <input [(ngModel)]="gunType" style="width: 100px; border: 1px solid #D8D8D8; border-radius: 5px; padding:7px 10px;"/>                    
+                <div style="align-items: center; display: flex; justify-content: center; position: relative; width: 100px; border: 1px solid #D8D8D8; border-radius: 5px; padding:5px; background-color: #fff; text-align: center;">
+                    <div style="margin-right: 20px;">
+                        {{selectGunType.name}}
+                    </div>
+                    <img width="24px" src="/assets/arrow_down.svg">
+                    <ng-container *ngIf="activeGunType">
+                        <div style="text-align: center; border:1px solid #D8D8D8; position:absolute; bottom: -48px; left: -1px;">
+                            <ng-container *ngFor="let item of gunTypeArr">
+                                <div (click)="selectGunType.name=item.name; selectGunType.id = item.id" style="width: 100px; border:1px solid #D8D8D8; padding:5px; margin: -1px; background-color: #fff;">
+                                    {{item.name}}
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+
             </div>
         </div>
 

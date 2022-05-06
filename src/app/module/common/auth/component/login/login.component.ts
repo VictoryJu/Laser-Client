@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
   constructor(public _mat:MatDialog, public _matRef:MatDialogRef<LoginComponent>, private _api:ApiService ) { }
 
   ngOnInit(): void {
-      //지워줘야함
-      this.openRegist();
   }
   openRegist(){
     this._mat.open(RegistComponent);

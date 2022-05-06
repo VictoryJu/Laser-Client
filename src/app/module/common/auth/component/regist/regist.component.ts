@@ -38,17 +38,31 @@ export class RegistComponent implements OnInit {
     this.zipCode = data.zipCode;
   }
 
+  activeGenderType= false;
+  selectGender= "남"
+
+  activeGunType=false;
+  selectGunType={name:"권총",id:0};
+  gunTypeArr = [
+        {
+            name:"권총",
+            id:0
+        },
+        {
+            name:"소총",
+            id:1
+        }
+    ]
 
   id: string;
   password: string;
   checkPassword:string;
   name: string;
   birthday: string;
-  gender: number;
-  gunType: number;
+  gender = 0;
   phone: string;
   pphone: string;
-  email: string;
+  email = new Date();
   groupId: number;
   address: string;
   zipCode: string;
@@ -61,6 +75,7 @@ export class RegistComponent implements OnInit {
     if(this.password !== this.checkPassword){
         alert('패스워드가 일치하지않습니다.')
     }
+    let email = `${this.email.getTime().toString()}@naver.com`
     try {
       const res: any = await this._api.regist({
         id: this.id,
@@ -69,14 +84,17 @@ export class RegistComponent implements OnInit {
         name: this.name,
         birthday: this.birthday,
         gender: this.gender,
-        gunType: this.gunType,
+        gunType: this.selectGunType.id,
+        email: email,
         phone: this.phone,
         pphone: this.pphone,
-        email: this.email,
         address: this.address,
         zipCode: this.zipCode
       })
-      console.log(res);
+      if(res.code===0){
+        alert('회원가입이 완료되었습니다.');
+        this.closeRegist();
+      }
     } catch (e) {
       console.log(e);    
     }
