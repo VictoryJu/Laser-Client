@@ -36,7 +36,8 @@ export class GameMainComponent implements OnInit {
             
         });
         console.log(this.laneInfo);
-        
+        //지워줘야함
+        this.openLogin();
     } 
     ngAfterViewInit(){
         setTimeout(()=>{

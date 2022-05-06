@@ -18,7 +18,7 @@ export class AdminDashboardComponent implements OnInit {
   constructor(public _mat:MatDialog, public _matRef:MatDialogRef<AdminDashboardComponent>) { }
 
   ngOnInit(): void {
-      this.openGroupBoard();
+      // this.openGroupBoard();
   }
 
   openLaneConfig() {

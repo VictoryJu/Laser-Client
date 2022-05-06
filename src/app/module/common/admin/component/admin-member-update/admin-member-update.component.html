@@ -10,13 +10,13 @@
             </div>
             <div style="margin-left: 20px;">
                 <div>
-                    <span style="color:#0071E1; font-size:17px; font-weight: bold; margin-right: 15px; vertical-align: baseline;">KSLS777</span>
-                    <span style="font-size:17px; vertical-align: baseline;">홍길동</span>
+                    <span style="color:#0071E1; font-size:17px; font-weight: bold; margin-right: 15px; vertical-align: baseline;">{{member.memberId}}</span>
+                    <span style="font-size:17px; vertical-align: baseline;">{{member.name}}</span>
                 </div>
                 <div style="margin-top:5px; font-size: 15px; color:#888888">
-                    <span>남성 / </span>
+                    <span>{{member.gender === 0 ? '남성' : '여성'}} / </span>
                     <span>19세 / </span>
-                    <span>인천광역시 서구</span>
+                    <span>{{member.address}}</span>
                 </div>
             </div>
         </div>
@@ -25,66 +25,62 @@
     <div class="info-wrap">
         <div class="item" style="background-color: #EDEFF5;">이름</div>
         <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input value="엄준식" />
+            <input [value]="member.name"/>
         </div>
         <div class="item" style="background-color: #EDEFF5;">성별</div>
-        <div class="item">남자</div>
+        <div class="item">{{member.gender === 0 ? '남자' : '여자'}}</div>
     </div>
     <div class="info-wrap">
         <div class="item" style="background-color: #EDEFF5;">생년월일</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">1999.01.28</div>
+        <div class="item" style="text-align: left; padding: 10px 35px;">
+            {{transBirthday}}
+        </div>
         <div class="item" style="background-color: #EDEFF5;">회원형태</div>
         <div class="item">
-            <input class="right-center" value="학생" />
+            <input class="right-center" [value]="member.isAdult ? '성인' :'학생'" />
         </div>
     </div>
     <div class="info-wrap">
         <div class="item" style="background-color: #EDEFF5;">사용자 ID</div>
         <div class="item" style="text-align: left; padding: 10px 35px;position: relative;">
-            <span>KSLS777</span>
+            <span>{{member.memberId}}</span>
         </div>
-        <div class="item" style="background-color: #EDEFF5;">최종 점수</div>
-        <div class="item">87.5 점</div>
-    </div>
-    <div class="info-wrap">
         <div class="item" style="background-color: #EDEFF5;">휴대전화</div>
         <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input value="010-1111-1111" />
+            <input [value]="member.phone" />
         </div>
-        <div class="item" style="background-color: #EDEFF5;">평균 점수</div>
-        <div class="item">77.2점</div>
     </div>
     <div class="info-wrap">
         <div class="item" style="background-color: #EDEFF5;">휴대전화(보호자)</div>
         <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input value="010-1111-1112" />
+            <input [value]="member.pphone" />
         </div>
         <div class="item" style="background-color: #EDEFF5;">종목</div>
-        <div class="item">10cm 권총</div>
+        <div class="item">{{member.gunType === 0 ? '10m권총' : member.gunType===1 ? '소총' : '기타총기'}}</div>
     </div>
     <div class="info-wrap">
         <div class="item" style="background-color: #EDEFF5;">주소</div>
         <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input type="text" value="인천광역시 서구 청라동">
+            <input type="text" [value]="member.address">
         </div>
         <div class="item" style="background-color: #EDEFF5;">회원 가입일</div>
-        <div class="item">2022.01.02</div>
+        <div class="item">{{member.ctime | date: "yyyy.MM.dd"}}</div>
     </div>
     <div class="info-wrap">
         <div class="item" style="background-color: #EDEFF5;">소속</div>
         <div class="item" style="text-align: left; padding: 10px 35px;">
-            <input type="text" value="해군">
+            <input type="text" [value]="member.club">
         </div>
         <div class="item" style="background-color: #EDEFF5;">강습횟수</div>
         <div class="item">
-            <input class="right-center" type="text" value="7회">
+            <input class="right-center" type="text" [value]="member.loginCount + '회'">
         </div>
     </div>
     <div class="info-wrap" style="grid-template-rows: 120px; grid-template-columns: 1fr 4.5fr;">
         <div class="item" style="background-color: #EDEFF5;padding:15px 0px">기타</div>
         <textarea style="padding:15px 35px;border-bottom:1px solid #C5C5C5; width: 100%;height: 100%;border: none;resize: none;"
+            [value]="member.memo"
         >
-        붉은색 푸른색 3초 그 짧은시간
     </textarea>
     </div>
     <div style="width: 100%;height: 30px; background-color: #EDEFF5;"></div>

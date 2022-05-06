@@ -1,11 +1,28 @@
 <div style="overflow: hidden;">
-    <main style="width: 1000px; height: 100%; background:linear-gradient(to bottom,#1B1623,#433754); position: relative; padding: 30px;">
-        <ng-container *ngIf="subTitle">
-            <div style="color: #fff; font-size: 27px;">
-                {{subTitle}}
+    <ng-container *ngIf="isConfig">
+        <main style="width: 1000px; height: 100%; background:linear-gradient(to bottom,#1B1623,#433754); position: relative; padding: 30px;">
+            <ng-container *ngIf="subTitle">
+                <div style="color: #fff; font-size: 27px;">
+                    {{subTitle}}
+                </div>
+            </ng-container>
+            <div [style.border]="isNeedBorder? '1px solid #fff' : 'none'" style="padding:80px">
+                <div style="position: absolute; left: 0px; top:50%; transform: translateY(-50%);z-index: 0;"> 
+                    <img src="/assets/left-setting.svg" >
+                </div>
+                <div style="position: absolute; right: 0px; bottom:30px; pointer-events: none;"> 
+                    <img src="/assets/right-setting.svg" >
+                </div>
+                <div style="position: absolute; right: 20%; top:0px;"> 
+                    <img src="/assets/top-setting.svg" >
+                </div>
+                <div style="position: absolute; left: 20%; bottom:0px;"> 
+                    <img src="/assets/bottom-setting.svg" >
+                </div>
+                <ng-content></ng-content>
             </div>
-        </ng-container>
-    </main>
+        </main>
+    </ng-container>
     <ng-container *ngIf="!isConfig">
             <ng-content select="[user]"></ng-content>
     </ng-container>
