@@ -22,6 +22,22 @@ export class RegistComponent implements OnInit {
   Bmonth: unknown;
   Bday:unknown
 
+  _onAddress=false;;
+
+  get onAddress(){
+      return this._onAddress;
+  }
+
+  set onAddress(v){
+      this._onAddress = v;
+  }
+
+  getAddress(data){
+    console.log(data);
+    this.address = data.address;
+    this.zipCode = data.zipCode;
+  }
+
 
   id: string;
   password: string;
@@ -39,9 +55,9 @@ export class RegistComponent implements OnInit {
   club:string;
   async register() {
     this.birthday = `${this.Byear}${this.Bmonth}${this.Bday}`;
-    if(!this.id || !this.password || !this.name || !this.birthday || !this.gender || !this.gunType || !this.phone || !this.pphone || !this.address || !this.zipCode){
-        
-    }
+    // if(!this.id || !this.password || !this.name || !this.birthday || !this.gender || !this.gunType || !this.phone || !this.pphone || !this.address || !this.zipCode){
+    //     alert('미입력한 정보가 있습니다.')
+    // }
     if(this.password !== this.checkPassword){
         alert('패스워드가 일치하지않습니다.')
     }
