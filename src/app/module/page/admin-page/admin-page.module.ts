@@ -27,8 +27,7 @@ import { AdminQualifierPageComponent } from './component/admin-qualifier-page/ad
     MatDialogModule,
     AdminModule,
     RouterModule.forChild([
-      {path: '', component: AdminManagementGamePageComponent },
-      {path: 'main', component: AdminMainPageComponent },
+      {path: '', component: AdminMainPageComponent },
       {path: 'lane', component: AdminShowSelectLanePageComponent},
       {path: 'relay', component: RelayGameComponent },
       {path: 'qualifier', component: AdminQualifierPageComponent}
