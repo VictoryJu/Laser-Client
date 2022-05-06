@@ -1,3 +1,4 @@
+import { AdminGroupUpdateComponent } from './../admin-group-update/admin-group-update.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api-service';
@@ -16,6 +17,12 @@ export class AdminGroupBoardComponent implements OnInit {
   @ViewChild('adminModal') adminModal:AdminModalComponent;
   ngOnInit(): void {
     this.getClubList();
+  }
+  
+  openGroupDetail(clubName) {
+    this._mat.open(AdminGroupUpdateComponent, {
+      data: {clubName}
+    })
   }
 
   activeModal = false;
@@ -49,6 +56,27 @@ export class AdminGroupBoardComponent implements OnInit {
       console.log(res);
       this.clubList = res.datas;
       this.allCount = res.total_cnt;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  clubName:string;
+  async createClub() {
+    try {
+      const res: any = await this._api.createClub({
+        name: this.clubName,
+        image: this.saveImg[0]
+      })
+      console.log(res);
+      if (res.code === 0) { //생성 시 초기화.
+        this.activeAddGroup = false;
+        this.activeModal = false;
+        this.showImageArr = [];
+        this.saveImg = []
+        this.clubName = '';
+        this.getClubList();
+      }
     } catch (e) {
       console.log(e);
     }

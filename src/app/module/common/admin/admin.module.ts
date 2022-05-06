@@ -18,6 +18,7 @@ import { AdminMemberUpdateComponent } from './component/admin-member-update/admi
 import { AdminGameManagementComponent } from './component/admin-game-management/admin-game-management.component';
 import { AdminRegistPlayerComponent } from './component/admin-regist-player/admin-regist-player.component';
 import { PagenationModule } from '../pagenation/pagenation.module';
+import { AdminGroupUpdateComponent } from './component/admin-group-update/admin-group-update.component';
 
 
 
@@ -36,7 +37,8 @@ import { PagenationModule } from '../pagenation/pagenation.module';
     AdminMemberComponent,
     AdminMemberUpdateComponent,
     AdminGameManagementComponent,
-    AdminRegistPlayerComponent
+    AdminRegistPlayerComponent,
+    AdminGroupUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { PagenationModule } from '../pagenation/pagenation.module';
     AdminMemberComponent,
     AdminMemberUpdateComponent,
     AdminGameManagementComponent,
-    AdminRegistPlayerComponent
+    AdminRegistPlayerComponent,
+    AdminGroupUpdateComponent
   ]
 })
 export class AdminModule { }

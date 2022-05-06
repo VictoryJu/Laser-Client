@@ -1,0 +1,58 @@
+<div style="overflow: hidden; width:1000px; position:relative">
+    <div class="title-bar">
+        <div class="title">관리자 그룹관리</div>
+        <div class="material-icons" id="close" (click)="_matRef.close()">close</div>
+    </div>
+    <div style="background-color: #fff; padding:30px 90px; min-height: 50vh;">
+        <div>
+            <span style="color:black; font-weight: bold; font-size: 18px;">그룹 수정</span>
+            <div style="display: flex; margin: 10px 0;">
+                <div style="background-color: #eee; width: 50px; height: 50px;">
+
+                </div>
+                <div>{{clubData?.name}}</div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <div style="display: flex; align-items: center;">
+                <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" value="이름" >
+                <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" value="생년월일" >
+                <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" value="전화번호" >
+                <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none" >추가</button>
+            </div>
+        </div>
+        <div style="border:2px solid #0047A4; width: 100%; margin-top:15px;"></div>
+        <div style="background-color: #E4EAF8; padding:10px 20px">
+            <div class="board-header-wrap">
+                <!-- <div class="item" style="flex:0.3;">
+                    <img style="width: 24px;" src="/assets/check_box.svg">
+                </div> -->
+                <div class="item" style="flex:0.5;">No.</div>
+                <div class="item" style="flex:1.5;">소속</div>
+                <div class="item">이름</div>
+                <div class="item">전화번호</div>
+                <div class="item">생년월일</div>
+                <div class="item">기능</div>
+            </div>
+        </div>
+        <ng-container *ngIf="clubMemberList.length < 1">
+            <div style="text-align: center; padding:10px;">회원이 존재하지 않습니다.</div>
+        </ng-container>
+        <ng-container *ngFor="let item of clubMemberList; let idx = index">
+            <div style="background-color: #F0F0F0; padding:5px 20px; border-bottom: 1px solid #ccc;">
+                <div class="board-main-wrap">
+                    <div class="item" style="flex:0.5;">{{idx+1}}</div>
+                    <div class="item" style="flex:1.5;">{{clubData.name}}</div>
+                    <div class="item">{{item?.name}}</div>
+                    <div class="item">{{item.phone}}</div>
+                    <div class="item">{{item.birthday.slice(0,4) + "-" +item.birthday.slice(4,6) + "-" +item.birthday.slice(6,8)}}</div>
+                    <div class="item">
+                        <button class="edit-btn" style="margin-right: 5px;">수정</button>
+                        <button class="del-btn">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+

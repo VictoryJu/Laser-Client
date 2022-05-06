@@ -16,8 +16,6 @@ export class AdminMemberComponent implements OnInit {
     this.getMemberList()
     //TODO 회원정보 수정 시 맴버리스트 재 호출
   }
-
-  close() { this._matRef.close() }
   
   openMemberDetail(memberId) {
     this._mat.open(AdminMemberUpdateComponent, {
