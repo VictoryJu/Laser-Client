@@ -62,7 +62,7 @@ export class ApiService {
         return this._http.get(`${environment.serviceUrl}/member${this.getQueryString(data)}`).toPromise();
     }
     updateMember(data: {
-        id:string,password:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,address:string,zipCode:string,memo:string,level:number,point:number,status:number
+        id:string,password?:string,club:string,name?:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,address:string,zipCode:string,memo:string,level:number,point:number,status:number
     }) {
         return this._http.put(`${environment.serviceUrl}/member`,data).toPromise();
     }

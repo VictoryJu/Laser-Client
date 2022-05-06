@@ -11,10 +11,14 @@
             <div style="flex:1.5;">
                 <div style="display: flex; align-items: center;">
                     <div style="margin-right: 40px;">그룹수 20</div>
-                    <div style="border:1px solid #ccc; padding:1px 30px; font-size: 14px;">선택</div>
-                    <img style="width: 20px; margin-right: 10px;" src="/assets/down-arrow.svg">
-                    <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" value="홍길동">
-                    <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none">검색</button>
+                    <div>
+                        <select (change)="selectOption($event.target.value)" >
+                            <option *ngFor="let opt of selectOptions">{{opt.name}}</option>
+                        </select>
+                    </div>
+                    <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" [(ngModel)]="keyword">
+                    <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none" (click)="getMemberList()">검색</button>
+                    <button style="margin-left: 10px; padding:1px 20px;background: transparent linear-gradient(180deg, #446A46 0%, #446A46 100%);color:#fff;border:none" (click)="getMemberList(true)">초기화</button>                
                 </div>
             </div>
         </div>
@@ -46,7 +50,7 @@
                     <div class="item">{{item.loginCount}}회</div>
                     <div class="item">{{item.ctime | date: "yyyy-MM-dd"}}</div>
                     <div class="item">
-                        <button class="edit-btn" style="margin-right: 5px;" (click)="openMemberDetail()">수정</button>
+                        <button class="edit-btn" style="margin-right: 5px;" (click)="openMemberDetail(item.memberId)">수정</button>
                         <button class="del-btn">삭제</button>
                     </div>
                 </div>
