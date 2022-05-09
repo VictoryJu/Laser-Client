@@ -35,7 +35,7 @@
                                 <select
                                     style="width: 100%; padding: 3px; text-align: center; border-radius: 0 0 10px 0; font-size: 17px;"
                                     [(ngModel)]="selectedLane[i]">
-                                    <option *ngFor="let j of lane">{{j}}</option>
+                                    <option [ngValue]="j" *ngFor="let j of lane">{{j}}</option>
                                 </select>
                             </div>
                             <div style="width: 100%; margin-top: 10px;">
