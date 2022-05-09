@@ -52,7 +52,7 @@ export class ApiService {
     }
 
     getMemberList(data: {
-        searchType:number,keyword:string,start:number,limit:number
+        searchType:number,keyword?:string,start:number,limit:number
     }) {
         return this._http.get(`${environment.serviceUrl}/member/list${this.getQueryString(data)}`).toPromise();
     }
@@ -71,6 +71,15 @@ export class ApiService {
     }) {
         return this._http.get(`${environment.serviceUrl}/member/club/list${this.getQueryString(data)}`).toPromise();
     }
+
+    createCompetition(data:{name:string,startTime:string}){
+        return this._http.post(`${environment.serviceUrl}/event`,data).toPromise();
+    }
+
+    getCompetition(){
+        return this._http.get(`${environment.serviceUrl}/event/list`).toPromise();
+    }
+
     getQueryString(data: any) {
         return '?' + Object.keys(data).map(function(k) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
