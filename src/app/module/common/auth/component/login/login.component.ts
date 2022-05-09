@@ -17,7 +17,7 @@ interface loginInfo{
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public _mat:MatDialog, public _matRef:MatDialogRef<LoginComponent>, private _api:ApiService ) { }
+  constructor(public _mat:MatDialog, public _matRef:MatDialogRef<LoginComponent>, public _api:ApiService ) { }
 
   ngOnInit(): void {
   }
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     }
     this.isReqLogin = true
     try{
-      const res:any = await this._api.login({
+      const res:any = await this._api._user.login({
         id: this.userId,
         password: this.userPassword,
         lane: this.lane

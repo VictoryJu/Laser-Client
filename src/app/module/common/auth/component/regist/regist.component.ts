@@ -77,7 +77,7 @@ export class RegistComponent implements OnInit {
     }
     let email = `${this.email.getTime().toString()}@naver.com`
     try {
-      const res: any = await this._api.regist({
+      const res: any = await this._api._user.regist({
         id: this.id,
         password: this.password,
         club:this.club,

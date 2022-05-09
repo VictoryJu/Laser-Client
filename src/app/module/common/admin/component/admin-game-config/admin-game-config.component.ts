@@ -26,7 +26,7 @@ export class AdminGameConfigComponent implements OnInit {
   matchTitle = "결선 선발전"
   async getPresets(){
       try{
-        const res:any = await this._api.getPresets();
+        const res:any = await this._api._game.getPresets();
         console.log(res);
         this.presets = [...res.datas];
         this.presets.map(item=>{
@@ -114,7 +114,7 @@ export class AdminGameConfigComponent implements OnInit {
       try{
           console.log('실행');
           
-        const res:any = await this._api.createGame({
+        const res:any = await this._api._game.createGame({
             matchType:this.preset.id,
             personnel: this.people,
             personnelOfPass: this.passPeople,
@@ -143,7 +143,7 @@ export class AdminGameConfigComponent implements OnInit {
   laneInfo = [];
   async getLaneInfo(){
       try{
-        const res:any = await this._api.getLaneInfo();
+        const res:any = await this._api._game.getLaneInfo();
         this.laneInfo = [...res.datas];
       }catch(e){
           console.log(e);

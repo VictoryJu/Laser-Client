@@ -42,7 +42,7 @@ export class AdminSelectLaneComponent implements OnInit {
   matchInfo = [];
   async getMathcInfo() {
     try {
-      const res: any = await this._api.getMatch(this.matchId);
+      const res: any = await this._api._game.getMatch(this.matchId);
       this.matchInfo = [...res.data.partAGameMemberList];
       console.log(this.matchInfo);
 
@@ -75,7 +75,7 @@ export class AdminSelectLaneComponent implements OnInit {
   winners = [];
   async getWinners() {
     try {
-      const res: any = await this._api.getWinners(this.matchId);
+      const res: any = await this._api._game.getWinners(this.matchId);
       this.winners = [...res.data.partsA];
       console.log(this.winners);
     } catch (e) {
@@ -99,7 +99,7 @@ export class AdminSelectLaneComponent implements OnInit {
   startGame = false;
   async gameStart() {
     try {
-      const res: any = await this._api.startGame({
+      const res: any = await this._api._game.startGame({
         matchId: this.matchId
       });
       this.startGame = true;

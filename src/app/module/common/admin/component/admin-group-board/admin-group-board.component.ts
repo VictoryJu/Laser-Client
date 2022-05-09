@@ -47,7 +47,7 @@ export class AdminGroupBoardComponent implements OnInit {
       this.keyword = '';
     }
     try {
-      const res: any = await this._api.getClubList({
+      const res: any = await this._api._admin.getClubList({
         searchType: this.searchType,
         keyword: this.keyword,
         start: this.start,
@@ -64,7 +64,7 @@ export class AdminGroupBoardComponent implements OnInit {
   clubName:string;
   async createClub() {
     try {
-      const res: any = await this._api.createClub({
+      const res: any = await this._api._admin.createClub({
         name: this.clubName,
         image: this.saveImg[0]
       })

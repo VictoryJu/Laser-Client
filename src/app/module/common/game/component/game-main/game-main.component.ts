@@ -54,7 +54,7 @@ export class GameMainComponent implements OnInit {
     matchId:string;
     async sendServerShotInfo(x,y,score){
         try{
-            const res:any = await this._api.sendShotServer({
+            const res:any = await this._api._game.sendShotServer({
                 matchId : this.matchId,
                 lane : this.lane,
                 x ,
