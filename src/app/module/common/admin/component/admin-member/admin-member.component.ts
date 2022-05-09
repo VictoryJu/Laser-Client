@@ -39,7 +39,7 @@ export class AdminMemberComponent implements OnInit {
       this.keyword = '';
     }
     try {
-      const res: any = await this._api.getMemberList({
+      const res: any = await this._api._admin.getMemberList({
         searchType: this.searchType,
         keyword: this.keyword,
         start: this.start,

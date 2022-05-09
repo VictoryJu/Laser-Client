@@ -86,7 +86,7 @@ export class RelayGameComponent implements OnInit {
 
   async gameStart(){
       try{
-        const res:any = await this._api.startGame({matchId:this.gameId});
+        const res:any = await this._api._game.startGame({matchId:this.gameId});
         console.log(res);
       }catch(e){
           console.log(e)

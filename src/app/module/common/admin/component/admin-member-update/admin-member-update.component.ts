@@ -31,7 +31,7 @@ export class AdminMemberUpdateComponent implements OnInit {
   transBirthday: string='';
   async getMember() {
     try {
-      const res: any = await this._api.getMember({
+      const res: any = await this._api._admin.getMember({
         memberId: this.data.memberId
       })
       console.log(res);
@@ -53,7 +53,7 @@ export class AdminMemberUpdateComponent implements OnInit {
     let timeStamp = new Date();
     let email = `${timeStamp.getTime().toString()}@naver.com`
     try {
-      const res: any = await this._api.updateMember({
+      const res: any = await this._api._admin.updateMember({
         id: 'admin',
         // password: 'admin1234',
         club: this.member.club,

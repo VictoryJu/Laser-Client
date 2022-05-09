@@ -19,7 +19,7 @@ export class AdminGroupUpdateComponent implements OnInit {
   clubMemberList = [];
   async getClub() {
     try {
-      const res: any = await this._api.getClub({
+      const res: any = await this._api._admin.getClub({
         club: this.data.clubName
       })
       this.clubData = res.data;

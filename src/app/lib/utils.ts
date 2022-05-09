@@ -39,3 +39,9 @@ export function matClose(refData:IRefDatas) {
     refData.close();
     console.log('모달창 닫기');
 }
+
+export function getQueryString(data: any) {
+    return '?' + Object.keys(data).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&');
+}

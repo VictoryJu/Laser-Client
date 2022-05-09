@@ -1,3 +1,4 @@
+import { ApiService } from './service/api-service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,7 +11,6 @@ import { SocketService } from './service/socket.service';
 import { AdminPageModule } from './module/page/admin-page/admin-page.module';
 import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ApiService } from './service/api-service';
 import { SignalRService } from './service/signal-r.service';
 import { HttpInterceptorService } from './service/http-intercepter.service';
 
