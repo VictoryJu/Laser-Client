@@ -67,7 +67,7 @@ export class GameConfigComponent implements OnInit {
         setTimerMin : 3,
         activeTimer : true,
         activeDelay : true,
-        delayTime: 3,
+        delayTime: 0,
         selectLanguage: '한국어',
         cameraLight : 1,
         illuminance : 1,

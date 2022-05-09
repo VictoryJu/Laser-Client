@@ -1,4 +1,4 @@
-<div>
+<div id="print-section">
 
     <div class="header-bar">
         <div>
@@ -19,7 +19,7 @@
                         transform="translate(278.453 -1168.172)" fill="#cecece" />
                 </svg>
             </div>
-            <div style="cursor: pointer;">
+            <div style="cursor: pointer;" (click)="print()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35.618" height="35.618" viewBox="0 0 35.618 35.618">
                     <path id="print" data-name="패스 378"
                         d="M10.9,28.713H28.713v8.9H10.9Zm21.371,5.343v-8.9H7.343v8.9H3.781A1.782,1.782,0,0,1,2,32.275V14.466a1.782,1.782,0,0,1,1.781-1.781H35.837a1.782,1.782,0,0,1,1.781,1.781V32.275a1.782,1.782,0,0,1-1.781,1.781ZM7.343,16.247v3.562h5.343V16.247ZM10.9,2H28.713a1.782,1.782,0,0,1,1.781,1.781V9.124H9.124V3.781A1.782,1.782,0,0,1,10.9,2Z"
@@ -72,7 +72,7 @@
                     number:'0.0-1'}}%)</div>
                 <div [style.height.px]="rightinfoHeight"
                     style="background-color: #fff; width: 100%; padding: 40px 0px;">
-                    <div #target [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'"
+                    <div  (click)="mouseOffset($event);" #target [style.background-image]="'url(' + '/assets/shot-img.svg' + ')'"
                         style=" padding-top:75%; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; position:relative">
                         <ng-container *ngFor="let item of shotRoundInfo;">
                             <div [style.left.px]="item.x" [style.top.px]="item.y"
@@ -107,9 +107,9 @@
                                 sec : '0'+sec}}</div>
                         </div>
                     </div>
-                    <div *ngIf="delay"
+                    <!-- <div *ngIf="delay"
                         style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); font-size: 35px; font-weight: bold; color:red;">
-                        {{delayTime}}</div>
+                        {{delayTime}}</div> -->
                 </div>
 
                 <div style="flex:0.5; padding-top:50px">
