@@ -6,6 +6,21 @@
         padding:10px 0px;
         border-bottom:1px solid #C5C5C5;
         border-right: 1px solid #C5C5C5;
-
+        input {
+            width:100%; 
+            height:100%; 
+            border:none;
+            border-bottom: 1px solid;
+        }
     }
+}
+
+.password {
+    input{
+        width:300px; 
+        font-size: 15px;
+        border: 1px solid #BABABA;
+        padding:10px 15px;
+    }
+
 }

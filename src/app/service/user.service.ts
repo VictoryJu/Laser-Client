@@ -19,4 +19,9 @@ export class UserService {
     getMyProfile() {
       return this._http.get(`${environment.serviceUrl}/member/profile`).toPromise();  
     }
+    updateProfile(data: {
+      oldPassword?:string,password?:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,address:string,zipCode:string,level:number,point:number,status:number
+    }) {
+      return this._http.put(`${environment.serviceUrl}/member/profile`, data).toPromise();
+    }
 }
