@@ -80,6 +80,16 @@ export class ApiService {
         return this._http.get(`${environment.serviceUrl}/event/list`).toPromise();
     }
 
+    getClub(data: {
+        club:string
+    }) {
+        return this._http.get(`${environment.serviceUrl}/member/club${this.getQueryString(data)}`).toPromise();
+    }
+    createClub(data: {
+        name:string,image:string
+    }) {
+        return this._http.post(`${environment.serviceUrl}/member/club`, data).toPromise();
+    }
     getQueryString(data: any) {
         return '?' + Object.keys(data).map(function(k) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])

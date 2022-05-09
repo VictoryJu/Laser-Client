@@ -1,9 +1,9 @@
 <div style="overflow: hidden; width:1000px; position:relative">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding:15px 90px; background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);">
-        <div style="color:#fff; font-size:25px; font-weight:500;">관리자 그룹관리</div>
-        <div></div>
+    <div class="title-bar">
+        <div class="title">관리자 그룹관리</div>
+        <div class="material-icons" id="close" (click)="_matRef.close()">close</div>
     </div>
-    <div style="background-color: #fff; padding:30px 90px;">
+    <div style="background-color: #fff; padding:30px 90px; min-height: 60vh;">
         <div>
             <span style="color:black; font-weight: bold; font-size: 18px;">그룹 관리</span>
         </div>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div style="flex:1; text-align: right;">
-                <button (click)="activeModal=true" style="padding:1px 10px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none">그룹추가</button>
+                <button style="padding:1px 10px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none" (click)="activeAddGroup=true" >그룹추가</button>
             </div>
         </div>
         <div style="border:2px solid #0047A4; width: 100%; margin-top:15px;"></div>
@@ -54,7 +54,7 @@
                     <div class="item">{{item.members.length}}명</div>
                     <div class="item">{{item.mtime | date : "yyyy-MM-dd"}}</div>
                     <div class="item">
-                        <button (click)="activeEditModal=true" class="edit-btn" style="margin-right: 5px;">수정</button>
+                        <button (click)="openGroupDetail(item.name);" class="edit-btn" style="margin-right: 5px;">수정</button>
                         <button class="del-btn">삭제</button>
                     </div>
                 </div>
@@ -71,8 +71,8 @@
                 <div style="width: 400px; padding:20px 50px; text-align: center; font-size: 23px; font-weight: bold;" user>
                     <span>새 그룹을 추가 하시겠습니까?</span>
                     <div style="padding-top:30px">
-                        <button (click)="activeAddGroup=true; activeModal=false" style="font-size: 17px; width: 100px; height: 35px; margin-right: 15px; background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); border:none; color:#fff">추가</button>
-                        <button (click)="activeModal=false"style="font-size: 17px; width: 100px; height: 35px; background-color: #9B9B9B; border:none; color:#fff">취소</button>
+                        <button (click)="createClub();" style="font-size: 17px; width: 100px; height: 35px; margin-right: 15px; background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); border:none; color:#fff">추가</button>
+                        <button (click)="activeModal=false;"style="font-size: 17px; width: 100px; height: 35px; background-color: #9B9B9B; border:none; color:#fff">취소</button>
                     </div>
                 </div>
             </app-admin-modal>
@@ -93,6 +93,10 @@
     </ng-container>
     <ng-container *ngIf="activeAddGroup">
         <div style="position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); z-index: 11; background-color: #fff;">
+            <div class="title-bar">
+                <div class="title">새 그룹 추가</div>
+                <div class="material-icons" id="close" (click)="activeAddGroup=false">close</div>
+            </div>
             <app-admin-modal (isClose)="activeAddGroup=$event" [title]="'새 그룹 추가'" [isConfig]="false">
                 <div user style="width: 100%; height: 100%; background-color: #EDEFF5; padding: 20px 40px;">
                     <div style="display: flex; align-items: center; padding: 5px; justify-content: center;">
@@ -109,10 +113,10 @@
                     </div>
                     <div style="display: flex; justify-content: center; align-items: center; margin-top:15px">
                         <div style="margin-right: 15px;font-size: 22px;">그룹명</div>
-                        <input style="border:1px solid #BABABA; padding:5px 10px;" type="text">
+                        <input style="border:1px solid #BABABA; padding:5px 10px;" type="text" [(ngModel)]="clubName">
                     </div>
                     <div style="text-align: right; margin-top:20px;">
-                        <button (click)="activeAddGroup=false" style="box-shadow: 3px 3px 6px #00000029; background-color: #0064FF; border:none; width: 100px; height: 35px; border-radius: 5px; color:#fff;">그룹생성</button>
+                        <button (click)="activeAddGroup=false;activeModal=true" style="box-shadow: 3px 3px 6px #00000029; background-color: #0064FF; border:none; width: 100px; height: 35px; border-radius: 5px; color:#fff;">그룹생성</button>
                     </div>
                 </div>  
             </app-admin-modal>
