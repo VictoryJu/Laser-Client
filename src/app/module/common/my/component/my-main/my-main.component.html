@@ -1,69 +1,136 @@
-<div style="width: 700px;">
-    <div class="title-bar" style="height: 70px; line-height: 70px; color:#fff; font-size: 30px; font-weight: bold; padding:0px 25px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="margin-left: 15px;">마이 페이지</div>
-        <div style="font-size:40px; font-weight: bold;" class="material-icons" (click)="closeMy();">close</div>
-    </div>
-    <div style="padding:15px 50px; background-color: #EDEFF5;">
-        <div style="display: flex; align-items: center;">
-            <div [style.background-image]="'url('+'/assets/user.svg' +')'" style="width: 93px; height: 93px; border-radius: 50%; background-size: cover; position:relative">
-                <div [style.background-image]="'url('+'/assets/user-add.svg' +')'" style="width: 25px;height: 25px; position: absolute;right: 0px;bottom: 0px; background-size: 100% 100%;"></div>
-            </div>
-            <div style="margin-left: 20px;">
-                <div>
-                    <span style="color:#0071E1; font-size:17px; font-weight: bold; margin-right: 15px; vertical-align: baseline;">KSLS777</span>
-                    <span style="font-size:17px; vertical-align: baseline;">홍길동</span>
+<ng-container *ngIf="openStep ===1 && !isOpenChangePw">
+    <div style="width: 700px;">
+        <div class="title-bar" style="height: 70px; line-height: 70px; color:#fff; font-size: 30px; font-weight: bold; padding:0px 25px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="margin-left: 15px;">마이 페이지</div>
+            <div style="font-size:40px; font-weight: bold;" class="material-icons" (click)="closeMy();">close</div>
+        </div>
+        <div style="padding:15px 50px; background-color: #EDEFF5;">
+            <div style="display: flex; align-items: center;">
+                <div [style.background-image]="'url('+'/assets/user.svg' +')'" style="width: 93px; height: 93px; border-radius: 50%; background-size: cover; position:relative">
+                    <div [style.background-image]="'url('+'/assets/user-add.svg' +')'" style="width: 25px;height: 25px; position: absolute;right: 0px;bottom: 0px; background-size: 100% 100%;"></div>
                 </div>
-                <div style="margin-top:5px; font-size: 15px; color:#888888">
-                    <span>남성 / </span>
-                    <span>19세 / </span>
-                    <span>인천광역시 서구</span>
+                <div style="margin-left: 20px;">
+                    <div>
+                        <span style="color:#0071E1; font-size:17px; font-weight: bold; margin-right: 15px; vertical-align: baseline;">{{memberData?.memberId}}</span>
+                        <span style="font-size:17px; vertical-align: baseline;">홍길동</span>
+                    </div>
+                    <div style="margin-top:5px; font-size: 15px; color:#888888">
+                        <span>{{memberData?.gender === 0 ? '남성' : '여성'}} / </span>
+                        <span>19세 / </span>
+                        <span>{{memberData?.address}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: 0px; border:1px solid #0564AA"></div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">이름</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">{{memberData?.name}}</div>
+            <div class="item" style="background-color: #EDEFF5;">성별</div>
+            <div class="item">{{memberData?.gender === 0 ? '남성' : '여성'}}</div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">생년월일</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">{{transBirthday}}</div>
+            <div class="item" style="background-color: #EDEFF5;">회원형태</div>
+            <div class="item">학생</div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">사용자 ID</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;position: relative;">
+                <span>{{memberData?.memberId}}</span>
+                <div style="box-shadow: 3px 0px 3px #00000029; border: 1px solid #C5C5C5;font-size:11px;background: transparent linear-gradient(180deg, #FFFFFF 0%, #C1C1C1 100%) 0% 0% no-repeat padding-box; padding:5px 7px; position:absolute; right: 20px; top:6px;" (click)="isOpenChangePw =true;">비밀번호 변경</div>
+            </div>
+            <div class="item" style="background-color: #EDEFF5;">휴대전화</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                <input [value]="memberData?.phone" [(ngModel)]="memberData.phone" />
+            </div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">휴대전화(보호자)</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">
+                <input [value]="memberData?.pphone" [(ngModel)]="memberData.pphone" />
+            </div>
+            <div class="item" style="background-color: #EDEFF5;">종목</div>
+            <div class="item">{{memberData?.gunType === 0 ? '10m권총' : memberData?.gunType===1 ? '소총' : '기타총기'}}</div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">주소</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">{{memberData?.address}}</div>
+            <div class="item" style="background-color: #EDEFF5;">회원 가입일</div>
+            <div class="item">{{memberData?.ctime | date: "yyyy.MM.dd"}}</div>
+        </div>
+        <div class="info-wrap">
+            <div class="item" style="background-color: #EDEFF5;">소속</div>
+            <div class="item" style="text-align: left; padding: 10px 35px;">{{memberData?.club}}</div>
+            <div class="item" style="background-color: #EDEFF5;">강습횟수</div>
+            <div class="item">{{memberData?.loginCount}}회</div>
+        </div>
+        <!-- <div class="info-wrap" style="grid-template-rows: 120px; grid-template-columns: 1fr 4.5fr;">
+            <div class="item" style="background-color: #EDEFF5;padding:15px 0px">기타</div>
+            <div style="padding:15px 35px;border-bottom:1px solid #C5C5C5;">기타사항 입력</div>
+        </div> -->
+        <div style="width: 100%;height: 30px; background-color: #EDEFF5;"></div>
+            <div style="width: 100%; background-color: #EDEFF5;">
+            <div style="padding: 6px 15px 10px 0; text-align: right; ">
+                <button (click)="openStep=2;" style="background-color: #0064FF;text-align: right; padding: 6px 10px; border-radius: 10px; color: #fff;" mat-ripple>수정하기</button>
+            </div>
+            </div>
+        <div style="width: 100%;height: 30px; background-color: #EDEFF5;"></div>
+    </div> 
+</ng-container>
+<ng-container *ngIf="openStep===2 && !isOpenChangePw">
+    <div class="title-bar">
+        <div class="title">마이페이지</div>
+        <div class="material-icons" id="close" (click)="openStep=1;">close</div>
+    </div>
+    <div style="width: 400px; padding:20px 50px; text-align: center; font-size: 23px; font-weight: bold;" user>
+        <span>해당 정보를 수정하시겠습니까?</span>
+        <div style="padding-top:30px">
+            <button (click)="updateMyProfile();" style="font-size: 17px; width: 100px; height: 35px; margin-right: 15px; background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%); border:none; color:#fff">수정</button>
+            <button style="font-size: 17px; width: 100px; height: 35px; background-color: #9B9B9B; border:none; color:#fff"
+                (click)="openStep=1"
+            >취소</button>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="isOpenChangePw">
+    <div style="width: 780px;">
+    <div class="title-bar" style="text-align: center; font-size:30px; font-weight: bold; padding:15px 0px; position:relative">
+        <span style="vertical-align: baseline;">비밀번호 변경</span>
+        <div style="position:absolute; font-size:40px; font-weight: bold; right:10px; top:50%; transform: translateY(-50%);" class="material-icons" (click)="isOpenChangePw = false; oldPassword=''; changePassword=''; checkChangePassword='';">close</div>
+    </div>
+    <div style="height: 480px; background-color: #EDEFF5;">
+        <div style="padding:40px; text-align: center;">
+            <div style="margin:0 auto;background-image:url('/assets/lock.png'); width: 69px ; height: 81px; "></div>
+            <div style="margin-top:10px; color:#828282; font-size:15px;">새로운 비밀번호를 등록 후 사용해 주시기 바랍니다.</div>
+        </div>
+        <div style="padding:0px 100px;">
+            <div style="display: flex; align-items: center;">
+                <div style="width: 200px; font-size: 20px;">로그인 ID</div>
+                <div style="width:300px; font-size: 20px;">KSLS777</div>
+            </div>
+            <div class="password" style="display: flex; align-items: center; margin-top:20px;">
+                <div style="width: 180px; font-size: 20px;">현재 비밀번호</div>
+                <input type="password" [(ngModel)]="oldPassword" />
+            </div>
+            <div class="password" style="display: flex; align-items: center;margin-top:10px;">
+                <div style="width: 180px; font-size: 20px;">새로운 비밀번호</div>
+                <input type="password" [(ngModel)]="changePassword" />
+            </div>
+            <div class="password" style="display: flex; align-items: center;margin-top:10px;">
+                <div style="width: 180px; font-size: 20px;">새 비밀번호 확인</div>
+                <input type="password" [(ngModel)]="checkChangePassword" />
+            </div>
+            <div style="display: flex; align-items: center;margin-top:10px;">
+                <div style="width: 180px; font-size: 20px;"></div>
+                <div style="width: 300px; text-align: right;">
+                    <button (click)="updateMyProfile();" style="background-color: #0064FF; color:#fff;border-radius: 5px; border:none; padding:5px 10px; font-size:18px" mat-ripple>비밀번호 변경</button>
                 </div>
             </div>
         </div>
     </div>
-    <div style="width: 100%; height: 0px; border:1px solid #0564AA"></div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">이름</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">홍길동</div>
-        <div class="item" style="background-color: #EDEFF5;">성별</div>
-        <div class="item">남자</div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">생년월일</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">1999.01.28</div>
-        <div class="item" style="background-color: #EDEFF5;">회원형태</div>
-        <div class="item">학생</div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">사용자 ID</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;position: relative;">
-            <span>KSLS777</span>
-            <div style="box-shadow: 3px 0px 3px #00000029; border: 1px solid #C5C5C5;font-size:11px;background: transparent linear-gradient(180deg, #FFFFFF 0%, #C1C1C1 100%) 0% 0% no-repeat padding-box; padding:5px 7px; position:absolute; right: 20px; top:6px;" (click)="openChangePassword();">비밀번호 변경</div>
-        </div>
-        <div class="item" style="background-color: #EDEFF5;">최종 점수</div>
-        <div class="item">87.5 점</div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">휴대전화</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">010-1111-1111</div>
-        <div class="item" style="background-color: #EDEFF5;">평균 점수</div>
-        <div class="item">77.2점</div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">휴대전화(보호자)</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">010-1111-1112</div>
-        <div class="item" style="background-color: #EDEFF5;">종목</div>
-        <div class="item">10cm 권총</div>
-    </div>
-    <div class="info-wrap">
-        <div class="item" style="background-color: #EDEFF5;">주소</div>
-        <div class="item" style="text-align: left; padding: 10px 35px;">인천광역시 서구 청라동</div>
-        <div class="item" style="background-color: #EDEFF5;">회원 가입일</div>
-        <div class="item">2022.01.02</div>
-    </div>
-    <div class="info-wrap" style="grid-template-rows: 120px; grid-template-columns: 1fr 4.5fr;">
-        <div class="item" style="background-color: #EDEFF5;padding:15px 0px">기타</div>
-        <div style="padding:15px 35px;border-bottom:1px solid #C5C5C5;">기타사항 입력</div>
-    </div>
-    <div style="width: 100%;height: 30px; background-color: #EDEFF5;"></div>
-</div> 
+</div>
+
+</ng-container>

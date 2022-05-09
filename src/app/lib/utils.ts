@@ -45,3 +45,10 @@ export function getQueryString(data: any) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&');
 }
+
+export function transformBirthday(birthday) {
+    let year = birthday.slice(0, 4);
+    let month = birthday.slice(4, 6);
+    let day = birthday.slice(6, 8);
+    return `${year}.${month}.${day}`;
+}

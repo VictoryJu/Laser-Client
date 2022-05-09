@@ -7,7 +7,7 @@ export const environment = {
   apiUrl: "http://192.168.210.67:8000",
   videoUrl: "http://192.168.210.67:8000/video_feed",
   detectUrl: "http://192.168.210.67:8000/video_feed_detect",
-  serviceUrl: "https://8bbc-58-120-210-56.ngrok.io/v1"
+  serviceUrl: "http://localhost:22092/v1"
 };
 
 /*

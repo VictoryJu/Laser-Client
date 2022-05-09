@@ -38,7 +38,7 @@ import { AdminGroupUpdateComponent } from './component/admin-group-update/admin-
     AdminMemberUpdateComponent,
     AdminGameManagementComponent,
     AdminRegistPlayerComponent,
-    AdminGroupUpdateComponent
+    AdminGroupUpdateComponent,
   ],
   imports: [
     CommonModule,
@@ -61,7 +61,7 @@ import { AdminGroupUpdateComponent } from './component/admin-group-update/admin-
     AdminMemberUpdateComponent,
     AdminGameManagementComponent,
     AdminRegistPlayerComponent,
-    AdminGroupUpdateComponent
+    AdminGroupUpdateComponent,
   ]
 })
 export class AdminModule { }
