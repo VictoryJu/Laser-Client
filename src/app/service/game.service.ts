@@ -43,5 +43,12 @@ export class GameService {
 
     getWinners(matchId:string){
         return this._http.get(`${environment.serviceUrl}/match/winners${getQueryString(matchId)}`).toPromise();
+  }
+    createCompetition(data:{name:string,startTime:string}){
+        return this._http.post(`${environment.serviceUrl}/event`,data).toPromise();
+    }
+
+    getCompetition(){
+        return this._http.get(`${environment.serviceUrl}/event/list`).toPromise();
     }
 }
