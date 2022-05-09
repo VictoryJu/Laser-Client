@@ -29,14 +29,14 @@
     <div style="color: #fff; margin-top: 20px;">
         현재 진행중인 대회
     </div>
-        <ng-container *ngFor="let item of competitionArr">
-            <div style="display: flex; align-items: center; margin-top: 20px;">
-                <div style="width: 400px; background-color: #0064C8; color: #fff; font-size: 24px; padding: 8px 15px;">{{item.name}}</div>
-                <button (click)="openRegistPlayer(item.eventId)" class="item" style="margin-left: 10px;">참가자 등록</button>
-                <button class="item" style="margin-left: 5px;">경기 설정</button>
-                <button class="item" style="margin-left: 5px;">시작</button>
-            </div>
-        </ng-container>
+    <ng-container *ngFor="let item of competitionArr">
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <div style="width: 400px; background-color: #0064C8; color: #fff; font-size: 24px; padding: 8px 15px;">{{item.name}}</div>
+            <button (click)="openRegistPlayer(item.eventId)" class="item" style="margin-left: 10px;">참가자 등록</button>
+            <button class="item" style="margin-left: 5px;">경기 설정</button>
+            <button class="item" style="margin-left: 5px;">시작</button>
+        </div>
+    </ng-container>
 
     <div style="color: #fff; margin-top: 20px;">
         지난 대회
