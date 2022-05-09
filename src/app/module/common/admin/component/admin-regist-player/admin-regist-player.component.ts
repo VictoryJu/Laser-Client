@@ -20,7 +20,7 @@ export class AdminRegistPlayerComponent implements OnInit {
 
   async getPlayer(){
     try{
-        const res:any = this._api.getMemberList({
+        const res:any = this._api._admin.getMemberList({
             searchType: 0,
             start: 0,
             limit: 10,
