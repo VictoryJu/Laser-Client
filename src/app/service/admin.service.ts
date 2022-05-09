@@ -11,7 +11,7 @@ export class AdminService {
   constructor(private _http: HttpClient) { }
     
     getMemberList(data: {
-        searchType:number,keyword:string,start:number,limit:number
+        searchType:number,keyword?:string,start:number,limit:number
     }) {
         return this._http.get(`${environment.serviceUrl}/member/list${getQueryString(data)}`).toPromise();
     }

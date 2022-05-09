@@ -64,7 +64,7 @@ export class AdminGameManagementComponent implements OnInit {
     this.isReqCreate = true
     try{
         let startTime = `${this.year}${this.month}${this.day}${this.hour}${this.min}00`
-        const res:any = await this._api.createCompetition({
+        const res:any = await this._api._game.createCompetition({
             name: this.CompetitionName,
             startTime: startTime
         })
@@ -78,7 +78,7 @@ export class AdminGameManagementComponent implements OnInit {
   competitionArr=[];
   async getCompetitionList(){
     try{
-        const res:any = await this._api.getCompetition()
+        const res:any = await this._api._game.getCompetition()
         this.competitionArr = [...res.datas];
         console.log(res.datas);
         
