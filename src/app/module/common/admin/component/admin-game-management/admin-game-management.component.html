@@ -7,19 +7,37 @@
     [refData]="_matDialogRef"
     [isConfig]="true"
 >   
-<ng-container *ngIf="step===1">
-    <div style="cursor: pointer;width:250px;background-color: #E3E3E3; text-align: center; padding: 8px 20px;" (click)="step=2;">
-        대회추가
+
+    <div style="display: flex;">
+        <input [(ngModel)]="CompetitionName" placeholder="대회 이름 입력" style="border:none; width:390px; background-color: #E3E3E3; text-align: center; padding: 8px 20px;">
     </div>
+    <div class="time-wrap" >
+        <select style="width: 80px; text-align: center;" [(ngModel)]="year">
+            <option [ngValue]="item" *ngFor="let item of yearArr">{{item+'년'}}</option>
+        </select>
+        <select style="width: 80px; text-align: center;" [(ngModel)]="month">
+            <option [ngValue]="item" *ngFor="let item of monthArr">{{item+' 월'}}</option>
+        </select>
+        <select style="width: 80px; text-align: center;" [(ngModel)]="day">
+            <option [ngValue]="item" *ngFor="let item of dayArr">{{item+' 일'}}</option>
+        </select>
+        <input type="tel" maxlength="2" [(ngModel)] ="hour" placeholder="시" >
+        <input type="tel" maxlength="2" [(ngModel)] ="min" placeholder="분" >
+    </div>
+    <button (click)="createCompetition();" style="margin-top: 20px; width: 150px; height: 40px;">대회추가</button>
+
     <div style="color: #fff; margin-top: 20px;">
         현재 진행중인 대회
     </div>
-    <div style="display: flex; align-items: center; margin-top: 20px;">
-        <div style="background-color: #0064C8; color: #fff; font-size: 24px; padding: 8px 15px;">제 23회 미추홀기 전국사격대회</div>
-        <div class="item" style="margin-left: 10px;">참가자 등록</div>
-        <div class="item" style="margin-left: 5px;">경기 설정</div>
-        <div class="item" style="margin-left: 5px;">시작</div>
-    </div>
+    <ng-container *ngFor="let item of competitionArr">
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <div style="width: 400px; background-color: #0064C8; color: #fff; font-size: 24px; padding: 8px 15px;">{{item.name}}</div>
+            <button (click)="openRegistPlayer(item.eventId)" class="item" style="margin-left: 10px;">참가자 등록</button>
+            <button class="item" style="margin-left: 5px;">경기 설정</button>
+            <button class="item" style="margin-left: 5px;">시작</button>
+        </div>
+    </ng-container>
+
     <div style="color: #fff; margin-top: 20px;">
         지난 대회
     </div>
@@ -27,20 +45,4 @@
         <div style="background-color: #003B77; color: #fff; font-size: 24px; padding: 8px 15px;">제 23회 미추홀기 전국사격대회</div>
         <div style="margin-left: 10px; background-color: #E3E3E3; padding: 8px; text-align: center; width: 100px;">조회</div>
     </div>
-</ng-container>
-<ng-container *ngIf="step===2">
-    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
-        <div style="width: 400px; color: #fff; font-size: 18px;">대회이름 입력</div>
-            <div style=" cursor: pointer; position: relative; width: 400px; margin-top: 20px; background-color: #003B77; color: #fff; font-size: 22px; padding: 12px 15px; text-align: center;">대회 이름을 입력해주세요
-                <button style="position: absolute; right: -150px; top: 5px; color: #000; display: inline-block; background-color: #E3E3E3; padding: 8px; text-align: center; width: 100px;">입력</button>
-            </div>
-            <div style=" cursor: pointer; width: 400px; margin-top: 30px; background-color: #E3E3E3; padding: 8px 24px; text-align:center" (click)="openRegistPlayer()">
-                참가자 등록
-            </div>
-            <div style=" cursor: pointer; width: 400px; margin-top: 30px; background-color: #E3E3E3; padding: 8px 24px; text-align:center">
-                경기설정
-            </div>
-    </div>
-</ng-container>
 </app-admin-modal>
-

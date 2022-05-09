@@ -16,4 +16,7 @@ export class UserService {
     regist(data:{id:string,password:string,club:string,name:string,birthday:string,gender:number,gunType:number,phone:string,pphone:string,email:string,address:string,zipCode:string}){
         return this._http.post(`${environment.serviceUrl}/member`,data).toPromise();
     }
+    getMyProfile() {
+      return this._http.get(`${environment.serviceUrl}/member/profile`).toPromise();  
+    }
 }
