@@ -48,6 +48,14 @@ export class GameMainComponent implements OnInit {
     getMsg(){
         this._http.get('http://192.168.210.67:22092/txlive').subscribe(res=>{console.log(res)});
     }
+
+    isTest=true;
+    mouseOffset(e){
+        let obj = {x:e.offsetX,y:e.offsetY}
+        this.setCenterCoordinate(obj);
+        console.log(obj);
+        
+    }
     
     laneInfo:any;
     lane = 1;
@@ -90,7 +98,7 @@ export class GameMainComponent implements OnInit {
     config = {
         setTimerMin : 3,
         activeDelay : true,
-        delayTime: 3,
+        delayTime: 0,
         cameraLight : 1,
         illuminance : 1,
         titleTarget : '사격표적지(일반형)',
@@ -206,7 +214,7 @@ export class GameMainComponent implements OnInit {
         if(this.isIntervalDelay)return;
         this.serverX = (data.maxX + data.minX) / 2.0;
         this.serverY = (data.maxY + data.minY) / 2.0;
-        
+    
         this.shoting(this.serverX,this.serverY)
     }
 
@@ -374,5 +382,22 @@ export class GameMainComponent implements OnInit {
         let interval = setInterval(()=>{
             this.today = new Date();
         },1000)
+    }
+
+    print(){
+        let printContents, popupWin;
+        printContents = document.getElementById('print-section').innerHTML;
+        popupWin = window.open('', '_blank', 'top=0,left=0,height=700,width=800');
+        popupWin.document.open();
+        popupWin.document.write(`
+          <html>
+            <head>
+              <link rel="stylesheet" type="text/css" href="./skiyagi.css">   
+              <title>Print tab</title>
+            </head>
+            <body onload="window.print();window.close()">${printContents}</body>
+          </html>`
+        );
+        popupWin.document.close();
     }
 }
