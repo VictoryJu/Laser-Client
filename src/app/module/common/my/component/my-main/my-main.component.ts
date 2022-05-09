@@ -36,9 +36,9 @@ export class MyMainComponent implements OnInit {
   }
   openStep = 1; //수정하기 버튼클릭시 step 단계 구분
   isOpenChangePw = false; // pw변경 버튼 클릭 유무
-  oldPassword: string;
-  changePassword: string;
-  checkChangePassword: string;
+  oldPassword: string ='';
+  changePassword: string ='';
+  checkChangePassword: string ='';
   async updateMyProfile() {
     if (this.changePassword !== this.checkChangePassword) {
       alert('변경하시는 비밀번호가 일치하지 않습니다.');
@@ -77,8 +77,12 @@ export class MyMainComponent implements OnInit {
         alert('비밀번호 변경완료!') //비밀번호 변경 case
         this.openStep = 1;
         this.isOpenChangePw = false;
+        this.oldPassword = '';
+        this.changePassword = '';
+        this.checkChangePassword = '';
       }
     } catch (e) {
+      alert(e.error.msg);
       console.log(e);
     }
   }
