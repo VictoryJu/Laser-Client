@@ -9,12 +9,12 @@
         
         <div style="display: flex; gap: 15px; justify-content: center; align-items: center; text-align: right;">
             <div style="width: 60px; font-weight: bold;">아이디</div>
-            <input [(ngModel)]="userId" type="text" placeholder="UserName" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
+            <input (keyup.enter)="login()" [(ngModel)]="userId" type="text" placeholder="UserName" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
         </div>                    
 
         <div style="display: flex; gap: 15px; margin:20px 0px; justify-content: center; align-items: center; text-align: right;">
             <div style="width: 60px; font-weight: bold;">비밀번호</div>
-            <input [(ngModel)]="userPassword" type="password" placeholder="Password" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
+            <input (keyup.enter)="login()" [(ngModel)]="userPassword" type="password" placeholder="Password" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
         </div>
 
         <div style="display: flex; gap: 15px; justify-content: space-between; align-items: center; justify-content: space-between;">
