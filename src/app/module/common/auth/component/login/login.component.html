@@ -9,12 +9,12 @@
         
         <div style="display: flex; gap: 15px; justify-content: center; align-items: center; text-align: right;">
             <div style="width: 60px; font-weight: bold;">아이디</div>
-            <input type="text" placeholder="UserName" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
+            <input (keyup.enter)="login()" [(ngModel)]="userId" type="text" placeholder="UserName" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
         </div>                    
 
         <div style="display: flex; gap: 15px; margin:20px 0px; justify-content: center; align-items: center; text-align: right;">
             <div style="width: 60px; font-weight: bold;">비밀번호</div>
-            <input type="password" placeholder="Password" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
+            <input (keyup.enter)="login()" [(ngModel)]="userPassword" type="password" placeholder="Password" style="flex:1; background:#F8F5F5 0% 0% no-repeat padding-box; border:1px solid #D8D8D8; border-radius: 5px; padding:10px;" />
         </div>
 
         <div style="display: flex; gap: 15px; justify-content: space-between; align-items: center; justify-content: space-between;">
@@ -23,12 +23,12 @@
                 <span class="material-icons" style="font-size:20px; margin-right: 5px; color:#0064FF; ">check_circle</span>
                 <span style="font-size: 14px; font-weight: bold;">자동로그인</span>
             </div> -->
-            <button style="font-size: 15px; background-color: #0064FF; border:none; color:#fff; width: 100px; height: 35px; border-radius: 5px;" mat-ripple>로그인</button>
+            <button (click)="login()" style="font-size: 15px; background-color: #0064FF; border:none; color:#fff; width: 100px; height: 35px; border-radius: 5px;" mat-ripple>로그인</button>
         </div>
     </div>
 
     <div style="background-color: #E2E2E2; width: 100%; padding:20px 80px; display: flex; align-items: center; justify-content: right;">
-        <div style="text-align: right; font-size: 18px; font-weight: 400; color:#5B5B5B" (click)="openRegist();">회원가입</div>
+        <div style="text-align: right; font-size: 18px; font-weight: 400; color:#5B5B5B; cursor: pointer;" (click)="openRegist();">회원가입</div>
     </div>
 </div>
 

@@ -1,3 +1,4 @@
+import { AdminNetworkConfigComponent } from './component/admin-network-config/admin-network-config.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,17 @@ import { MatRippleModule } from '@angular/material/core';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
 import { AdminGameConfigComponent } from './component/admin-game-config/admin-game-config.component';
 import { FormsModule } from '@angular/forms';
+import { AdminGroupBoardComponent } from './component/admin-group-board/admin-group-board.component';
+import { AdminModalComponent } from './component/admin-modal/admin-modal.component';
+import { MyModule } from '../my/my.module';
+import { AdminQualifierComponent } from './component/admin-qualifier/admin-qualifier.component';
+import { AdminMemberComponent } from './component/admin-member/admin-member.component';
+import { AdminMemberUpdateComponent } from './component/admin-member-update/admin-member-update.component';
+import { AdminGameManagementComponent } from './component/admin-game-management/admin-game-management.component';
+import { AdminRegistPlayerComponent } from './component/admin-regist-player/admin-regist-player.component';
+import { PagenationModule } from '../pagenation/pagenation.module';
+import { AdminGroupUpdateComponent } from './component/admin-group-update/admin-group-update.component';
+
 
 
 
@@ -17,19 +29,39 @@ import { FormsModule } from '@angular/forms';
     AdminMainComponent,
     AdminSelectLaneComponent,
     AdminDashboardComponent,
-    AdminGameConfigComponent
+    AdminGameConfigComponent,
+    AdminGroupBoardComponent,
+    AdminNetworkConfigComponent,
+    AdminModalComponent,
+    AdminQualifierComponent,
+    AdminMemberComponent,
+    AdminMemberUpdateComponent,
+    AdminGameManagementComponent,
+    AdminRegistPlayerComponent,
+    AdminGroupUpdateComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatRippleModule,
-    FormsModule
+    FormsModule,
+    MyModule,
+    PagenationModule
   ],
   exports:[
     RelayGameComponent,
     AdminMainComponent,
     AdminSelectLaneComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminGroupBoardComponent,
+    AdminNetworkConfigComponent,
+    AdminModalComponent,
+    AdminQualifierComponent,
+    AdminMemberComponent,
+    AdminMemberUpdateComponent,
+    AdminGameManagementComponent,
+    AdminRegistPlayerComponent,
+    AdminGroupUpdateComponent,
   ]
 })
 export class AdminModule { }

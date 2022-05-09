@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 import { AdminGameConfigComponent } from '../admin-game-config/admin-game-config.component';
+import { AdminGroupBoardComponent } from '../admin-group-board/admin-group-board.component';
 
 @Component({
   selector: 'app-admin-main',

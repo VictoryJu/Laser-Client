@@ -1,0 +1,48 @@
+<div class="title-bar">
+    <div class="title">대회 중계</div>
+    <div class="material-icons" id="close" (click)="close();">close</div>
+</div>
+<app-admin-modal
+    [isNeedBorder]="true"
+    [refData]="_matDialogRef"
+    [isConfig]="true"
+>   
+
+    <div style="display: flex;">
+        <input [(ngModel)]="CompetitionName" placeholder="대회 이름 입력" style="border:none; width:390px; background-color: #E3E3E3; text-align: center; padding: 8px 20px;">
+    </div>
+    <div class="time-wrap" >
+        <select style="width: 80px; text-align: center;" [(ngModel)]="year">
+            <option [ngValue]="item" *ngFor="let item of yearArr">{{item+'년'}}</option>
+        </select>
+        <select style="width: 80px; text-align: center;" [(ngModel)]="month">
+            <option [ngValue]="item" *ngFor="let item of monthArr">{{item+' 월'}}</option>
+        </select>
+        <select style="width: 80px; text-align: center;" [(ngModel)]="day">
+            <option [ngValue]="item" *ngFor="let item of dayArr">{{item+' 일'}}</option>
+        </select>
+        <input type="tel" maxlength="2" [(ngModel)] ="hour" placeholder="시" >
+        <input type="tel" maxlength="2" [(ngModel)] ="min" placeholder="분" >
+    </div>
+    <button (click)="createCompetition();" style="margin-top: 20px; width: 150px; height: 40px;">대회추가</button>
+
+    <div style="color: #fff; margin-top: 20px;">
+        현재 진행중인 대회
+    </div>
+    <ng-container *ngFor="let item of competitionArr">
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <div style="width: 400px; background-color: #0064C8; color: #fff; font-size: 24px; padding: 8px 15px;">{{item.name}}</div>
+            <button (click)="openRegistPlayer(item.eventId)" class="item" style="margin-left: 10px;">참가자 등록</button>
+            <button class="item" style="margin-left: 5px;">경기 설정</button>
+            <button class="item" style="margin-left: 5px;">시작</button>
+        </div>
+    </ng-container>
+
+    <div style="color: #fff; margin-top: 20px;">
+        지난 대회
+    </div>
+    <div style="margin-top: 20px; display: flex; align-items: center;"> <!--ngFor-->
+        <div style="background-color: #003B77; color: #fff; font-size: 24px; padding: 8px 15px;">제 23회 미추홀기 전국사격대회</div>
+        <div style="margin-left: 10px; background-color: #E3E3E3; padding: 8px; text-align: center; width: 100px;">조회</div>
+    </div>
+</app-admin-modal>

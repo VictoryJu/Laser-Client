@@ -1,0 +1,71 @@
+<div style="overflow: hidden; width: 1000px;">
+    <div class="title-bar">
+        <div class="title">관리자 회원관리</div>
+        <div class="material-icons" id="close" (click)="_matRef.close()">close</div>
+    </div>
+    <div style="background-color: #fff; padding:30px 40px;">
+        <div>
+            <span style="color:black; font-weight: bold; font-size: 18px;">일반 회원 관리</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <div style="flex:1.5;">
+                <div style="display: flex; align-items: center;">
+                    <div style="margin-right: 40px;">그룹수 20</div>
+                    <div>
+                        <select (change)="selectOption($event.target.value)" >
+                            <option *ngFor="let opt of selectOptions">{{opt.name}}</option>
+                        </select>
+                    </div>
+                    <input style="border: 1px solid #ccc; padding:0px 5px; margin-right: 10px;" type="text" [(ngModel)]="keyword">
+                    <button style="padding:1px 20px;background: transparent linear-gradient(180deg, #0079C6 0%, #0C3F79 100%);color:#fff;border:none" (click)="getMemberList()">검색</button>
+                    <button style="margin-left: 10px; padding:1px 20px;background: transparent linear-gradient(180deg, #446A46 0%, #446A46 100%);color:#fff;border:none" (click)="getMemberList(true)">초기화</button>                
+                </div>
+            </div>
+        </div>
+        <div style="border:2px solid #0047A4; width: 100%; margin-top:15px;"></div>
+        <div style="background-color: #E4EAF8; padding:10px 0px">
+            <div class="board-header-wrap">
+                <div class="item">No.</div>
+                <div class="item">
+                    <img src="assets/check_box.svg" style="width: 20px;"  />
+                </div>
+                <div class="item">아이디</div>
+                <div class="item">사용자이름</div>
+                <div class="item">회원상태</div>
+                <div class="item">전화번호</div>
+                <div class="item">강습횟수</div>
+                <div class="item">회원가입일</div>
+                <div class="item">기능</div>
+            </div>
+        </div>
+        <ng-container *ngIf="memberList?.length < 1">
+            <div style="text-align: center; padding:10px;">회원이 존재하지 않습니다.</div>
+        </ng-container>
+        <ng-container *ngFor="let item of memberList">
+            <div style="background-color: #F0F0F0; padding:5px 0px; border-bottom: 1px solid #ccc;">
+                <div class="board-main-wrap">
+                    <div class="item">{{item.id}}</div>
+                    <div class="item">쳌</div>
+                    <div class="item">{{item.memberId}}</div>
+                    <div class="item">{{item.name}}</div>
+                    <div class="item">{{item.isAdult ? '성인' : '학생'}}</div>
+                    <div class="item">{{item.phone}}</div>
+                    <div class="item">{{item.loginCount}}회</div>
+                    <div class="item">{{item.ctime | date: "yyyy-MM-dd"}}</div>
+                    <div class="item">
+                        <button class="edit-btn" style="margin-right: 5px;" (click)="openMemberDetail(item.memberId)">수정</button>
+                        <button class="del-btn">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <app-pagenation
+            [start]="start"
+            [limit]="limit"
+            [allCount]="allCount"
+            (change)="start = $event; getMemberList();"
+        >
+
+        </app-pagenation>
+    </div>
+</div>
