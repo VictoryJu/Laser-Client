@@ -9,7 +9,6 @@ import { GamePageModule } from './module/page/game-page/game-page.module';
 import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SocketService } from './service/socket.service';
 import { AdminPageModule } from './module/page/admin-page/admin-page.module';
-import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignalRService } from './service/signal-r.service';
 import { HttpInterceptorService } from './service/http-intercepter.service';
@@ -22,7 +21,6 @@ import { HttpInterceptorService } from './service/http-intercepter.service';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgChartsModule,
     RouterModule.forRoot([
       {path: '', loadChildren: ()=> GamePageModule},
       {path: 'admin',loadChildren: ()=>AdminPageModule}
